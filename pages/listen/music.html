@@ -6,8 +6,119 @@
 <title>RiteHear - Music Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../theme.css">
+<style>
+.music-overview{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:28px;
+  align-items:start;
+  margin-bottom:40px;
+}
+.music-copy h2{font-size:clamp(44px,6vw,72px);line-height:.95;margin-bottom:16px;font-family:'Bebas Neue',sans-serif;}
+.music-copy p{color:var(--muted);font-size:16px;line-height:1.85;margin-bottom:14px;}
+.music-stats{display:grid;gap:12px;}
+.music-stat{
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(255,255,255,.02);
+  font-size:13px;
+  color:var(--muted);
+  transition:all .28s ease;
+}
+.music-stat strong{display:block;color:var(--text);font-size:20px;margin-bottom:4px;}
+.music-stat:hover{
+  background:rgba(255,140,59,.06);
+  border-color:var(--orange);
+}
+.rotation-card,
+.editorial-card{
+  border:1px solid var(--line);
+  border-radius:26px;
+  background:linear-gradient(160deg,rgba(30,23,18,.88),rgba(18,15,13,.92));
+  box-shadow:var(--shadow);
+  padding:28px;
+  margin-bottom:20px;
+  transition:all .28s ease;
+}
+.rotation-card::before,
+.editorial-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.04),transparent 34%,transparent 62%,rgba(196,154,112,.05));
+  pointer-events:none;
+  border-radius:26px;
+}
+.rotation-card:hover,
+.editorial-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--line-strong);
+  box-shadow:0 28px 72px rgba(0,0,0,.34);
+}
+.rotation-card h3,
+.editorial-card h3{
+  font-size:22px;
+  margin-bottom:18px;
+  position:relative;
+  z-index:1;
+}
+.rotation-table{width:100%;border-collapse:collapse;}
+.rotation-table thead{border-bottom:1px solid var(--line);}
+.rotation-table th{
+  text-align:left;
+  padding:12px 0;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--amber);
+  border-bottom:1px solid var(--line);
+}
+.rotation-table td{
+  padding:14px 0;
+  border-bottom:1px solid var(--soft-line);
+  font-size:14px;
+}
+.rotation-table tr:hover{
+  background:rgba(255,140,59,.03);
+}
+.track-name{color:var(--text);font-weight:500;}
+.track-artist{color:var(--muted);font-size:13px;}
+.track-status{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(255,140,59,.12);
+  color:var(--orange);
+  font-size:11px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.editorial-list{list-style:none;display:grid;gap:14px;}
+.editorial-item{
+  padding:16px;
+  border:1px solid var(--soft-line);
+  border-radius:14px;
+  background:rgba(255,255,255,.02);
+  transition:all .24s ease;
+  position:relative;
+  z-index:1;
+}
+.editorial-item:hover{
+  background:rgba(255,140,59,.06);
+  border-color:var(--orange);
+  transform:translateX(4px);
+}
+.editorial-item strong{display:block;color:var(--text);margin-bottom:6px;font-size:15px;}
+.editorial-item span{color:var(--muted);font-size:13px;line-height:1.6;}
+@media (max-width:1024px){
+  .music-overview{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
 <div class="page-shell">
@@ -30,15 +141,139 @@
   <section class="page-hero reveal">
     <div class="kicker"><span class="live-dot"></span>Music Desk</div>
     <h1 class="page-title">Music Hub</h1>
-    <p>Release tracking, station rotation and editorial notes in one place.</p>
+    <p>Release tracking, station rotation and editorial notes in one centralized hub.</p>
   </section>
 
-  
-<section class="grid-two reveal"><article class="table-shell"><h3>Current Rotation</h3><table><thead><tr><th>Track</th><th>Artist</th><th>Genre</th><th>Status</th></tr></thead><tbody><tr><td>No Days Off</td><td>King Dre</td><td>Hip-Hop</td><td>A-List</td></tr><tr><td>Vibrations</td><td>Amara Soul</td><td>R&B</td><td>Heavy</td></tr><tr><td>Lagos to Raleigh</td><td>Dele X</td><td>Afrobeats</td><td>New</td></tr></tbody></table></article><article class="card"><h3>Editorial Notes</h3><ul class="bullet-list"><li>Independent artists with repeat listening are moving into heavier rotation.</li><li>Afrobeats and alt-R&B continue to overperform in evening blocks.</li><li>Weekend programming prioritizes high-energy transitions and cleaner metadata.</li></ul></article></section>
+  <section class="music-overview reveal">
+    <div class="music-copy">
+      <h2>Track Every Release</h2>
+      <p>Monitor all active tracks across your stations, playlists, and editorial collections in real-time. See rotation frequency, listener engagement, and performance metrics at a glance.</p>
+      <p>Our music desk integrates with major streaming platforms to keep your metadata fresh and your audience informed about new releases from your network.</p>
+    </div>
+    <div class="music-stats">
+      <div class="music-stat">
+        <strong>120+</strong>
+        Active Tracks
+      </div>
+      <div class="music-stat">
+        <strong>8</strong>
+        Active Genres
+      </div>
+      <div class="music-stat">
+        <strong>1.2M</strong>
+        Monthly Listens
+      </div>
+      <div class="music-stat">
+        <strong>94%</strong>
+        Avg. Completion
+      </div>
+    </div>
+  </section>
+
+  <div class="reveal">
+    <div class="rotation-card">
+      <h3>🎵 Current Rotation</h3>
+      <table class="rotation-table">
+        <thead>
+          <tr>
+            <th style="padding-left:0;">Track</th>
+            <th>Artist</th>
+            <th>Genre</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding-left:0;">
+              <div class="track-name">No Days Off</div>
+              <div class="track-artist">King Dre</div>
+            </td>
+            <td>
+              <div class="track-name">King Dre</div>
+            </td>
+            <td>Hip-Hop</td>
+            <td><span class="track-status">A-List</span></td>
+          </tr>
+          <tr>
+            <td style="padding-left:0;">
+              <div class="track-name">Vibrations</div>
+              <div class="track-artist">Amara Soul</div>
+            </td>
+            <td>
+              <div class="track-name">Amara Soul</div>
+            </td>
+            <td>R&B</td>
+            <td><span class="track-status">Heavy</span></td>
+          </tr>
+          <tr>
+            <td style="padding-left:0;">
+              <div class="track-name">Lagos to Raleigh</div>
+              <div class="track-artist">Dele X</div>
+            </td>
+            <td>
+              <div class="track-name">Dele X</div>
+            </td>
+            <td>Afrobeats</td>
+            <td><span class="track-status">New</span></td>
+          </tr>
+          <tr>
+            <td style="padding-left:0;">
+              <div class="track-name">Midnight Dreams</div>
+              <div class="track-artist">Luna Sky</div>
+            </td>
+            <td>
+              <div class="track-name">Luna Sky</div>
+            </td>
+            <td>Alternative</td>
+            <td><span class="track-status">Building</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="editorial-card">
+      <h3>📝 Editorial Notes</h3>
+      <ul class="editorial-list">
+        <li class="editorial-item reveal">
+          <strong>Genre Performance</strong>
+          <span>Independent artists with repeat listening patterns are moving into heavier rotation. Afrobeats and alt-R&B continue to overperform in evening blocks (6 PM - 2 AM).</span>
+        </li>
+        <li class="editorial-item reveal">
+          <strong>Programming Strategy</strong>
+          <span>Weekend programming prioritizes high-energy transitions and cleaner metadata. We're seeing stronger listener retention with strategic intro/outro overlaps between tracks.</span>
+        </li>
+        <li class="editorial-item reveal">
+          <strong>New Release Watch</strong>
+          <span>Three emerging artists qualified for heavy rotation this month based on listener engagement metrics. All have music on major platforms with clean marketing assets.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <footer class="footer"><span>RiteHear FmXm</span><span>Professional media platform experience.</span></footer>
 </div>
+
 <script src="../page.js"></script>
 <script src="../../shared-ui.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observerOptions = {
+    threshold: 0.14,
+    rootMargin: '-60px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  reveals.forEach(el => observer.observe(el));
+});
+</script>
 </body>
 </html>

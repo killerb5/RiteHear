@@ -6,8 +6,122 @@
 <title>RiteHear - Podcast Network</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../theme.css">
+<style>
+.podcast-hero{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:28px;
+  align-items:start;
+  margin-bottom:40px;
+}
+.podcast-copy h2{font-size:clamp(44px,6vw,72px);line-height:.95;margin-bottom:16px;font-family:'Bebas Neue',sans-serif;}
+.podcast-copy p{color:var(--muted);font-size:16px;line-height:1.85;margin-bottom:14px;}
+.podcast-highlights{display:grid;gap:12px;}
+.highlight-badge{
+  padding:14px 16px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(255,255,255,.02);
+  font-size:13px;
+  transition:all .28s ease;
+}
+.highlight-badge strong{display:block;color:var(--text);font-size:16px;margin-bottom:4px;}
+.highlight-badge:hover{
+  background:rgba(255,140,59,.06);
+  border-color:var(--orange);
+  transform:translateX(4px);
+}
+.shows-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  margin-bottom:40px;
+}
+.show-card{
+  border:1px solid var(--line);
+  border-radius:26px;
+  background:linear-gradient(160deg,rgba(30,23,18,.88),rgba(18,15,13,.92));
+  box-shadow:var(--shadow);
+  padding:24px;
+  position:relative;
+  overflow:hidden;
+  transition:all .28s ease;
+}
+.show-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.04),transparent 34%,transparent 62%,rgba(196,154,112,.05));
+  pointer-events:none;
+}
+.show-card::after{
+  content:'';
+  position:absolute;
+  inset:auto -60px -80px auto;
+  width:200px;
+  height:200px;
+  background:radial-gradient(circle,rgba(196,154,112,.12),transparent 70%);
+  pointer-events:none;
+}
+.show-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--line-strong);
+  box-shadow:0 28px 72px rgba(0,0,0,.34);
+}
+.show-icon{font-size:28px;margin-bottom:10px;}
+.show-card h3{font-size:20px;margin-bottom:8px;position:relative;z-index:1;}
+.show-meta{color:var(--muted);font-size:13px;line-height:1.6;position:relative;z-index:1;}
+.episodes-section{margin-top:40px;}
+.episodes-table{width:100%;border-collapse:collapse;}
+.episodes-table thead{border-bottom:1px solid var(--line);}
+.episodes-table th{
+  text-align:left;
+  padding:12px 0;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--amber);
+}
+.episodes-table td{
+  padding:14px 0;
+  border-bottom:1px solid var(--soft-line);
+  font-size:14px;
+}
+.episode-title{color:var(--text);font-weight:500;}
+.episode-series{color:var(--muted);font-size:13px;}
+.episode-length{
+  color:var(--muted);
+  font-size:13px;
+  text-align:right;
+}
+.episodes-table tbody tr:hover{
+  background:rgba(255,140,59,.03);
+}
+.episodes-card{
+  border:1px solid var(--line);
+  border-radius:26px;
+  background:linear-gradient(160deg,rgba(30,23,18,.88),rgba(18,15,13,.92));
+  box-shadow:var(--shadow);
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+}
+.episodes-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.04),transparent 34%,transparent 62%,rgba(196,154,112,.05));
+  pointer-events:none;
+}
+.episodes-card h3{font-size:22px;margin-bottom:18px;position:relative;z-index:1;}
+@media (max-width:1024px){
+  .podcast-hero{grid-template-columns:1fr;}
+  .shows-grid{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
 <div class="page-shell">
@@ -30,15 +144,134 @@
   <section class="page-hero reveal">
     <div class="kicker"><span class="live-dot"></span>Shows & Episodes</div>
     <h1 class="page-title">Podcast Network</h1>
-    <p>Programmed shows, recurring series and current episodes from the RiteHear podcast lane.</p>
+    <p>Programmed shows, recurring series and current episodes from across the RiteHear network.</p>
   </section>
 
-  
-<section class="grid-two reveal"><article class="card"><h3>Current Spotlight</h3><ul class="episode-list"><li class="episode-item"><strong>Street to Suite</strong><br><span class="meta-note">Business and growth conversations.</span></li><li class="episode-item"><strong>Built Different</strong><br><span class="meta-note">Mindset and leadership stories.</span></li><li class="episode-item"><strong>Game Day Debrief</strong><br><span class="meta-note">Sports reactions and analysis.</span></li></ul></article><article class="card"><h3>Recent Episode Library</h3><table><thead><tr><th>Series</th><th>Episode</th><th>Length</th></tr></thead><tbody><tr><td>Street to Suite</td><td>Local grind to platform strategy</td><td>58 min</td></tr><tr><td>Built Different</td><td>Discipline when growth slows</td><td>36 min</td></tr><tr><td>Game Day Debrief</td><td>Weekend recap</td><td>42 min</td></tr></tbody></table></article></section>
+  <section class="podcast-hero reveal">
+    <div class="podcast-copy">
+      <h2>Manage Your Network</h2>
+      <p>Oversee all your podcast series, episodes, and listener metrics from a single dashboard. Track performance trends, manage show schedules, and update editorial information in real-time.</p>
+      <p>RiteHear handles distribution to all major podcast platforms while you focus on creating great content. Your podcast data, audience insights, and growth metrics are always visible.</p>
+    </div>
+    <div class="podcast-highlights">
+      <div class="highlight-badge">
+        <strong>12</strong>
+        Active Shows
+      </div>
+      <div class="highlight-badge">
+        <strong>340</strong>
+        Total Episodes
+      </div>
+      <div class="highlight-badge">
+        <strong>2.4M</strong>
+        Total Downloads
+      </div>
+      <div class="highlight-badge">
+        <strong>84%</strong>
+        Avg. Completion
+      </div>
+    </div>
+  </section>
+
+  <div class="reveals">
+    <h2 style="font-size:28px;margin-bottom:24px;color:var(--text);">Featured Shows</h2>
+    <div class="shows-grid">
+      <div class="show-card reveal">
+        <div class="show-icon">🎙️</div>
+        <h3>Street to Suite</h3>
+        <p class="show-meta">Business and growth conversations with entrepreneurs and builders. New episodes every Tuesday and Friday.</p>
+      </div>
+      <div class="show-card reveal">
+        <div class="show-icon">💪</div>
+        <h3>Built Different</h3>
+        <p class="show-meta">Mindset and leadership stories from industry leaders. Exploring what separates winners from everyone else.</p>
+      </div>
+      <div class="show-card reveal">
+        <div class="show-icon">🏀</div>
+        <h3>Game Day Debrief</h3>
+        <p class="show-meta">Sports reactions and analysis. Live game coverage, player interviews, and league insights weekly.</p>
+      </div>
+      <div class="show-card reveal">
+        <div class="show-icon">🎬</div>
+        <h3>Media Matters</h3>
+        <p class="show-meta">Behind-the-scenes stories from creators and producers. How content gets made from concept to launch.</p>
+      </div>
+    </div>
+
+    <div class="episodes-section">
+      <div class="episodes-card reveal">
+        <h3>Recent Episodes Library</h3>
+        <table class="episodes-table">
+          <thead>
+            <tr>
+              <th style="padding-left:0;">Episode</th>
+              <th>Series</th>
+              <th style="text-align:right;">Length</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding-left:0;">
+                <div class="episode-title">Local grind to platform strategy</div>
+                <div class="episode-series">Hosted by Maya Chen</div>
+              </td>
+              <td><span class="episode-series">Street to Suite</span></td>
+              <td class="episode-length">58 min</td>
+            </tr>
+            <tr>
+              <td style="padding-left:0;">
+                <div class="episode-title">Discipline when growth slows</div>
+                <div class="episode-series">Guest: David Park</div>
+              </td>
+              <td><span class="episode-series">Built Different</span></td>
+              <td class="episode-length">36 min</td>
+            </tr>
+            <tr>
+              <td style="padding-left:0;">
+                <div class="episode-title">Weekend recap and analysis</div>
+                <div class="episode-series">Live coverage</div>
+              </td>
+              <td><span class="episode-series">Game Day Debrief</span></td>
+              <td class="episode-length">42 min</td>
+            </tr>
+            <tr>
+              <td style="padding-left:0;">
+                <div class="episode-title">From idea to launch in 90 days</div>
+                <div class="episode-series">Production insight</div>
+              </td>
+              <td><span class="episode-series">Media Matters</span></td>
+              <td class="episode-length">51 min</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer"><span>RiteHear FmXm</span><span>Professional media platform experience.</span></footer>
 </div>
+
 <script src="../page.js"></script>
 <script src="../../shared-ui.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observerOptions = {
+    threshold: 0.14,
+    rootMargin: '-60px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  reveals.forEach(el => observer.observe(el));
+});
+</script>
 </body>
 </html>

@@ -6,8 +6,185 @@
 <title>RiteHear - Upload Content</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../theme.css">
+<style>
+.creator-overview{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:28px;
+  align-items:start;
+  margin-bottom:40px;
+}
+.creator-copy h2{font-size:clamp(44px,6vw,72px);line-height:.95;margin-bottom:16px;font-family:'Bebas Neue',sans-serif;}
+.creator-copy p{color:var(--muted);font-size:16px;line-height:1.85;margin-bottom:14px;}
+.creator-benefits{display:grid;gap:12px;}
+.benefit-item{
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(255,255,255,.02);
+  display:flex;
+  align-items:start;
+  gap:12px;
+  transition:all .28s ease;
+}
+.benefit-item:hover{
+  background:rgba(255,140,59,.06);
+  border-color:var(--orange);
+  transform:translateX(4px);
+}
+.benefit-icon{font-size:20px;margin-top:2px;flex-shrink:0;}
+.benefit-text{
+  display:grid;
+  gap:4px;
+}
+.benefit-text strong{color:var(--text);font-size:14px;}
+.benefit-text span{color:var(--muted);font-size:12px;}
+.upload-container{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  margin-bottom:40px;
+}
+.form-card,
+.guidelines-card{
+  border:1px solid var(--line);
+  border-radius:26px;
+  background:linear-gradient(160deg,rgba(30,23,18,.88),rgba(18,15,13,.92));
+  box-shadow:var(--shadow);
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+}
+.form-card::before,
+.guidelines-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.04),transparent 34%,transparent 62%,rgba(196,154,112,.05));
+  pointer-events:none;
+}
+.form-card h3,
+.guidelines-card h3{
+  font-size:22px;
+  margin-bottom:20px;
+  position:relative;
+  z-index:1;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  position:relative;
+  z-index:1;
+}
+.field{display:grid;gap:8px;}
+.field label{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);}
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--soft-line);
+  background:rgba(255,255,255,.03);
+  color:#fff;
+  font-size:14px;
+  transition:all .24s ease;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  outline:none;
+  border-color:var(--orange);
+  box-shadow:0 0 0 3px rgba(255,140,59,.12);
+  background:rgba(255,255,255,.05);
+}
+.field textarea{min-height:110px;resize:vertical;}
+.submit-btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--gold),var(--orange));
+  color:#16110e;
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .28s ease;
+  margin-top:16px;
+}
+.submit-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 34px rgba(255,140,59,.24);
+}
+.guidelines-list{
+  list-style:none;
+  display:grid;
+  gap:12px;
+  position:relative;
+  z-index:1;
+}
+.guideline-item{
+  padding:12px;
+  border-left:2px solid var(--orange);
+  background:rgba(255,140,59,.04);
+  border-radius:4px;
+}
+.guideline-item strong{display:block;color:var(--text);font-size:14px;margin-bottom:4px;}
+.guideline-item span{color:var(--muted);font-size:13px;line-height:1.6;}
+.upload-summary{
+  margin-top:14px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid rgba(70,195,123,.24);
+  background:rgba(70,195,123,.1);
+  color:rgba(70,195,123,.8);
+  font-size:13px;
+  display:none;
+}
+.upload-summary.show{display:block;}
+.account-lock{
+  margin-top:12px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid rgba(196,154,112,.26);
+  background:rgba(196,154,112,.08);
+  font-size:13px;
+  color:var(--muted);
+  text-align:center;
+}
+.content-types{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:40px;
+}
+.content-type{
+  padding:20px 16px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:rgba(255,255,255,.02);
+  text-align:center;
+  transition:all .28s ease;
+}
+.content-type:hover{
+  background:rgba(255,140,59,.06);
+  border-color:var(--orange);
+  transform:translateY(-2px);
+}
+.type-icon{font-size:32px;margin-bottom:10px;}
+.type-name{color:var(--text);font-size:14px;font-weight:600;margin-bottom:6px;}
+.type-desc{color:var(--muted);font-size:12px;line-height:1.5;}
+@media (max-width:1024px){
+  .creator-overview{grid-template-columns:1fr;}
+  .upload-container{grid-template-columns:1fr;}
+  .content-types{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
 <div class="page-shell">
@@ -28,17 +205,159 @@
   </header>
 
   <section class="page-hero reveal">
-    <div class="kicker"><span class="live-dot"></span>Creator Intake</div>
-    <h1 class="page-title">Upload Content</h1>
-    <p>Submit music, podcast episodes or video files for programming review. Posting is account-based.</p>
+    <div class="kicker"><span class="live-dot"></span>Creator Tools</div>
+    <h1 class="page-title">Submit Your Content</h1>
+    <p>Distribute music, podcasts, and video across RiteHear's network and all major streaming platforms from one dashboard.</p>
   </section>
 
-  
-<section class="grid-two reveal"><form class="form-shell" id="uploadForm"><h3>Submission Form</h3><div class="form-grid"><div class="field"><label for="title">Title</label><input id="title" name="title" required></div><div class="field"><label for="owner">Artist / Show Name</label><input id="owner" name="owner" required></div><div class="field"><label for="category">Category</label><select id="category" name="category"><option>Music</option><option>Podcast</option><option>Video</option></select></div><div class="field"><label for="genre">Genre / Format</label><input id="genre" name="genre"></div></div><div class="field" style="margin-top:14px;"><label for="description">Description</label><textarea id="description" name="description"></textarea></div><div class="field" style="margin-top:14px;"><label for="file">Upload File</label><input id="file" type="file" required></div><div class="actions"><button class="submit-btn" type="submit" data-requires-account>Submit For Review</button></div><div id="uploadResult" class="upload-summary"></div><div class="account-lock" data-account-lock>Create an account before posting content.</div></form><article class="card"><h3>Submission Guidelines</h3><ul class="bullet-list"><li>Upload final audio/video files only, not rough references.</li><li>Use complete metadata for title, artist/show and format.</li><li>Programming review prioritizes broadcast-ready files.</li></ul></article></section>
+  <section class="creator-overview reveal">
+    <div class="creator-copy">
+      <h2>Built for Creators</h2>
+      <p>Whether you're an independent artist, podcast producer, or video creator, RiteHear gives you the tools to reach your audience without middlemen taking cuts.</p>
+      <p>Upload once, track performance everywhere. Maintain 100% editorial control over your content and keep all your audience data. No competitors. No surprises.</p>
+    </div>
+    <div class="creator-benefits">
+      <div class="benefit-item reveal">
+        <div class="benefit-icon">✓</div>
+        <div class="benefit-text">
+          <strong>Global Distribution</strong>
+          <span>Deployed to 40+ platforms instantly</span>
+        </div>
+      </div>
+      <div class="benefit-item reveal">
+        <div class="benefit-icon">✓</div>
+        <div class="benefit-text">
+          <strong>Keep Your Data</strong>
+          <span>Full audience insights and analytics</span>
+        </div>
+      </div>
+      <div class="benefit-item reveal">
+        <div class="benefit-icon">✓</div>
+        <div class="benefit-text">
+          <strong>Faster Payouts</strong>
+          <span>Weekly revenue settlement</span>
+        </div>
+      </div>
+      <div class="benefit-item reveal">
+        <div class="benefit-icon">✓</div>
+        <div class="benefit-text">
+          <strong>No Gatekeepers</strong>
+          <span>Direct relationship with your audience</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="reveals">
+    <h2 style="font-size:24px;margin-bottom:20px;color:var(--text);">What You Can Upload</h2>
+    <div class="content-types">
+      <div class="content-type reveal">
+        <div class="type-icon">🎵</div>
+        <div class="type-name">Music Tracks</div>
+        <div class="type-desc">Single tracks, albums, EPs. WAV, MP3, or AAC format.</div>
+      </div>
+      <div class="content-type reveal">
+        <div class="type-icon">🎙️</div>
+        <div class="type-name">Podcasts</div>
+        <div class="type-desc">Episodes from any format. Automatic RSS feed generation.</div>
+      </div>
+      <div class="content-type reveal">
+        <div class="type-icon">🎬</div>
+        <div class="type-name">Video</div>
+        <div class="type-desc">Full episodes or clips. Up to 4K resolution.</div>
+      </div>
+    </div>
+
+    <div class="upload-container">
+      <form class="form-card" id="uploadForm">
+        <h3>Submission Form</h3>
+        <div class="form-grid">
+          <div class="field">
+            <label for="title">Title</label>
+            <input id="title" name="title" placeholder="Your track or episode name" required>
+          </div>
+          <div class="field">
+            <label for="owner">Artist / Show Name</label>
+            <input id="owner" name="owner" placeholder="Your name or show branding" required>
+          </div>
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option>Music</option>
+              <option>Podcast</option>
+              <option>Video</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="genre">Genre / Format</label>
+            <input id="genre" name="genre" placeholder="Hip-Hop, Comedy, Pop, etc.">
+          </div>
+          <div class="field">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Tell listeners what this content is about..."></textarea>
+          </div>
+          <div class="field">
+            <label for="file">Upload File</label>
+            <input id="file" type="file" required>
+          </div>
+          <button class="submit-btn" type="submit" data-requires-account>Submit For Review</button>
+        </div>
+        <div id="uploadResult" class="upload-summary"></div>
+        <div class="account-lock" data-account-lock>Create an account to start uploading content.</div>
+      </form>
+
+      <div class="guidelines-card">
+        <h3>Submission Guidelines</h3>
+        <ul class="guidelines-list">
+          <li class="guideline-item reveal">
+            <strong>File Quality</strong>
+            <span>Upload final audio/video files only, not rough references. We accept WAV, MP3, AAC, MP4, and MOV formats.</span>
+          </li>
+          <li class="guideline-item reveal">
+            <strong>Complete Metadata</strong>
+            <span>Use complete information for title, artist/show name, and format. This ensures proper credits everywhere.</span>
+          </li>
+          <li class="guideline-item reveal">
+            <strong>Broadcast Ready</strong>
+            <span>Programming review prioritizes broadcast-quality files. Clean audio, clear audio levels, minimal background noise.</span>
+          </li>
+          <li class="guideline-item reveal">
+            <strong>Rights Clearance</strong>
+            <span>Confirm you own or have permission to distribute all content. We don't publish copyright-contested material.</span>
+          </li>
+          <li class="guideline-item reveal">
+            <strong>Review Timeline</strong>
+            <span>Submissions reviewed within 24 hours. Approved content live within 48 hours across all platforms.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer"><span>RiteHear FmXm</span><span>Professional media platform experience.</span></footer>
 </div>
+
 <script src="../page.js"></script>
 <script src="../../shared-ui.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observerOptions = {
+    threshold: 0.14,
+    rootMargin: '-60px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  reveals.forEach(el => observer.observe(el));
+});
+</script>
 </body>
 </html>
