@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RiteHear FmXm — Where All Your Music Is Played</title>
-<meta name="description" content="RiteHear FMXM - Live radio, podcasts, music and streaming for the culture.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +18,7 @@
   --bg2:#1A0B05;
   --bg3:#221208;
   --white:#F8F8F8;
-  --muted:rgba(248,248,248,.55);
+  --muted:rgba(248,248,248,.45);
   --border:rgba(255,122,24,.18);
 }
 
@@ -38,17 +37,10 @@ body{
   background:var(--bg);
   color:var(--white);
   overflow-x:hidden;
+  cursor:none;
 }
 
-/* Desktop custom cursor only */
-@media (min-width:769px){
-  body{cursor:none;}
-  .cursor,.cursor-ring{display:block;}
-}
-@media (max-width:768px){
-  .cursor,.cursor-ring{display:none;}
-}
-
+/* CUSTOM CURSOR */
 .cursor{
   position:fixed;
   width:12px;
@@ -59,11 +51,12 @@ body{
   z-index:9999;
   transform:translate(-50%,-50%);
 }
+
 .cursor-ring{
   position:fixed;
   width:36px;
   height:36px;
-  border:1px solid var(--orange);
+  border:1.5px solid var(--orange);
   border-radius:50%;
   pointer-events:none;
   z-index:9998;
@@ -79,428 +72,169 @@ nav{
   right:0;
   z-index:100;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  padding:18px 28px;
-  background:linear-gradient(180deg,rgba(14,7,3,.95),transparent);
+  justify-content:space-between;
+  padding:18px 48px;
+  background:linear-gradient(180deg,rgba(14,7,3,.95) 0%,transparent 100%);
+  backdrop-filter:blur(4px);
 }
 
-.logo{
+.nav-logo{
   font-family:'Bebas Neue',sans-serif;
-  font-size:30px;
-  letter-spacing:2px;
+  font-size:28px;
+  letter-spacing:3px;
   background:linear-gradient(90deg,var(--orange),var(--gold));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-.links{
-  display:flex;
-  gap:26px;
-}
-
-.links a{
-  text-decoration:none;
-  color:var(--muted);
-  font-family:'Barlow Condensed',sans-serif;
-  letter-spacing:2px;
+.nav-logo span{
+  color:var(--white);
+  -webkit-text-fill-color:var(--white);
+  opacity:.4;
   font-size:14px;
-  text-transform:uppercase;
+  letter-spacing:2px;
+  vertical-align:middle;
+  margin-left:4px;
 }
 
-.links a:hover{
+.nav-links{
+  display:flex;
+  gap:32px;
+  align-items:center;
+}
+
+.nav-links a{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-decoration:none;
+  position:relative;
+}
+
+.nav-links a:hover{
   color:var(--white);
 }
 
-.hero{
-  min-height:100vh;
+.nav-live{
   display:flex;
   align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:130px 20px 80px;
+  gap:8px;
+  background:rgba(255,122,24,.12);
+  border:1px solid var(--border);
+  padding:7px 16px;
+  border-radius:4px;
+  color:var(--orange);
+}
+
+.live-dot{
+  width:7px;
+  height:7px;
+  background:var(--orange);
+  border-radius:50%;
+  animation:pulse 1.4s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:.4;transform:scale(.7);}
+}
+
+/* HERO */
+.hero{
   position:relative;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
   overflow:hidden;
+  padding:120px 24px 80px;
 }
 
 #heroCanvas{
   position:absolute;
   inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
 }
 
-.overlay{
+.hero-grid{
   position:absolute;
   inset:0;
   background-image:
-   linear-gradient(rgba(255,122,24,.04) 1px, transparent 1px),
-   linear-gradient(90deg, rgba(255,122,24,.04) 1px, transparent 1px);
+  linear-gradient(rgba(255,122,24,.04) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,122,24,.04) 1px,transparent 1px);
   background-size:60px 60px;
+  z-index:1;
+}
+
+.hero-glow{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:900px;
+  height:900px;
+  background:radial-gradient(ellipse,rgba(255,122,24,.13) 0%,transparent 70%);
+  z-index:1;
 }
 
 .hero-content{
   position:relative;
   z-index:2;
-  max-width:1100px;
+  text-align:center;
+  max-width:1000px;
 }
 
-.badge{
-  display:inline-block;
-  border:1px solid var(--border);
-  background:rgba(255,122,24,.08);
-  padding:8px 18px;
-  letter-spacing:3px;
-  font-size:12px;
-  text-transform:uppercase;
-  margin-bottom:28px;
-}
-
-.hero h1{
+.hero-h1{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(60px,11vw,160px);
+  font-size:clamp(72px,12vw,160px);
   line-height:.9;
 }
 
-.hero .accent{
+.hero-h1 .highlight{
   background:linear-gradient(135deg,var(--orange),var(--gold));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-.sub{
-  margin-top:20px;
-  color:var(--muted);
-  letter-spacing:4px;
-  text-transform:uppercase;
-  font-family:'Barlow Condensed',sans-serif;
+/* DESKTOP FIX */
+@media (min-width: 1024px){
+  .hero-h1{
+    font-size:150px;
+  }
 }
 
-.divider{
-  width:70px;
-  height:2px;
-  margin:28px auto;
-  background:linear-gradient(90deg,var(--orange),var(--gold));
-}
+/* MOBILE */
+@media (max-width:768px){
+  body{
+    cursor:auto;
+  }
 
-.cta{
-  display:flex;
-  gap:14px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
+  .cursor,
+  .cursor-ring{
+    display:none;
+  }
 
-.btn{
-  padding:14px 24px;
-  border-radius:4px;
-  text-decoration:none;
-  font-family:'Barlow Condensed',sans-serif;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  font-weight:700;
-}
+  nav{
+    padding:16px 20px;
+  }
 
-.primary{
-  background:linear-gradient(135deg,var(--orange),#e85f00);
-  color:#fff;
-}
+  .nav-links{
+    display:none;
+  }
 
-.outline{
-  border:1px solid var(--border);
-  color:#fff;
-}
+  .hero{
+    padding:110px 20px 60px;
+  }
 
-.now-playing{
-  position:absolute;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(26,11,5,.9);
-  border:1px solid var(--border);
-  padding:14px 20px;
-  border-radius:8px;
-  min-width:320px;
-  z-index:2;
-}
-
-section{
-  max-width:1300px;
-  margin:auto;
-  padding:90px 20px;
-}
-
-.title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(40px,7vw,72px);
-  margin-bottom:20px;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-
-.card{
-  background:var(--bg3);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:24px;
-}
-
-.card h3{
-  font-size:24px;
-  margin-bottom:8px;
-}
-
-footer{
-  border-top:1px solid var(--border);
-  text-align:center;
-  padding:40px 20px;
-  color:var(--muted);
-}
-
-@media(max-width:768px){
-  .links{display:none;}
-  .hero h1{font-size:clamp(48px,16vw,90px);}
-  .now-playing{
-    width:calc(100% - 30px);
-    min-width:auto;
+  .hero-h1{
+    font-size:72px;
   }
 }
 </style>
-</head>
-
-<body>
-
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="ring"></div>
-
-<nav>
-  <div class="logo">RiteHear FmXm</div>
-  <div class="links">
-    <a href="#">Radio</a>
-    <a href="#">Podcasts</a>
-    <a href="#">Music</a>
-    <a href="#">Live</a>
-    <a href="#">Creators</a>
-  </div>
-</nav>
-
-<section class="hero">
-<canvas id="heroCanvas"></canvas>
-<div class="overlay"></div>
-
-<div class="hero-content">
-<div class="badge">Broadcasting Live Now</div>
-
-<h1>
-Where All<br>
-Your <span class="accent">Music</span><br>
-Is Played
-</h1>
-
-<div class="sub">Live Radio • Podcasts • Music • Video • Streaming</div>
-<div class="divider"></div>
-
-<div class="cta">
-<a href="#" class="btn primary">Listen Live</a>
-<a href="#" class="btn outline">Upload Content</a>
-<a href="#" class="btn outline">Watch Live</a>
-</div>
-</div>
-
-<div class="now-playing">
-Now Playing — Late Night Frequencies • DJ Rite
-</div>
-</section>
-
-<!-- TRENDING SHOWS -->
-<section>
-  <div class="title">Trending Shows</div>
-
-  <div class="cards">
-
-    <div class="card">
-      <h3>Street to Suite</h3>
-      <p>Business, hustle, ownership and real talk.</p>
-    </div>
-
-    <div class="card">
-      <h3>Unsigned Heat</h3>
-      <p>Independent artists getting real exposure.</p>
-    </div>
-
-    <div class="card">
-      <h3>Game Day Debrief</h3>
-      <p>Sports talk, reactions, scores and culture.</p>
-    </div>
-
-    <div class="card">
-      <h3>Built Different</h3>
-      <p>Mindset, motivation, money and growth.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- NEW MUSIC -->
-<section>
-  <div class="title">Fresh Music</div>
-
-  <div class="cards">
-
-    <div class="card">
-      <h3>No Days Off</h3>
-      <p>King Dre • Hip-Hop</p>
-    </div>
-
-    <div class="card">
-      <h3>Vibrations</h3>
-      <p>Amara Soul • R&B</p>
-    </div>
-
-    <div class="card">
-      <h3>Lagos to Raleigh</h3>
-      <p>Dele X • Afrobeats</p>
-    </div>
-
-    <div class="card">
-      <h3>Overflow</h3>
-      <p>Bishop Williams • Gospel</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- LIVE STREAMS -->
-<section>
-  <div class="title">Watch Live</div>
-
-  <div class="cards">
-
-    <div class="card">
-      <h3>Late Night DJ Set</h3>
-      <p>Live now • Hip-Hop & R&B</p>
-    </div>
-
-    <div class="card">
-      <h3>Studio Session</h3>
-      <p>Behind the scenes with creators.</p>
-    </div>
-
-    <div class="card">
-      <h3>Interview: Rising Star</h3>
-      <p>Tonight at 9PM • Set reminder</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- CREATOR CTA -->
-<section>
-  <div class="title">Create. Upload. Broadcast.</div>
-
-  <div class="card" style="text-align:center;">
-    <p style="margin-bottom:20px;">
-      Upload your music, start your podcast, go live, and reach a real audience.
-    </p>
-
-    <div class="cta">
-      <a href="#" class="btn primary">Start Uploading</a>
-      <a href="#" class="btn outline">Learn More</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div style="font-size:28px;font-family:'Bebas Neue',sans-serif;margin-bottom:10px;">
-    RiteHear FmXm
-  </div>
-
-  <div style="margin-bottom:18px;">
-    The Digital Broadcast Network for Independent Culture.
-  </div>
-
-  <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:22px;">
-    <a href="#" style="color:inherit;text-decoration:none;">Radio</a>
-    <a href="#" style="color:inherit;text-decoration:none;">Podcasts</a>
-    <a href="#" style="color:inherit;text-decoration:none;">Music</a>
-    <a href="#" style="color:inherit;text-decoration:none;">Creators</a>
-    <a href="#" style="color:inherit;text-decoration:none;">Contact</a>
-  </div>
-
-  <div>
-    © 2026 RiteHear FmXm. All Rights Reserved.
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script>
-/* Cursor */
-const cursor = document.getElementById("cursor");
-const ring = document.getElementById("ring");
-
-if (cursor && ring && window.innerWidth > 768) {
-  let mx = 0, my = 0, rx = 0, ry = 0;
-
-  document.addEventListener("mousemove", e => {
-    mx = e.clientX;
-    my = e.clientY;
-  });
-
-  function animateCursor() {
-    cursor.style.left = mx + "px";
-    cursor.style.top = my + "px";
-
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-
-    ring.style.left = rx + "px";
-    ring.style.top = ry + "px";
-
-    requestAnimationFrame(animateCursor);
-  }
-
-  animateCursor();
-}
-
-/* Hero Canvas */
-const canvas = document.getElementById("heroCanvas");
-
-if (canvas) {
-  const ctx = canvas.getContext("2d");
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  let t = 0;
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    t += 0.01;
-
-    for (let i = 0; i < 7; i++) {
-      const r = (t * 140 + i * 90) % (canvas.width * 0.9);
-
-      ctx.beginPath();
-      ctx.arc(canvas.width / 2, canvas.height / 2, r, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(255,122,24,0.08)";
-      ctx.lineWidth = 1.2;
-      ctx.stroke();
-    }
-
-    requestAnimationFrame(draw);
-  }
-
-  draw();
-}
-</script>
-
-</body>
-</html>
-
