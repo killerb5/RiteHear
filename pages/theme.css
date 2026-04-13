@@ -75,6 +75,72 @@ a{color:inherit;}
   font-size:12px;
 }
 
+.navgroup{position:relative;}
+.navbtn{
+  text-decoration:none;
+  border:1px solid var(--cardBorder);
+  background:rgba(255,122,24,.12);
+  color:#fff;
+  border-radius:999px;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  padding:9px 14px;
+  font-size:12px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+
+.navbtn::after{
+  content:"";
+  width:7px;
+  height:7px;
+  border-right:1.4px solid currentColor;
+  border-bottom:1.4px solid currentColor;
+  transform:rotate(45deg) translateY(-1px);
+}
+
+.navmega{
+  position:absolute;
+  top:118%;
+  left:0;
+  min-width:290px;
+  border:1px solid var(--cardBorder);
+  border-radius:12px;
+  background:linear-gradient(145deg,rgba(16,23,37,.97),rgba(8,12,20,.95));
+  backdrop-filter:blur(10px);
+  padding:10px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  opacity:0;
+  transform:translateY(8px);
+  pointer-events:none;
+  transition:.2s ease;
+  z-index:20;
+}
+
+.navmega a{
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:8px;
+  padding:8px;
+  background:rgba(255,122,24,.08);
+  color:#fff;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  font-size:11px;
+}
+
+.navgroup:hover .navmega,
+.navgroup:focus-within .navmega{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+
 .hero{
   position:relative;
   border:1px solid var(--cardBorder);
@@ -130,6 +196,23 @@ a{color:inherit;}
   line-height:1.7;
   font-size:17px;
 }
+
+.hero-illus{
+  margin-top:16px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:14px;
+  background:linear-gradient(145deg,rgba(255,122,24,.08),rgba(98,147,255,.08));
+  padding:10px;
+}
+
+.hero-illus svg{width:100%;height:160px;}
+.hero-illus .a{stroke:#ffd27d;stroke-width:2;fill:none;opacity:.9;}
+.hero-illus .b{stroke:#7dc9ff;stroke-width:1.8;fill:none;opacity:.8;}
+.hero-illus .c{fill:rgba(255,122,24,.18);stroke:#ff7a18;stroke-width:1.4;}
+
+.pulse-node{animation:illuPulse 2.3s ease-in-out infinite;transform-origin:center;}
+.drift{animation:illuDrift 6s ease-in-out infinite;}
+.sweep-line{animation:illuSweep 4.8s linear infinite;}
 
 .panels{
   margin-top:22px;
@@ -205,8 +288,12 @@ footer{margin-top:16px;padding:14px 2px;color:rgba(245,248,255,.5);font-size:12p
 
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.45;}}
 @keyframes sweep{from{transform:translateX(0);}to{transform:translateX(-22%);}}
+@keyframes illuPulse{0%,100%{opacity:.45;transform:scale(.94);}50%{opacity:1;transform:scale(1.06);}}
+@keyframes illuDrift{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes illuSweep{0%{transform:translateX(-16px);}100%{transform:translateX(16px);}}
 
 @media (max-width:900px){
   .panels{grid-template-columns:1fr;}
   .hero{padding:24px;}
+  .navgroup .navmega{display:none;}
 }

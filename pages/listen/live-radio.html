@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../theme.css">
+<link rel="stylesheet" href="../../shared-player.css">
 </head>
 <body>
 <div class="backdrop"></div>
@@ -15,9 +16,33 @@
   <header class="topbar reveal visible">
     <a class="brand" href="../../index.html">RiteHear <span>FmXm</span></a>
     <nav class="navrow">
-      <a href="../listen/live-radio.html">Listen</a>
-      <a href="../create/upload-music.html">Create</a>
-      <a href="../company/about.html">Company</a>
+      <div class="navgroup">
+        <button class="navbtn" aria-haspopup="true">Listen</button>
+        <div class="navmega">
+          <a href="../listen/live-radio.html">Live Radio</a>
+          <a href="../listen/podcasts.html">Podcasts</a>
+          <a href="../listen/music.html">Music</a>
+          <a href="../listen/playlists.html">Playlists</a>
+        </div>
+      </div>
+      <div class="navgroup">
+        <button class="navbtn" aria-haspopup="true">Create</button>
+        <div class="navmega">
+          <a href="../create/upload-music.html">Upload Music</a>
+          <a href="../create/start-podcast.html">Start Podcast</a>
+          <a href="../create/go-live.html">Go Live</a>
+          <a href="../create/dashboard.html">Dashboard</a>
+        </div>
+      </div>
+      <div class="navgroup">
+        <button class="navbtn" aria-haspopup="true">Company</button>
+        <div class="navmega">
+          <a href="../company/about.html">About</a>
+          <a href="../company/advertise.html">Advertise</a>
+          <a href="../company/contact.html">Contact</a>
+          <a href="../company/privacy.html">Privacy</a>
+        </div>
+      </div>
       <a href="../../index.html#live">Live</a>
     </nav>
   </header>
@@ -26,6 +51,9 @@
     <div class="kicker"><span class="dot"></span>Realtime Audio Channel</div>
     <h1>Live Radio <span class="accent">Mode</span></h1>
     <p>A PS5-clean control deck for nonstop broadcast. Spatial UI cues, dynamic station telemetry, and host presence blend into a premium live listening experience.</p>
+    <div class="hero-illus reveal">
+      <svg viewBox="0 0 900 180" aria-hidden="true"><path class="a sweep-line" d="M40 92 Q110 40 180 92 T320 92 T460 92 T600 92 T740 92 T860 92"/><path class="b" d="M40 118 Q110 66 180 118 T320 118 T460 118 T600 118 T740 118 T860 118"/><circle class="c pulse-node" cx="140" cy="92" r="12"/><circle class="c pulse-node" cx="430" cy="92" r="9"/><circle class="c pulse-node" cx="710" cy="92" r="11"/></svg>
+    </div>
 
     <div class="btns">
       <a class="btn primary" href="../../index.html">Back To Station</a>
@@ -59,5 +87,6 @@
   </footer>
 </main>
 <script src="../page.js"></script>
+<script src="../../shared-player.js"></script>
 </body>
 </html>

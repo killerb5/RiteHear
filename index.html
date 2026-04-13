@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-player.css">
 
 <style>
 :root{
@@ -157,13 +158,8 @@ nav{
   gap:28px;
 }
 
-.nav-tools{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.nav-links a{
+.nav-links > a,
+.mega-btn{
   text-decoration:none;
   color:var(--muted);
   font-family:'Barlow Condensed',sans-serif;
@@ -173,7 +169,82 @@ nav{
   transition:.25s color ease;
 }
 
-.nav-links a:hover{
+.nav-group{
+  position:relative;
+}
+
+.mega-btn{
+  background:none;
+  border:0;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  cursor:pointer;
+}
+
+.mega-btn::after{
+  content:"";
+  width:7px;
+  height:7px;
+  border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;
+  transform:rotate(45deg) translateY(-1px);
+}
+
+.mega-panel{
+  position:absolute;
+  top:145%;
+  left:-16px;
+  width:430px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:linear-gradient(145deg,rgba(31,15,8,.96),rgba(11,6,4,.95));
+  backdrop-filter:blur(12px);
+  box-shadow:0 20px 44px rgba(0,0,0,.35);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  opacity:0;
+  transform:translateY(6px);
+  pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease;
+}
+
+.mega-panel a{
+  text-decoration:none;
+  padding:9px 10px;
+  border-radius:8px;
+  border:1px solid transparent;
+  background:rgba(255,122,24,.05);
+  color:#fff;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+}
+
+.mega-panel a:hover{
+  border-color:var(--border);
+  background:rgba(255,122,24,.12);
+}
+
+.nav-group:hover .mega-panel,
+.nav-group:focus-within .mega-panel{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+
+.nav-tools{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.nav-links a:hover,
+.mega-btn:hover{
   color:var(--white);
 }
 
@@ -1172,6 +1243,33 @@ body[data-motion="energetic"] .eq-track span{
         <a href="#music">Music</a>
         <a href="#live">Live</a>
         <a href="#creators">Creators</a>
+        <div class="nav-group">
+          <button class="mega-btn" aria-haspopup="true">Listen</button>
+          <div class="mega-panel" aria-label="Listen menu">
+            <a href="pages/listen/live-radio.html">Live Radio</a>
+            <a href="pages/listen/podcasts.html">Podcasts</a>
+            <a href="pages/listen/music.html">Music</a>
+            <a href="pages/listen/playlists.html">Playlists</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button class="mega-btn" aria-haspopup="true">Create</button>
+          <div class="mega-panel" aria-label="Create menu">
+            <a href="pages/create/upload-music.html">Upload Music</a>
+            <a href="pages/create/start-podcast.html">Start Podcast</a>
+            <a href="pages/create/go-live.html">Go Live</a>
+            <a href="pages/create/dashboard.html">Dashboard</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button class="mega-btn" aria-haspopup="true">Company</button>
+          <div class="mega-panel" aria-label="Company menu">
+            <a href="pages/company/about.html">About</a>
+            <a href="pages/company/advertise.html">Advertise</a>
+            <a href="pages/company/contact.html">Contact</a>
+            <a href="pages/company/privacy.html">Privacy</a>
+          </div>
+        </div>
         <a href="#" class="nav-live"><span class="live-dot"></span>On Air</a>
       </div>
       <button class="motion-toggle" id="motionToggle" aria-label="Toggle motion intensity">Energetic</button>
@@ -1699,5 +1797,6 @@ if (canvas) {
   animate();
 }
 </script>
+<script src="shared-player.js"></script>
 </body>
 </html>
