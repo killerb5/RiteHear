@@ -2,6 +2,51 @@
   const body = document.body;
   body.classList.add('page-prep');
 
+  if (window.innerWidth > 768 && !document.getElementById('cursor') && !document.getElementById('cursorRing')) {
+    const cursor = document.createElement('div');
+    cursor.id = 'cursor';
+    cursor.className = 'cursor';
+
+    const ring = document.createElement('div');
+    ring.id = 'cursorRing';
+    ring.className = 'cursor-ring';
+
+    const cursorStyle = document.createElement('style');
+    cursorStyle.textContent = `
+      .cursor{position:fixed;width:12px;height:12px;background:#FF7A18;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+      .cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid #FF7A18;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;}
+      @media (max-width:768px){.cursor,.cursor-ring{display:none;}}
+    `;
+
+    document.head.appendChild(cursorStyle);
+    document.body.append(cursor, ring);
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let ringX = 0;
+    let ringY = 0;
+
+    document.addEventListener('mousemove', event => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+    });
+
+    function animateCursor() {
+      cursor.style.left = `${mouseX}px`;
+      cursor.style.top = `${mouseY}px`;
+
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+
+      ring.style.left = `${ringX}px`;
+      ring.style.top = `${ringY}px`;
+
+      window.requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+  }
+
   const style = document.createElement('style');
   style.textContent = `
     .session-ui{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;}
