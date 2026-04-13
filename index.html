@@ -312,3 +312,195 @@ Is Played
 Now Playing — Late Night Frequencies • DJ Rite
 </div>
 </section>
+
+<!-- TRENDING SHOWS -->
+<section>
+  <div class="title">Trending Shows</div>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Street to Suite</h3>
+      <p>Business, hustle, ownership and real talk.</p>
+    </div>
+
+    <div class="card">
+      <h3>Unsigned Heat</h3>
+      <p>Independent artists getting real exposure.</p>
+    </div>
+
+    <div class="card">
+      <h3>Game Day Debrief</h3>
+      <p>Sports talk, reactions, scores and culture.</p>
+    </div>
+
+    <div class="card">
+      <h3>Built Different</h3>
+      <p>Mindset, motivation, money and growth.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEW MUSIC -->
+<section>
+  <div class="title">Fresh Music</div>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>No Days Off</h3>
+      <p>King Dre • Hip-Hop</p>
+    </div>
+
+    <div class="card">
+      <h3>Vibrations</h3>
+      <p>Amara Soul • R&B</p>
+    </div>
+
+    <div class="card">
+      <h3>Lagos to Raleigh</h3>
+      <p>Dele X • Afrobeats</p>
+    </div>
+
+    <div class="card">
+      <h3>Overflow</h3>
+      <p>Bishop Williams • Gospel</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIVE STREAMS -->
+<section>
+  <div class="title">Watch Live</div>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Late Night DJ Set</h3>
+      <p>Live now • Hip-Hop & R&B</p>
+    </div>
+
+    <div class="card">
+      <h3>Studio Session</h3>
+      <p>Behind the scenes with creators.</p>
+    </div>
+
+    <div class="card">
+      <h3>Interview: Rising Star</h3>
+      <p>Tonight at 9PM • Set reminder</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CREATOR CTA -->
+<section>
+  <div class="title">Create. Upload. Broadcast.</div>
+
+  <div class="card" style="text-align:center;">
+    <p style="margin-bottom:20px;">
+      Upload your music, start your podcast, go live, and reach a real audience.
+    </p>
+
+    <div class="cta">
+      <a href="#" class="btn primary">Start Uploading</a>
+      <a href="#" class="btn outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="font-size:28px;font-family:'Bebas Neue',sans-serif;margin-bottom:10px;">
+    RiteHear FmXm
+  </div>
+
+  <div style="margin-bottom:18px;">
+    The Digital Broadcast Network for Independent Culture.
+  </div>
+
+  <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:22px;">
+    <a href="#" style="color:inherit;text-decoration:none;">Radio</a>
+    <a href="#" style="color:inherit;text-decoration:none;">Podcasts</a>
+    <a href="#" style="color:inherit;text-decoration:none;">Music</a>
+    <a href="#" style="color:inherit;text-decoration:none;">Creators</a>
+    <a href="#" style="color:inherit;text-decoration:none;">Contact</a>
+  </div>
+
+  <div>
+    © 2026 RiteHear FmXm. All Rights Reserved.
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+/* Cursor */
+const cursor = document.getElementById("cursor");
+const ring = document.getElementById("ring");
+
+if (cursor && ring && window.innerWidth > 768) {
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener("mousemove", e => {
+    mx = e.clientX;
+    my = e.clientY;
+  });
+
+  function animateCursor() {
+    cursor.style.left = mx + "px";
+    cursor.style.top = my + "px";
+
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+
+    ring.style.left = rx + "px";
+    ring.style.top = ry + "px";
+
+    requestAnimationFrame(animateCursor);
+  }
+
+  animateCursor();
+}
+
+/* Hero Canvas */
+const canvas = document.getElementById("heroCanvas");
+
+if (canvas) {
+  const ctx = canvas.getContext("2d");
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  let t = 0;
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    t += 0.01;
+
+    for (let i = 0; i < 7; i++) {
+      const r = (t * 140 + i * 90) % (canvas.width * 0.9);
+
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, r, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(255,122,24,0.08)";
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+}
+</script>
+
+</body>
+</html>
+
