@@ -16,60 +16,178 @@
   --bg2:#1A0B05;
   --bg3:#221208;
   --surface:#160a05;
-  --surface-2:#1d0e07;
+  --surface2:#1d0e07;
   --text:#F5F7FA;
   --muted:rgba(245,247,250,.68);
   --line:rgba(255,122,24,.2);
   --soft:rgba(255,255,255,.09);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{
-  font-family:'Plus Jakarta Sans',sans-serif;color:var(--text);
-  background:radial-gradient(circle at 12% -10%,rgba(255,179,71,.15),transparent 32%),radial-gradient(circle at 90% 2%,rgba(255,122,24,.14),transparent 28%),linear-gradient(180deg,var(--bg),var(--bg2) 56%,var(--bg3));
+  font-family:'Plus Jakarta Sans',sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 12% -10%,rgba(255,179,71,.15),transparent 32%),
+    radial-gradient(circle at 90% 2%,rgba(255,122,24,.14),transparent 28%),
+    linear-gradient(180deg,var(--bg),var(--bg2) 56%,var(--bg3));
+  opacity:1;
+  transition:opacity .22s ease,filter .22s ease;
 }
+body.page-prep{opacity:0;filter:blur(2px);} 
+body.page-leave{opacity:0;filter:blur(2px);} 
+
 .container{width:min(1260px,calc(100% - 40px));margin:0 auto;}
-nav{position:sticky;top:0;z-index:40;padding:14px 0;background:linear-gradient(180deg,rgba(14,7,3,.94),rgba(14,7,3,.64) 74%,transparent);backdrop-filter:blur(8px);}
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  padding:14px 0;
+  background:linear-gradient(180deg,rgba(14,7,3,.94),rgba(14,7,3,.62) 74%,transparent);
+  backdrop-filter:blur(8px);
+}
 .nav-wrap{display:grid;gap:12px;}
-.brand{text-decoration:none;font-family:'DM Sans',sans-serif;font-size:30px;font-weight:800;letter-spacing:.6px;background:linear-gradient(90deg,var(--orange),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.brand{
+  text-decoration:none;
+  font-family:'DM Sans',sans-serif;
+  font-size:30px;
+  font-weight:800;
+  letter-spacing:.6px;
+  background:linear-gradient(90deg,var(--orange),var(--gold));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 .brand span{font-size:14px;opacity:.52;-webkit-text-fill-color:var(--text);margin-left:6px;}
 .nav-tabs{display:flex;flex-wrap:wrap;gap:8px;}
-.nav-tabs a{text-decoration:none;border:1px solid var(--line);background:rgba(255,122,24,.08);color:#fff;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;white-space:nowrap;}
+.nav-tabs a{
+  text-decoration:none;
+  border:1px solid var(--line);
+  background:rgba(255,122,24,.08);
+  color:#fff;
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
 .nav-tabs a.active{background:linear-gradient(135deg,var(--orange),#de5f00);border-color:transparent;}
-.hero{padding:64px 0 44px;}
-.hero-card,.card,.footer-wrap,.video-shell,.table-shell,.creator-box{border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,rgba(26,11,5,.95),rgba(15,8,4,.9));}
-.hero-card{padding:34px;display:grid;grid-template-columns:1.08fr .92fr;gap:20px;}
-.kicker{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(255,122,24,.08);color:var(--amber);font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:16px;}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--orange);} 
-.hero h1{font-family:'DM Sans',sans-serif;font-size:clamp(48px,7vw,96px);line-height:.95;letter-spacing:-.5px;}
+
+.hero{
+  position:relative;
+  min-height:86vh;
+  padding:36px 0 44px;
+  overflow:hidden;
+}
+#heroCanvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+}
+.hero-grid{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1.12fr .88fr;
+  gap:20px;
+}
+.hero-main,
+.hero-side,
+.card,
+.video-shell,
+.creator-box,
+.footer-wrap,
+.table-card,
+.list-card{
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:linear-gradient(145deg,rgba(26,11,5,.95),rgba(15,8,4,.9));
+}
+.hero-main{padding:34px;}
+.hero-side{padding:18px;display:grid;gap:12px;}
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 11px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,122,24,.08);
+  color:var(--amber);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 1.4s infinite;}
+.hero h1{
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(48px,7vw,94px);
+  line-height:.95;
+  letter-spacing:-.5px;
+}
 .grad{background:linear-gradient(135deg,var(--orange),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .hero p{margin-top:16px;color:var(--muted);line-height:1.75;font-size:17px;max-width:760px;}
+.hero-meta{margin-top:16px;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;}
-.btn-primary{background:linear-gradient(135deg,var(--orange),#de5f00);color:#fff;} .btn-secondary{border:1px solid var(--line);background:rgba(255,122,24,.08);color:#fff;}
-.side{display:grid;gap:12px;}
-.side .card{padding:18px;background:var(--surface-2);} 
-.section{padding:56px 0;}
+.btn-primary{background:linear-gradient(135deg,var(--orange),#de5f00);color:#fff;}
+.btn-secondary{border:1px solid var(--line);background:rgba(255,122,24,.08);color:#fff;}
+
+.side-now,.side-link{padding:16px;border:1px solid var(--soft);border-radius:12px;background:var(--surface2);}
+.side-link strong{display:block;font-size:18px;margin-bottom:6px;}
+.side-link p{color:var(--muted);font-size:14px;line-height:1.65;}
+.equalizer{margin-top:12px;height:56px;display:flex;align-items:flex-end;gap:6px;}
+.equalizer span{width:7px;border-radius:10px;background:linear-gradient(180deg,var(--gold),var(--orange));animation:eq 1.7s ease-in-out infinite;}
+.equalizer span:nth-child(odd){animation-duration:2s;}
+.equalizer span:nth-child(3n){animation-duration:1.3s;}
+
+.section{padding:54px 0;}
 .section h2{font-family:'DM Sans',sans-serif;font-size:clamp(32px,5vw,56px);margin-bottom:16px;}
 .grid-two{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;}
 .grid-three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.card{padding:20px;}
-.card p{color:var(--muted);line-height:1.72;}
+.card,.table-card,.list-card{padding:20px;}
+.card p,.list-card p{color:var(--muted);line-height:1.72;}
 .schedule-list,.track-list,.stream-list{display:grid;gap:10px;list-style:none;}
-.schedule-list li,.track-row,.stream-item{padding:12px 14px;border-radius:10px;border:1px solid var(--soft);background:var(--surface-2);}
+.schedule-list li,.track-row,.stream-item{padding:12px 14px;border-radius:10px;border:1px solid var(--soft);background:var(--surface2);}
 .track-row{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;}
 .tag{padding:6px 10px;border-radius:999px;background:rgba(255,122,24,.12);color:var(--orange);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;}
+
 .video-shell{padding:20px;display:grid;grid-template-columns:1.25fr .75fr;gap:16px;}
-.video-frame{aspect-ratio:16/9;border-radius:12px;border:1px solid var(--soft);background:#111;display:grid;place-items:center;font-family:'DM Sans',sans-serif;font-size:32px;font-weight:700;}
+.video-frame{aspect-ratio:16/9;border-radius:12px;border:1px solid var(--soft);background:#101012;display:grid;place-items:center;font-family:'DM Sans',sans-serif;font-size:32px;font-weight:700;}
 .stream-item button{margin-top:8px;border:1px solid var(--line);background:var(--surface);color:#fff;border-radius:8px;padding:10px 12px;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;}
-.creator-box{padding:38px 24px;text-align:center;}
+
+.creator-box{padding:36px 24px;text-align:center;}
+.creator-box p{color:var(--muted);max-width:760px;margin:10px auto 0;line-height:1.72;}
+
 .footer-wrap{margin:24px 0 28px;padding:20px;display:grid;gap:18px;}
 .footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:16px;}
 .footer-grid h4{color:var(--orange);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
 .footer-grid a{display:block;text-decoration:none;color:var(--muted);margin-bottom:8px;font-size:14px;}
 .footer-grid p{color:var(--muted);line-height:1.72;}
 .footer-bottom{padding-top:14px;border-top:1px solid var(--soft);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:rgba(245,247,250,.48);font-size:13px;}
-@media (max-width:1024px){.hero-card,.grid-two,.video-shell,.grid-three,.footer-grid{grid-template-columns:1fr;}}
-@media (max-width:760px){.container{width:min(1260px,calc(100% - 28px));}.hero-card,.card,.video-shell,.creator-box,.footer-wrap{padding:18px;}.hero h1{font-size:54px;}.hero p{font-size:15px;}.btn{width:100%;}}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.42;transform:scale(.72);}}
+@keyframes eq{0%,100%{height:14px;}50%{height:54px;}}
+
+@media (max-width:1024px){
+  .hero-grid,.grid-two,.video-shell,.grid-three,.footer-grid{grid-template-columns:1fr;}
+}
+@media (max-width:760px){
+  .container{width:min(1260px,calc(100% - 28px));}
+  .hero-main,.hero-side,.card,.table-card,.list-card,.video-shell,.creator-box,.footer-wrap{padding:18px;}
+  .hero h1{font-size:56px;}
+  .hero p{font-size:15px;}
+  .btn{width:100%;}
+}
 </style>
 </head>
 <body>
@@ -93,31 +211,38 @@ nav{position:sticky;top:0;z-index:40;padding:14px 0;background:linear-gradient(1
 
 <main>
   <section class="hero">
-    <div class="container hero-card">
-      <div>
+    <canvas id="heroCanvas"></canvas>
+    <div class="container hero-grid">
+      <article class="hero-main reveal">
         <div class="kicker"><span class="dot"></span>Broadcasting Live Now</div>
         <h1>Where All Your <span class="grad">Music</span> Is Played</h1>
-        <p>RiteHear is a digital media platform for live radio, podcast networks, artist releases, video streams and creator publishing. Designed to feel clean, professional and production-ready.</p>
+        <p>RiteHear is a digital media platform for live radio, podcast networks, artist releases, video streams and creator publishing. Built to feel clean, credible and production-ready.</p>
+        <div class="hero-meta">Live Radio • Podcast Network • Music Releases • Video Streams • Creator Publishing</div>
         <div class="actions">
           <a class="btn btn-primary" href="pages/listen/live-radio.html">Listen Live</a>
           <a class="btn btn-secondary" href="pages/create/upload-music.html">Start Uploading</a>
           <a class="btn btn-secondary" href="pages/listen/live-radio.html#watch">Watch Live</a>
           <a class="btn btn-secondary" href="pages/listen/explore.html">Explore Content</a>
         </div>
-      </div>
-      <div class="side">
-        <div class="card"><h3>Now Airing</h3><p>Late Night Frequencies • DJ Rite</p></div>
-        <div class="card"><h3>Schedule</h3><p>Program calendar and day-by-day lineup.</p><div class="actions"><a class="btn btn-secondary" href="pages/listen/schedule.html">Open Schedule</a></div></div>
-        <div class="card"><h3>Creator Access</h3><p>Create an account to post music, podcasts and video content.</p><div class="actions"><a class="btn btn-primary" href="pages/create/create-account.html">Create Account</a></div></div>
-      </div>
+      </article>
+
+      <aside class="hero-side reveal">
+        <div class="side-now">
+          <h3 style="font-size:24px;">Now Airing</h3>
+          <p style="color:var(--muted);margin-top:6px;">Late Night Frequencies • DJ Rite</p>
+          <div class="equalizer"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <a class="side-link" href="pages/listen/schedule.html"><strong>Schedule</strong><p>Program calendar and day-by-day lineup.</p></a>
+        <a class="side-link" href="pages/create/create-account.html"><strong>Creator Access</strong><p>Create an account to post music, podcasts and video content.</p></a>
+      </aside>
     </div>
   </section>
 
   <section class="section">
     <div class="container grid-two">
-      <article class="card">
+      <article class="card reveal">
         <h2>Station Programming</h2>
-        <p>Structured daily blocks with hosts, mix shows, interviews and culture segments.</p>
+        <p>Structured daily blocks with hosts, mixes, interviews and culture segments.</p>
         <ul class="schedule-list" style="margin-top:12px;">
           <li><strong>6 AM</strong> Morning Culture</li>
           <li><strong>12 PM</strong> Midday Heat</li>
@@ -125,7 +250,7 @@ nav{position:sticky;top:0;z-index:40;padding:14px 0;background:linear-gradient(1
           <li><strong>9 PM</strong> Prime Time with Bryson</li>
         </ul>
       </article>
-      <article class="card">
+      <article class="table-card reveal">
         <h2>Fresh Music</h2>
         <div class="track-list">
           <div class="track-row"><strong>1</strong><div>No Days Off • King Dre</div><span class="tag">Hip-Hop</span></div>
@@ -137,7 +262,7 @@ nav{position:sticky;top:0;z-index:40;padding:14px 0;background:linear-gradient(1
   </section>
 
   <section class="section">
-    <div class="container video-shell">
+    <div class="container video-shell reveal">
       <div>
         <h2 style="margin-bottom:12px;">Live Video</h2>
         <div class="video-frame">RiteHear Live Studio</div>
@@ -155,9 +280,9 @@ nav{position:sticky;top:0;z-index:40;padding:14px 0;background:linear-gradient(1
   </section>
 
   <section class="section">
-    <div class="container creator-box">
+    <div class="container creator-box reveal">
       <h2>Create, Upload, Broadcast</h2>
-      <p style="color:var(--muted);max-width:760px;margin:10px auto 0;line-height:1.72;">Open an account, submit your content and enter the station review flow. Interaction and posting are account-based.</p>
+      <p>Open an account, submit your content and enter the station review flow. Interaction and posting are account-based.</p>
       <div class="actions" style="justify-content:center;">
         <a class="btn btn-primary" href="pages/create/create-account.html">Create Account</a>
         <a class="btn btn-secondary" href="pages/create/upload-music.html">Upload Content</a>
@@ -199,6 +324,68 @@ nav{position:sticky;top:0;z-index:40;padding:14px 0;background:linear-gradient(1
   </div>
 </footer>
 
+<script>
+const revealItems = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealItems.forEach(node => observer.observe(node));
+} else {
+  revealItems.forEach(node => node.classList.add('visible'));
+}
+
+const canvas = document.getElementById('heroCanvas');
+if (canvas) {
+  const context = canvas.getContext('2d');
+
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = Math.max(window.innerHeight * 0.86, 620);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  let tick = 0;
+
+  function drawWave(shift, opacity, amp){
+    context.beginPath();
+    for (let x = 0; x <= canvas.width; x += 8) {
+      const y = canvas.height * 0.62 + Math.sin((x * 0.012) + tick + shift) * amp;
+      if (x === 0) context.moveTo(x, y);
+      else context.lineTo(x, y);
+    }
+    context.strokeStyle = `rgba(255,122,24,${opacity})`;
+    context.lineWidth = 1.1;
+    context.stroke();
+  }
+
+  function animate(){
+    context.clearRect(0,0,canvas.width,canvas.height);
+    tick += 0.02;
+
+    for (let i = 0; i < 6; i += 1) {
+      const radius = (tick * 120 + i * 90) % (canvas.width * 0.78);
+      context.beginPath();
+      context.arc(canvas.width * 0.74, canvas.height * 0.28, radius, 0, Math.PI * 2);
+      context.strokeStyle = 'rgba(255,179,71,0.05)';
+      context.lineWidth = 1;
+      context.stroke();
+    }
+
+    drawWave(0, 0.14, 20);
+    drawWave(1.2, 0.09, 14);
+    drawWave(2.4, 0.06, 9);
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+}
+</script>
 <script src="shared-ui.js"></script>
 </body>
 </html>
