@@ -82,23 +82,33 @@ nav{
 }
 
 .nav-logo{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:28px;
-  letter-spacing:3px;
-  background:linear-gradient(90deg,var(--orange),var(--gold));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
   text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  width:fit-content;
 }
 
-.nav-logo span{
-  color:var(--white);
-  -webkit-text-fill-color:var(--white);
-  opacity:.4;
-  font-size:14px;
-  letter-spacing:2px;
-  vertical-align:middle;
-  margin-left:4px;
+.nav-logo img{
+  display:block;
+  height:60px;
+  width:auto;
+  max-width:min(230px,54vw);
+  object-fit:contain;
+}
+
+.footer-logo{
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.footer-logo img{
+  display:block;
+  height:74px;
+  width:auto;
+  max-width:min(280px,72vw);
+  object-fit:contain;
 }
 
 .nav-links{
@@ -295,7 +305,9 @@ nav{
 
 <nav>
   <div class="nav-shell">
-    <a class="nav-logo" href="index.html">RiteHear<span>FmXm</span></a>
+    <a class="nav-logo" href="index.html" aria-label="RiteHear home">
+      <img src="4020E2B9-4CDE-4648-9AA0-27DB0AA2CE6D (2).png" alt="RiteHear logo">
+    </a>
 
     <div class="nav-links navrow nav-tabs">
       <a href="pages/listen/live-radio.html">Radio</a>
@@ -1162,18 +1174,8 @@ nav{
   ">
 
     <div>
-      <a href="index.html" style="
-        font-family:'Bebas Neue',sans-serif;
-        font-size:38px;
-        letter-spacing:2px;
-        background:linear-gradient(90deg,var(--orange),var(--gold));
-        -webkit-background-clip:text;
-        -webkit-text-fill-color:transparent;
-        margin-bottom:14px;
-        text-decoration:none;
-        display:inline-block;
-      ">
-        RiteHear <span style="opacity:.45;">FmXm</span>
+      <a class="footer-logo" href="index.html" aria-label="RiteHear home">
+        <img src="4020E2B9-4CDE-4648-9AA0-27DB0AA2CE6D (2).png" alt="RiteHear logo">
       </a>
 
       <p style="

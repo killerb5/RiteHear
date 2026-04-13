@@ -44,16 +44,17 @@ button,input,select,textarea{font:inherit;}
 }
 .brand{
   text-decoration:none;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:28px;
-  font-weight:400;
-  letter-spacing:3px;
-  background:linear-gradient(90deg,var(--orange),var(--gold));
-  background-clip:text;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  display:inline-flex;
+  align-items:center;
+  width:fit-content;
 }
-.brand span{font-size:14px;opacity:.45;-webkit-text-fill-color:var(--text);margin-left:4px;letter-spacing:2px;vertical-align:middle;}
+.brand img{
+  display:block;
+  height:56px;
+  width:auto;
+  max-width:min(220px,58vw);
+  object-fit:contain;
+}
 .navrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
 .navrow a{
   font-family:'Barlow Condensed',sans-serif;
