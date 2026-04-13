@@ -157,6 +157,12 @@ nav{
   gap:28px;
 }
 
+.nav-tools{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
 .nav-links a{
   text-decoration:none;
   color:var(--muted);
@@ -180,6 +186,72 @@ nav{
   border:1px solid var(--border);
   background:rgba(255,122,24,.1);
   color:var(--orange);
+}
+
+.motion-toggle,
+.menu-toggle{
+  border:1px solid var(--border);
+  background:rgba(255,122,24,.1);
+  color:#fff;
+  border-radius:8px;
+  height:36px;
+  min-width:36px;
+  padding:0 10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+}
+
+.menu-toggle{
+  display:none;
+  width:36px;
+  padding:0;
+}
+
+.menu-toggle svg{
+  width:18px;
+  height:18px;
+  stroke:#fff;
+}
+
+.mobile-menu{
+  position:fixed;
+  top:68px;
+  left:16px;
+  right:16px;
+  z-index:120;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:linear-gradient(145deg,rgba(27,13,7,.97),rgba(13,7,4,.94));
+  backdrop-filter:blur(10px);
+  padding:14px;
+  display:none;
+}
+
+.mobile-menu.open{
+  display:grid;
+  gap:8px;
+}
+
+.mobile-menu a{
+  text-decoration:none;
+  padding:10px 8px;
+  border-radius:8px;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(248,248,248,.82);
+  border:1px solid transparent;
+}
+
+.mobile-menu a:hover{
+  border-color:var(--border);
+  background:rgba(255,122,24,.08);
 }
 
 .live-dot{
@@ -255,22 +327,22 @@ nav{
   display:inline-flex;
   align-items:center;
   gap:10px;
-  margin-bottom:28px;
-  padding:7px 16px;
+  margin-bottom:22px;
+  padding:6px 14px;
   border-radius:4px;
   border:1px solid var(--border);
   background:rgba(255,122,24,.1);
   color:var(--amber);
   font-family:'Barlow Condensed',sans-serif;
-  font-size:12px;
+  font-size:11px;
   font-weight:700;
-  letter-spacing:3px;
+  letter-spacing:2.4px;
   text-transform:uppercase;
 }
 
 .hero-title{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(72px,11.5vw,156px);
+  font-size:clamp(58px,9.8vw,128px);
   line-height:.88;
   letter-spacing:1px;
 }
@@ -421,12 +493,12 @@ nav{
 
 .media-orbit{
   position:relative;
-  min-height:200px;
+  min-height:240px;
 }
 
 .orbit-ring{
   position:absolute;
-  inset:22px;
+  inset:18px;
   border-radius:50%;
   border:1px dashed rgba(255,179,71,.22);
 }
@@ -451,6 +523,11 @@ nav{
 .o1{top:10px;left:50%;transform:translateX(-50%);animation:floatA 5.4s ease-in-out infinite;}
 .o2{right:12px;top:50%;transform:translateY(-50%);animation:floatB 6.2s ease-in-out infinite;}
 .o3{left:14px;bottom:10px;animation:floatC 5.8s ease-in-out infinite;}
+.o4{left:18px;top:22%;animation:floatA 6.8s ease-in-out infinite;}
+.o5{right:18px;top:18%;animation:floatB 7.1s ease-in-out infinite;}
+.o6{left:50%;bottom:8px;transform:translateX(-50%);animation:floatC 6.4s ease-in-out infinite;}
+.o7{left:20%;top:62%;animation:floatA 6.1s ease-in-out infinite;}
+.o8{right:20%;bottom:18%;animation:floatB 6.6s ease-in-out infinite;}
 
 .layout-two{
   display:grid;
@@ -943,6 +1020,26 @@ footer{
   font-size:13px;
 }
 
+.reveal{
+  opacity:0;
+  transform:translateY(26px) scale(.985);
+  transition:opacity .7s ease, transform .7s ease;
+  will-change:opacity,transform;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+body[data-motion="subtle"] .eq-track span{
+  animation-duration:2.6s !important;
+}
+
+body[data-motion="energetic"] .eq-track span{
+  animation-duration:1.25s !important;
+}
+
 @keyframes pulse{
   0%,100%{opacity:1;transform:scale(1);}
   50%{opacity:.42;transform:scale(.72);}
@@ -1004,8 +1101,13 @@ footer{
 
   .cursor,
   .cursor-ring,
-  .nav-links{
+  .nav-links,
+  .motion-toggle{
     display:none;
+  }
+
+  .menu-toggle{
+    display:inline-flex;
   }
 
   .container,
@@ -1020,7 +1122,7 @@ footer{
   }
 
   .hero-title{
-    font-size:76px;
+    font-size:62px;
   }
 
   .hero-sub{
@@ -1063,19 +1165,34 @@ footer{
   <div class="nav-wrap">
     <a href="#" class="nav-logo">RiteHear<span>FmXm</span></a>
 
-    <div class="nav-links">
-      <a href="#radio">Radio</a>
-      <a href="#shows">Podcasts</a>
-      <a href="#music">Music</a>
-      <a href="#live">Live</a>
-      <a href="#creators">Creators</a>
-      <a href="#" class="nav-live"><span class="live-dot"></span>On Air</a>
+    <div class="nav-tools">
+      <div class="nav-links">
+        <a href="#radio">Radio</a>
+        <a href="#shows">Podcasts</a>
+        <a href="#music">Music</a>
+        <a href="#live">Live</a>
+        <a href="#creators">Creators</a>
+        <a href="#" class="nav-live"><span class="live-dot"></span>On Air</a>
+      </div>
+      <button class="motion-toggle" id="motionToggle" aria-label="Toggle motion intensity">Energetic</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
+      </button>
     </div>
   </div>
 </nav>
 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#radio">Radio</a>
+  <a href="#shows">Podcasts</a>
+  <a href="#music">Music</a>
+  <a href="#live">Live</a>
+  <a href="#creators">Creators</a>
+  <a href="#">On Air</a>
+</div>
+
 <main>
-  <section class="hero">
+  <section class="hero reveal">
     <canvas id="heroCanvas"></canvas>
     <div class="hero-grid"></div>
 
@@ -1147,12 +1264,27 @@ footer{
           <div class="orbit-item o3" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="2"></rect><circle cx="12" cy="12" r="3"></circle></svg>
           </div>
+          <div class="orbit-item o4" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 6h18v12H3z"></path><path d="m3 7 9 6 9-6"></path></svg>
+          </div>
+          <div class="orbit-item o5" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="3.7"></circle><circle cx="17.3" cy="6.8" r="1"></circle></svg>
+          </div>
+          <div class="orbit-item o6" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 12s0-4-1-5-4-1-9-1-8 0-9 1-1 5-1 5 0 4 1 5 4 1 9 1 8 0 9-1 1-5 1-5Z"></path><path d="m10 9 5 3-5 3z"></path></svg>
+          </div>
+          <div class="orbit-item o7" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M15 8c0-2-1.4-3-3-3S9 6 9 8v3h6V8Z"></path><path d="M8 11h8v5a4 4 0 0 1-8 0v-5Z"></path></svg>
+          </div>
+          <div class="orbit-item o8" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 12c0 4.4 3.6 8 8 8"></path><path d="M20 12c0-4.4-3.6-8-8-8"></path><circle cx="12" cy="12" r="2"></circle></svg>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="radio" class="section">
+  <section id="radio" class="section reveal">
     <div class="container">
       <div class="section-label">Live Radio</div>
       <h2 class="section-title">RiteHear</h2>
@@ -1201,7 +1333,7 @@ footer{
     </div>
   </section>
 
-  <section id="shows" class="section">
+  <section id="shows" class="section reveal">
     <div class="container">
       <div class="section-label">Hot Right Now</div>
       <h2 class="section-title">Trending <span class="grad-text">Shows</span></h2>
@@ -1258,7 +1390,7 @@ footer{
     </div>
   </section>
 
-  <section id="music" class="section">
+  <section id="music" class="section reveal">
     <div class="container">
       <div class="section-label">New Drops</div>
       <h2 class="section-title">Fresh <span class="grad-text">Music</span></h2>
@@ -1307,7 +1439,7 @@ footer{
     </div>
   </section>
 
-  <section id="live" class="section">
+  <section id="live" class="section reveal">
     <div class="container">
       <div class="section-label">Live Now</div>
       <h2 class="section-title">Watch <span class="grad-text">Live</span></h2>
@@ -1352,7 +1484,7 @@ footer{
     </div>
   </section>
 
-  <section id="creators" class="section">
+  <section id="creators" class="section reveal">
     <div class="container">
       <article class="creator">
         <div class="section-label">Your Platform Awaits</div>
@@ -1381,7 +1513,7 @@ footer{
   </section>
 </main>
 
-<footer>
+<footer class="reveal">
   <div class="footer-grid">
     <div>
       <div class="brand-name">RiteHear <span>FmXm</span></div>
@@ -1406,26 +1538,26 @@ footer{
 
     <div class="footer-col">
       <h4>Listen</h4>
-      <a href="#">Live Radio</a>
-      <a href="#">Podcasts</a>
-      <a href="#">Music</a>
-      <a href="#">Playlists</a>
+      <a href="pages/listen/live-radio.html">Live Radio</a>
+      <a href="pages/listen/podcasts.html">Podcasts</a>
+      <a href="pages/listen/music.html">Music</a>
+      <a href="pages/listen/playlists.html">Playlists</a>
     </div>
 
     <div class="footer-col">
       <h4>Create</h4>
-      <a href="#">Upload Music</a>
-      <a href="#">Start Podcast</a>
-      <a href="#">Go Live</a>
-      <a href="#">Dashboard</a>
+      <a href="pages/create/upload-music.html">Upload Music</a>
+      <a href="pages/create/start-podcast.html">Start Podcast</a>
+      <a href="pages/create/go-live.html">Go Live</a>
+      <a href="pages/create/dashboard.html">Dashboard</a>
     </div>
 
     <div class="footer-col">
       <h4>Company</h4>
-      <a href="#">About</a>
-      <a href="#">Advertise</a>
-      <a href="#">Contact</a>
-      <a href="#">Privacy</a>
+      <a href="pages/company/about.html">About</a>
+      <a href="pages/company/advertise.html">Advertise</a>
+      <a href="pages/company/contact.html">Contact</a>
+      <a href="pages/company/privacy.html">Privacy</a>
     </div>
   </div>
 
@@ -1438,6 +1570,48 @@ footer{
 <script>
 const cursor = document.getElementById("cursor");
 const ring = document.getElementById("cursorRing");
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+const motionToggle = document.getElementById("motionToggle");
+
+let motionMode = "energetic";
+document.body.setAttribute("data-motion", motionMode);
+
+if (motionToggle) {
+  motionToggle.addEventListener("click", () => {
+    motionMode = motionMode === "energetic" ? "subtle" : "energetic";
+    motionToggle.textContent = motionMode === "energetic" ? "Energetic" : "Subtle";
+    document.body.setAttribute("data-motion", motionMode);
+  });
+}
+
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("open");
+  });
+
+  mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+    });
+  });
+}
+
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+  revealItems.forEach(item => revealObserver.observe(item));
+} else {
+  revealItems.forEach(item => item.classList.add("visible"));
+}
 
 if (window.innerWidth > 768 && cursor && ring) {
   let mx = 0;
@@ -1481,11 +1655,11 @@ if (canvas) {
 
   let tick = 0;
 
-  function drawWavePath(shift, opacity){
+  function drawWavePath(shift, opacity, amp){
     context.beginPath();
 
     for (let x = 0; x <= canvas.width; x += 8) {
-      const y = canvas.height * 0.55 + Math.sin((x * 0.013) + tick + shift) * 24;
+      const y = canvas.height * 0.55 + Math.sin((x * 0.013) + tick + shift) * amp;
       if (x === 0) {
         context.moveTo(x, y);
       } else {
@@ -1500,20 +1674,24 @@ if (canvas) {
 
   function animate(){
     context.clearRect(0, 0, canvas.width, canvas.height);
-    tick += 0.02;
+    const energetic = motionMode === "energetic";
+    const speed = energetic ? 0.022 : 0.012;
+    const arcCount = energetic ? 6 : 4;
+    const waveA = energetic ? 24 : 14;
+    tick += speed;
 
-    for (let i = 0; i < 6; i += 1) {
+    for (let i = 0; i < arcCount; i += 1) {
       const radius = (tick * 130 + i * 90) % (canvas.width * 0.84);
       context.beginPath();
       context.arc(canvas.width * 0.72, canvas.height * 0.34, radius, 0, Math.PI * 2);
-      context.strokeStyle = "rgba(255,179,71,0.06)";
+      context.strokeStyle = energetic ? "rgba(255,179,71,0.06)" : "rgba(255,179,71,0.035)";
       context.lineWidth = 1;
       context.stroke();
     }
 
-    drawWavePath(0, 0.16);
-    drawWavePath(1.2, 0.1);
-    drawWavePath(2.4, 0.07);
+    drawWavePath(0, energetic ? 0.16 : 0.1, waveA);
+    drawWavePath(1.2, energetic ? 0.1 : 0.07, waveA * 0.7);
+    drawWavePath(2.4, energetic ? 0.07 : 0.05, waveA * 0.45);
 
     requestAnimationFrame(animate);
   }
