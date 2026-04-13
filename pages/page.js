@@ -94,3 +94,34 @@ if (contactForm) {
     output.classList.add('show');
   });
 }
+
+const accountForm = document.getElementById('accountForm');
+if (accountForm) {
+  const output = document.getElementById('accountResult');
+  accountForm.addEventListener('submit', event => {
+    event.preventDefault();
+    localStorage.setItem('ritehear_has_account', '1');
+    output.innerHTML = '<strong>Account created.</strong><br>Your creator access is now enabled. You can upload and interact with Explore content.';
+    output.classList.add('show');
+  });
+}
+
+const hasAccount = localStorage.getItem('ritehear_has_account') === '1';
+const accountLocks = document.querySelectorAll('[data-account-lock]');
+const requiresAccount = document.querySelectorAll('[data-requires-account]');
+
+accountLocks.forEach(lock => {
+  lock.classList.toggle('hidden', hasAccount);
+});
+
+requiresAccount.forEach(item => {
+  if (!hasAccount) {
+    if ('disabled' in item) item.disabled = true;
+    item.setAttribute('aria-disabled', 'true');
+    item.title = 'Create an account to interact with this content.';
+  } else {
+    if ('disabled' in item) item.disabled = false;
+    item.removeAttribute('aria-disabled');
+    item.title = '';
+  }
+});

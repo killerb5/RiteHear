@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RiteHear - Upload</title>
+<title>RiteHear - Upload Content</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../theme.css">
 </head>
 <body>
@@ -14,48 +14,29 @@
   <header class="topbar">
     <a class="brand" href="../../index.html">RiteHear <span>FmXm</span></a>
     <nav class="navrow">
-      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="../listen/live-radio.html">Live Radio</a><a href="../listen/schedule.html">Schedule</a><a href="../listen/podcasts.html">Podcasts</a><a href="../listen/music.html">Music</a><a href="../listen/playlists.html">Playlists</a></div></div>
-      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="upload-music.html">Upload</a><a href="start-podcast.html">Start Podcast</a><a href="go-live.html">Go Live</a><a href="dashboard.html">Dashboard</a></div></div>
-      <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="../company/about.html">About</a><a href="../company/advertise.html">Advertise</a><a href="../company/contact.html">Contact</a><a href="../company/privacy.html">Privacy</a></div></div>
+      <a class="" href="../listen/live-radio.html">Radio</a>
+      <a class="" href="../listen/podcasts.html">Podcast</a>
+      <a class="" href="../listen/music.html">Music</a>
+      <a class="" href="../listen/live-radio.html#watch">Live</a>
+      <a class="active" href="../create/upload-music.html">Creators</a>
+      <a class="" href="../listen/explore.html">Explore</a>
+      <a class="" href="../listen/schedule.html">Schedule</a>
+      <a class="" href="../create/create-account.html">Create Account</a>
+      <a class="" href="../company/about.html">About</a>
       <a href="../../index.html">Home</a>
-      <a class="live-pill" href="../listen/live-radio.html"><span class="live-dot"></span>On Air</a>
     </nav>
   </header>
 
   <section class="page-hero reveal">
     <div class="kicker"><span class="live-dot"></span>Creator Intake</div>
-    <h1 class="page-title">Upload <span class="grad">Content</span></h1>
-    <p>Use this page to submit music, podcast episodes or video assets for review. The form is structured for real metadata intake so the programming team can process submissions properly.</p>
+    <h1 class="page-title">Upload Content</h1>
+    <p>Submit music, podcast episodes or video files for programming review. Posting is account-based.</p>
   </section>
 
-  <section class="grid-two reveal">
-    <form class="form-shell" id="uploadForm">
-      <h3>Submission Form</h3>
-      <div class="form-grid">
-        <div class="field"><label for="title">Title</label><input id="title" name="title" required></div>
-        <div class="field"><label for="owner">Artist / Show Name</label><input id="owner" name="owner" required></div>
-        <div class="field"><label for="category">Category</label><select id="category" name="category"><option>Music</option><option>Podcast</option><option>Video</option></select></div>
-        <div class="field"><label for="genre">Genre / Format</label><input id="genre" name="genre"></div>
-      </div>
-      <div class="field" style="margin-top:16px;"><label for="description">Description</label><textarea id="description" name="description" placeholder="Describe the release, episode or video submission."></textarea></div>
-      <div class="field" style="margin-top:16px;"><label for="file">Upload File</label><input id="file" type="file" required></div>
-      <div class="actions"><button class="submit-btn" type="submit">Submit For Review</button><a class="btn btn-secondary" href="dashboard.html">Open Dashboard</a></div>
-      <div id="uploadResult" class="upload-summary"></div>
-    </form>
-    <aside class="card">
-      <h3>Submission Guidelines</h3>
-      <ul class="bullet-list">
-        <li>Upload final audio or video files only, not incomplete reference cuts.</li>
-        <li>Include clean title, creator name and accurate genre or show format.</li>
-        <li>Programming review prioritizes complete metadata and broadcast-ready files.</li>
-      </ul>
-      <div class="actions"><a class="btn btn-primary" href="start-podcast.html">Start Podcast</a></div>
-    </aside>
-  </section>
+  
+<section class="grid-two reveal"><form class="form-shell" id="uploadForm"><h3>Submission Form</h3><div class="form-grid"><div class="field"><label for="title">Title</label><input id="title" name="title" required></div><div class="field"><label for="owner">Artist / Show Name</label><input id="owner" name="owner" required></div><div class="field"><label for="category">Category</label><select id="category" name="category"><option>Music</option><option>Podcast</option><option>Video</option></select></div><div class="field"><label for="genre">Genre / Format</label><input id="genre" name="genre"></div></div><div class="field" style="margin-top:14px;"><label for="description">Description</label><textarea id="description" name="description"></textarea></div><div class="field" style="margin-top:14px;"><label for="file">Upload File</label><input id="file" type="file" required></div><div class="actions"><button class="submit-btn" type="submit" data-requires-account>Submit For Review</button></div><div id="uploadResult" class="upload-summary"></div><div class="account-lock" data-account-lock>Create an account before posting content.</div></form><article class="card"><h3>Submission Guidelines</h3><ul class="bullet-list"><li>Upload final audio/video files only, not rough references.</li><li>Use complete metadata for title, artist/show and format.</li><li>Programming review prioritizes broadcast-ready files.</li></ul></article></section>
 
-  <div class="pager" style="margin-top:20px;"><a class="btn btn-secondary" href="../listen/playlists.html">Previous</a><a class="btn btn-primary" href="start-podcast.html">Next</a></div>
-
-  <footer class="footer"><span>RiteHear FmXm</span><span>Creator submission intake and programming review.</span></footer>
+  <footer class="footer"><span>RiteHear FmXm</span><span>Professional media platform experience.</span></footer>
 </div>
 <script src="../page.js"></script>
 <script src="../../shared-ui.js"></script>
