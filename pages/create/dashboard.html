@@ -10,40 +10,17 @@
 <link rel="stylesheet" href="../theme.css">
 <link rel="stylesheet" href="../../shared-player.css">
 </head>
-<body>
+<body data-page="create-dashboard" data-tracklist="../../data/tracklist.json">
 <div class="backdrop"></div>
 <main>
   <header class="topbar reveal visible">
     <a class="brand" href="../../index.html">RiteHear <span>FmXm</span></a>
     <nav class="navrow">
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Listen</button>
-        <div class="navmega">
-          <a href="../listen/live-radio.html">Live Radio</a>
-          <a href="../listen/podcasts.html">Podcasts</a>
-          <a href="../listen/music.html">Music</a>
-          <a href="../listen/playlists.html">Playlists</a>
-        </div>
-      </div>
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Create</button>
-        <div class="navmega">
-          <a href="../create/upload-music.html">Upload Music</a>
-          <a href="../create/start-podcast.html">Start Podcast</a>
-          <a href="../create/go-live.html">Go Live</a>
-          <a href="../create/dashboard.html">Dashboard</a>
-        </div>
-      </div>
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Company</button>
-        <div class="navmega">
-          <a href="../company/about.html">About</a>
-          <a href="../company/advertise.html">Advertise</a>
-          <a href="../company/contact.html">Contact</a>
-          <a href="../company/privacy.html">Privacy</a>
-        </div>
-      </div>
+      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="../listen/live-radio.html">Live Radio</a><a href="../listen/podcasts.html">Podcasts</a><a href="../listen/music.html">Music</a><a href="../listen/playlists.html">Playlists</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload Music</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="../company/about.html">About</a><a href="../company/advertise.html">Advertise</a><a href="../company/contact.html">Contact</a><a href="../company/privacy.html">Privacy</a></div></div>
       <a href="../../index.html#live">Live</a>
+      <a href="../../index.html">Home</a>
     </nav>
   </header>
 
@@ -51,33 +28,28 @@
     <div class="kicker"><span class="dot"></span>Operator Intelligence</div>
     <h1>Dashboard <span class="accent">Mode</span></h1>
     <p>One command center for creators and teams. Performance arcs, revenue snapshots, and audience behavior render in a futuristic executive cockpit.</p>
-    <div class="hero-illus reveal">
-      <svg viewBox="0 0 900 180" aria-hidden="true"><path class="a" d="M120 130h660"/><rect class="c" x="150" y="78" width="80" height="52" rx="8"/><rect class="c" x="254" y="62" width="80" height="68" rx="8"/><rect class="c" x="358" y="44" width="80" height="86" rx="8"/><rect class="c" x="462" y="70" width="80" height="60" rx="8"/><rect class="c" x="566" y="56" width="80" height="74" rx="8"/><circle class="c pulse-node" cx="690" cy="52" r="14"/></svg>
-    </div>
+    <div class="hero-illus reveal"><svg viewBox="0 0 900 180" aria-hidden="true"><path class="a" d="M120 130h660"/><rect class="c" x="150" y="78" width="80" height="52" rx="8"/><rect class="c" x="254" y="62" width="80" height="68" rx="8"/><rect class="c" x="358" y="44" width="80" height="86" rx="8"/><rect class="c" x="462" y="70" width="80" height="60" rx="8"/><rect class="c" x="566" y="56" width="80" height="74" rx="8"/><circle class="c pulse-node" cx="690" cy="52" r="14"/></svg></div>
 
     <div class="btns">
-      <a class="btn primary" href="../../index.html">Back To Station</a>
-      <a class="btn ghost" href="../../index.html#creators">Creator Hub</a>
+      <a class="btn primary" href="../company/about.html">Next Page</a>
+      <a class="btn ghost" href="../create/go-live.html">Previous Page</a>
+      <a class="btn ghost" href="../../index.html">Back To Station</a>
     </div>
 
     <div class="panels">
       <article class="panel reveal">
-        <h2>Executive Board Feed</h2>
-        <div class="lines">
-          <div>Weekly growth packet delivered</div>
-          <div>Revenue split model updated</div>
-          <div>Campaign uplift map refreshed</div>
-        </div>
+        <h2>Growth Console</h2>
+        <div class="lines"><div>Weekly growth packet delivered</div><div>Revenue split model updated</div><div>Campaign uplift map refreshed</div></div>
       </article>
       <aside class="panel reveal">
-        <h2>Neural Signal Layer</h2>
-        <div class="wave"><span></span><span></span><span></span></div>
-        <div class="lines" style="margin-top:12px;">
-          <div>Follower velocity: +18%</div>
-          <div>Monetization health: strong</div>
-          <div>Automation routines: synced</div>
-        </div>
+        <h2>Creator Economy</h2>
+        <div class="lines"><div>Payout runway: stable</div><div>Fan conversion funnel: strong</div><div>Top sponsor match: approved</div></div>
       </aside>
+    </div>
+
+    <div class="nextflow reveal">
+      <a href="../create/go-live.html">Prev: Move Back</a>
+      <a href="../company/about.html">Next: Continue Flow</a>
     </div>
   </section>
 
@@ -87,6 +59,7 @@
   </footer>
 </main>
 <script src="../page.js"></script>
+<script src="../../shared-ui.js"></script>
 <script src="../../shared-player.js"></script>
 </body>
 </html>

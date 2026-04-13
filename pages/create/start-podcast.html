@@ -10,40 +10,17 @@
 <link rel="stylesheet" href="../theme.css">
 <link rel="stylesheet" href="../../shared-player.css">
 </head>
-<body>
+<body data-page="create-start-podcast" data-tracklist="../../data/tracklist.json">
 <div class="backdrop"></div>
 <main>
   <header class="topbar reveal visible">
     <a class="brand" href="../../index.html">RiteHear <span>FmXm</span></a>
     <nav class="navrow">
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Listen</button>
-        <div class="navmega">
-          <a href="../listen/live-radio.html">Live Radio</a>
-          <a href="../listen/podcasts.html">Podcasts</a>
-          <a href="../listen/music.html">Music</a>
-          <a href="../listen/playlists.html">Playlists</a>
-        </div>
-      </div>
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Create</button>
-        <div class="navmega">
-          <a href="../create/upload-music.html">Upload Music</a>
-          <a href="../create/start-podcast.html">Start Podcast</a>
-          <a href="../create/go-live.html">Go Live</a>
-          <a href="../create/dashboard.html">Dashboard</a>
-        </div>
-      </div>
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Company</button>
-        <div class="navmega">
-          <a href="../company/about.html">About</a>
-          <a href="../company/advertise.html">Advertise</a>
-          <a href="../company/contact.html">Contact</a>
-          <a href="../company/privacy.html">Privacy</a>
-        </div>
-      </div>
+      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="../listen/live-radio.html">Live Radio</a><a href="../listen/podcasts.html">Podcasts</a><a href="../listen/music.html">Music</a><a href="../listen/playlists.html">Playlists</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload Music</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="../company/about.html">About</a><a href="../company/advertise.html">Advertise</a><a href="../company/contact.html">Contact</a><a href="../company/privacy.html">Privacy</a></div></div>
       <a href="../../index.html#live">Live</a>
+      <a href="../../index.html">Home</a>
     </nav>
   </header>
 
@@ -51,33 +28,28 @@
     <div class="kicker"><span class="dot"></span>Studio Stack Ready</div>
     <h1>Start Podcast <span class="accent">Mode</span></h1>
     <p>Launch your show with broadcast-grade structure. Episode templates, scene routing, and publish automation create a smooth pipeline from mic to audience.</p>
-    <div class="hero-illus reveal">
-      <svg viewBox="0 0 900 180" aria-hidden="true"><g class="drift"><rect class="c" x="398" y="30" width="104" height="120" rx="52"/><path class="a" d="M346 88a104 104 0 0 1 208 0"/><path class="b" d="M308 88a142 142 0 0 1 284 0"/><path class="b" d="M450 150v18"/></g><circle class="c pulse-node" cx="450" cy="88" r="8"/></svg>
-    </div>
+    <div class="hero-illus reveal"><svg viewBox="0 0 900 180" aria-hidden="true"><g class="drift"><rect class="c" x="398" y="30" width="104" height="120" rx="52"/><path class="a" d="M346 88a104 104 0 0 1 208 0"/><path class="b" d="M308 88a142 142 0 0 1 284 0"/><path class="b" d="M450 150v18"/></g><circle class="c pulse-node" cx="450" cy="88" r="8"/></svg></div>
 
     <div class="btns">
-      <a class="btn primary" href="../../index.html">Back To Station</a>
-      <a class="btn ghost" href="../../index.html#creators">Creator Hub</a>
+      <a class="btn primary" href="../create/go-live.html">Next Page</a>
+      <a class="btn ghost" href="../create/upload-music.html">Previous Page</a>
+      <a class="btn ghost" href="../../index.html">Back To Station</a>
     </div>
 
     <div class="panels">
       <article class="panel reveal">
-        <h2>Executive Board Feed</h2>
-        <div class="lines">
-          <div>Host profile sync connected</div>
-          <div>Episode template bundle loaded</div>
-          <div>Trailer + teaser workflow armed</div>
-        </div>
+        <h2>Show Build Plan</h2>
+        <div class="lines"><div>Host profile sync connected</div><div>Episode template bundle loaded</div><div>Trailer + teaser workflow armed</div></div>
       </article>
       <aside class="panel reveal">
-        <h2>Neural Signal Layer</h2>
-        <div class="wave"><span></span><span></span><span></span></div>
-        <div class="lines" style="margin-top:12px;">
-          <div>Mic chain target: warm</div>
-          <div>Noise floor monitor: clean</div>
-          <div>Distribution node: live</div>
-        </div>
+        <h2>Voice Production</h2>
+        <div class="lines"><div>Room noise AI cleanup: active</div><div>Mic chain profile: warm</div><div>Publish cadence coach: enabled</div></div>
       </aside>
+    </div>
+
+    <div class="nextflow reveal">
+      <a href="../create/upload-music.html">Prev: Move Back</a>
+      <a href="../create/go-live.html">Next: Continue Flow</a>
     </div>
   </section>
 
@@ -87,6 +59,7 @@
   </footer>
 </main>
 <script src="../page.js"></script>
+<script src="../../shared-ui.js"></script>
 <script src="../../shared-player.js"></script>
 </body>
 </html>

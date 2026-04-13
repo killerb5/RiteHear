@@ -10,40 +10,17 @@
 <link rel="stylesheet" href="../theme.css">
 <link rel="stylesheet" href="../../shared-player.css">
 </head>
-<body>
+<body data-page="create-upload-music" data-tracklist="../../data/tracklist.json">
 <div class="backdrop"></div>
 <main>
   <header class="topbar reveal visible">
     <a class="brand" href="../../index.html">RiteHear <span>FmXm</span></a>
     <nav class="navrow">
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Listen</button>
-        <div class="navmega">
-          <a href="../listen/live-radio.html">Live Radio</a>
-          <a href="../listen/podcasts.html">Podcasts</a>
-          <a href="../listen/music.html">Music</a>
-          <a href="../listen/playlists.html">Playlists</a>
-        </div>
-      </div>
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Create</button>
-        <div class="navmega">
-          <a href="../create/upload-music.html">Upload Music</a>
-          <a href="../create/start-podcast.html">Start Podcast</a>
-          <a href="../create/go-live.html">Go Live</a>
-          <a href="../create/dashboard.html">Dashboard</a>
-        </div>
-      </div>
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Company</button>
-        <div class="navmega">
-          <a href="../company/about.html">About</a>
-          <a href="../company/advertise.html">Advertise</a>
-          <a href="../company/contact.html">Contact</a>
-          <a href="../company/privacy.html">Privacy</a>
-        </div>
-      </div>
+      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="../listen/live-radio.html">Live Radio</a><a href="../listen/podcasts.html">Podcasts</a><a href="../listen/music.html">Music</a><a href="../listen/playlists.html">Playlists</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload Music</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="../company/about.html">About</a><a href="../company/advertise.html">Advertise</a><a href="../company/contact.html">Contact</a><a href="../company/privacy.html">Privacy</a></div></div>
       <a href="../../index.html#live">Live</a>
+      <a href="../../index.html">Home</a>
     </nav>
   </header>
 
@@ -51,33 +28,28 @@
     <div class="kicker"><span class="dot"></span>Creator Intake Portal</div>
     <h1>Upload Music <span class="accent">Mode</span></h1>
     <p>A secure, elegant ingestion deck where artists submit masters, cover art, and metadata with confidence. Built for clean handoff from creator to station release.</p>
-    <div class="hero-illus reveal">
-      <svg viewBox="0 0 900 180" aria-hidden="true"><rect class="c" x="170" y="38" width="560" height="104" rx="16"/><path class="a" d="M450 54v66"/><path class="a" d="M418 86h64"/><path class="b" d="M220 132h460"/><circle class="c pulse-node" cx="270" cy="88" r="10"/><circle class="c pulse-node" cx="630" cy="88" r="10"/></svg>
-    </div>
+    <div class="hero-illus reveal"><svg viewBox="0 0 900 180" aria-hidden="true"><rect class="c" x="170" y="38" width="560" height="104" rx="16"/><path class="a" d="M450 54v66"/><path class="a" d="M418 86h64"/><path class="b" d="M220 132h460"/><circle class="c pulse-node" cx="270" cy="88" r="10"/><circle class="c pulse-node" cx="630" cy="88" r="10"/></svg></div>
 
     <div class="btns">
-      <a class="btn primary" href="../../index.html">Back To Station</a>
-      <a class="btn ghost" href="../../index.html#creators">Creator Hub</a>
+      <a class="btn primary" href="../create/start-podcast.html">Next Page</a>
+      <a class="btn ghost" href="../listen/playlists.html">Previous Page</a>
+      <a class="btn ghost" href="../../index.html">Back To Station</a>
     </div>
 
     <div class="panels">
       <article class="panel reveal">
-        <h2>Executive Board Feed</h2>
-        <div class="lines">
-          <div>Lossless package validator enabled</div>
-          <div>Cover artwork AI quality checks complete</div>
-          <div>Rights declaration packet attached</div>
-        </div>
+        <h2>Submission Pipeline</h2>
+        <div class="lines"><div>Lossless package validator enabled</div><div>Cover artwork AI quality checks complete</div><div>Rights declaration packet attached</div></div>
       </article>
       <aside class="panel reveal">
-        <h2>Neural Signal Layer</h2>
-        <div class="wave"><span></span><span></span><span></span></div>
-        <div class="lines" style="margin-top:12px;">
-          <div>Review SLA: 24h</div>
-          <div>Submission queue: 17</div>
-          <div>Approval runway: clear</div>
-        </div>
+        <h2>Artist Launch Board</h2>
+        <div class="lines"><div>First-listen panel scheduled</div><div>Metadata compliance: passed</div><div>Release readiness score: 91</div></div>
       </aside>
+    </div>
+
+    <div class="nextflow reveal">
+      <a href="../listen/playlists.html">Prev: Move Back</a>
+      <a href="../create/start-podcast.html">Next: Continue Flow</a>
     </div>
   </section>
 
@@ -87,6 +59,7 @@
   </footer>
 </main>
 <script src="../page.js"></script>
+<script src="../../shared-ui.js"></script>
 <script src="../../shared-player.js"></script>
 </body>
 </html>

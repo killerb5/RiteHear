@@ -1,12 +1,14 @@
 (function(){
-  const tracks = [
+  const fallbackTracks = [
     { title: 'Late Night Frequencies', artist: 'DJ Rite', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-    { title: 'Unsigned Heat', artist: 'RiteHear Select', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
-    { title: 'City Lights Session', artist: 'Nyla Reign', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' }
+    { title: 'Unsigned Heat', artist: 'RiteHear Select', src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' }
   ];
 
-  const key = 'ritehear-player-state-v1';
+  const key = 'ritehear-player-state-v2';
   let state = { index: 0, time: 0, playing: false, volume: 0.8 };
+  let tracks = fallbackTracks;
+  const pageKey = document.body.getAttribute('data-page') || 'home';
+  const listPath = document.body.getAttribute('data-tracklist') || 'data/tracklist.json';
 
   try {
     const saved = JSON.parse(localStorage.getItem(key) || '{}');
@@ -66,6 +68,7 @@
   }
 
   function loadTrack(index, autoPlay){
+    if (!tracks.length) return;
     state.index = (index + tracks.length) % tracks.length;
     const t = tracks[state.index];
     audio.src = t.src;
@@ -143,5 +146,28 @@
 
   window.addEventListener('beforeunload', save);
 
-  loadTrack(state.index || 0, !!state.playing);
+  function boot(){
+    fetch(listPath)
+      .then(response => response.ok ? response.json() : Promise.reject(new Error('Tracklist not found')))
+      .then(data => {
+        if (Array.isArray(data[pageKey]) && data[pageKey].length) {
+          tracks = data[pageKey];
+        } else if (Array.isArray(data.home) && data.home.length) {
+          tracks = data.home;
+        }
+
+        if (state.index >= tracks.length) {
+          state.index = 0;
+          state.time = 0;
+        }
+
+        loadTrack(state.index || 0, !!state.playing);
+      })
+      .catch(() => {
+        tracks = fallbackTracks;
+        loadTrack(state.index || 0, !!state.playing);
+      });
+  }
+
+  boot();
 })();

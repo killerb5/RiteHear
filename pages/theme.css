@@ -22,7 +22,12 @@ body{
     linear-gradient(160deg,var(--bg),var(--bg2) 45%,var(--bg3));
   min-height:100vh;
   overflow-x:hidden;
+  opacity:1;
+  transition:opacity .22s ease, filter .22s ease;
 }
+
+body.page-prep{opacity:0;filter:blur(3px);}
+body.page-leave{opacity:0;filter:blur(2px);}
 
 .backdrop{
   position:fixed;
@@ -141,6 +146,12 @@ a{color:inherit;}
   pointer-events:auto;
 }
 
+.navgroup.open .navmega{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+
 .hero{
   position:relative;
   border:1px solid var(--cardBorder);
@@ -235,6 +246,27 @@ a{color:inherit;}
   color:var(--amber);
   font-size:18px;
   margin-bottom:12px;
+}
+
+.nextflow{
+  margin-top:14px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.nextflow a{
+  text-decoration:none;
+  border:1px solid var(--cardBorder);
+  border-radius:10px;
+  background:rgba(255,122,24,.08);
+  color:#fff;
+  font-family:'Barlow Condensed',sans-serif;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  font-size:11px;
+  padding:8px 11px;
 }
 
 .lines{display:grid;gap:10px;}

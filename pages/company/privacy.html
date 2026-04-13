@@ -10,40 +10,17 @@
 <link rel="stylesheet" href="../theme.css">
 <link rel="stylesheet" href="../../shared-player.css">
 </head>
-<body>
+<body data-page="company-privacy" data-tracklist="../../data/tracklist.json">
 <div class="backdrop"></div>
 <main>
   <header class="topbar reveal visible">
     <a class="brand" href="../../index.html">RiteHear <span>FmXm</span></a>
     <nav class="navrow">
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Listen</button>
-        <div class="navmega">
-          <a href="../listen/live-radio.html">Live Radio</a>
-          <a href="../listen/podcasts.html">Podcasts</a>
-          <a href="../listen/music.html">Music</a>
-          <a href="../listen/playlists.html">Playlists</a>
-        </div>
-      </div>
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Create</button>
-        <div class="navmega">
-          <a href="../create/upload-music.html">Upload Music</a>
-          <a href="../create/start-podcast.html">Start Podcast</a>
-          <a href="../create/go-live.html">Go Live</a>
-          <a href="../create/dashboard.html">Dashboard</a>
-        </div>
-      </div>
-      <div class="navgroup">
-        <button class="navbtn" aria-haspopup="true">Company</button>
-        <div class="navmega">
-          <a href="../company/about.html">About</a>
-          <a href="../company/advertise.html">Advertise</a>
-          <a href="../company/contact.html">Contact</a>
-          <a href="../company/privacy.html">Privacy</a>
-        </div>
-      </div>
+      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="../listen/live-radio.html">Live Radio</a><a href="../listen/podcasts.html">Podcasts</a><a href="../listen/music.html">Music</a><a href="../listen/playlists.html">Playlists</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload Music</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="../company/about.html">About</a><a href="../company/advertise.html">Advertise</a><a href="../company/contact.html">Contact</a><a href="../company/privacy.html">Privacy</a></div></div>
       <a href="../../index.html#live">Live</a>
+      <a href="../../index.html">Home</a>
     </nav>
   </header>
 
@@ -51,33 +28,28 @@
     <div class="kicker"><span class="dot"></span>Trust Protocol</div>
     <h1>Privacy <span class="accent">Mode</span></h1>
     <p>Privacy and data governance with modern standards. Transparent controls, respectful analytics, and secure systems keep creators and listeners protected.</p>
-    <div class="hero-illus reveal">
-      <svg viewBox="0 0 900 180" aria-hidden="true"><path class="c" d="M450 34 640 90c0 36-21 60-58 78-37 18-78 18-132 0-54-18-58-42-58-78z"/><path class="a" d="M450 70v50"/><circle class="b pulse-node" cx="450" cy="62" r="14"/><path class="b" d="M260 148h380"/></svg>
-    </div>
+    <div class="hero-illus reveal"><svg viewBox="0 0 900 180" aria-hidden="true"><path class="c" d="M450 34 640 90c0 36-21 60-58 78-37 18-78 18-132 0-54-18-58-42-58-78z"/><path class="a" d="M450 70v50"/><circle class="b pulse-node" cx="450" cy="62" r="14"/><path class="b" d="M260 148h380"/></svg></div>
 
     <div class="btns">
-      <a class="btn primary" href="../../index.html">Back To Station</a>
-      <a class="btn ghost" href="../../index.html#creators">Creator Hub</a>
+      <a class="btn primary" href="../listen/live-radio.html">Next Page</a>
+      <a class="btn ghost" href="../company/contact.html">Previous Page</a>
+      <a class="btn ghost" href="../../index.html">Back To Station</a>
     </div>
 
     <div class="panels">
       <article class="panel reveal">
-        <h2>Executive Board Feed</h2>
-        <div class="lines">
-          <div>Policy revision 2026.04 deployed</div>
-          <div>Consent manager verified</div>
-          <div>Data retention windows audited</div>
-        </div>
+        <h2>Policy Command</h2>
+        <div class="lines"><div>Policy revision 2026.04 deployed</div><div>Consent manager verified</div><div>Data retention windows audited</div></div>
       </article>
       <aside class="panel reveal">
-        <h2>Neural Signal Layer</h2>
-        <div class="wave"><span></span><span></span><span></span></div>
-        <div class="lines" style="margin-top:12px;">
-          <div>Encryption status: strict</div>
-          <div>Compliance lane: green</div>
-          <div>Access log review: complete</div>
-        </div>
+        <h2>Security Architecture</h2>
+        <div class="lines"><div>Encryption status: strict</div><div>Compliance lane: green</div><div>Access log review: complete</div></div>
       </aside>
+    </div>
+
+    <div class="nextflow reveal">
+      <a href="../company/contact.html">Prev: Move Back</a>
+      <a href="../listen/live-radio.html">Next: Continue Flow</a>
     </div>
   </section>
 
@@ -87,6 +59,7 @@
   </footer>
 </main>
 <script src="../page.js"></script>
+<script src="../../shared-ui.js"></script>
 <script src="../../shared-player.js"></script>
 </body>
 </html>
