@@ -8,58 +8,48 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../theme.css">
-<link rel="stylesheet" href="../../shared-player.css">
 </head>
-<body data-page="company-advertise" data-tracklist="../../data/tracklist.json">
-<div class="backdrop"></div>
-<main>
-  <header class="topbar reveal visible">
+<body>
+<div class="page-shell">
+  <header class="topbar">
     <a class="brand" href="../../index.html">RiteHear <span>FmXm</span></a>
     <nav class="navrow">
-      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="../listen/live-radio.html">Live Radio</a><a href="../listen/podcasts.html">Podcasts</a><a href="../listen/music.html">Music</a><a href="../listen/playlists.html">Playlists</a></div></div>
-      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload Music</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
-      <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="../company/about.html">About</a><a href="../company/advertise.html">Advertise</a><a href="../company/contact.html">Contact</a><a href="../company/privacy.html">Privacy</a></div></div>
-      <a href="../../index.html#live">Live</a>
+      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="../listen/live-radio.html">Live Radio</a><a href="../listen/schedule.html">Schedule</a><a href="../listen/podcasts.html">Podcasts</a><a href="../listen/music.html">Music</a><a href="../listen/playlists.html">Playlists</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="about.html">About</a><a href="advertise.html">Advertise</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div></div>
       <a href="../../index.html">Home</a>
+      <a class="live-pill" href="../listen/live-radio.html"><span class="live-dot"></span>On Air</a>
     </nav>
   </header>
 
-  <section class="hero reveal">
-    <div class="kicker"><span class="dot"></span>Brand Integration Lab</div>
-    <h1>Advertise <span class="accent">Mode</span></h1>
-    <p>Sponsor programs designed for culture-first audiences. From live segments to intelligent placements, campaigns feel native and measurable.</p>
-    <div class="hero-illus reveal"><svg viewBox="0 0 900 180" aria-hidden="true"><rect class="c" x="130" y="42" width="640" height="96" rx="20"/><path class="a" d="M220 72h460"/><path class="a" d="M220 100h300"/><circle class="c pulse-node" cx="660" cy="90" r="20"/><path class="b sweep-line" d="M84 150h732"/></svg></div>
-
-    <div class="btns">
-      <a class="btn primary" href="../company/contact.html">Next Page</a>
-      <a class="btn ghost" href="../company/about.html">Previous Page</a>
-      <a class="btn ghost" href="../../index.html">Back To Station</a>
-    </div>
-
-    <div class="panels">
-      <article class="panel reveal">
-        <h2>Campaign Office</h2>
-        <div class="lines"><div>Premium slot inventory opened</div><div>Audience intent model calibrated</div><div>Creative QA gates passed</div></div>
-      </article>
-      <aside class="panel reveal">
-        <h2>Ad Tech Matrix</h2>
-        <div class="lines"><div>Dynamic placement engine: active</div><div>Attribution windows: tuned</div><div>Brand safety filter: strict</div></div>
-      </aside>
-    </div>
-
-    <div class="nextflow reveal">
-      <a href="../company/about.html">Prev: Move Back</a>
-      <a href="../company/contact.html">Next: Continue Flow</a>
-    </div>
+  <section class="page-hero reveal">
+    <div class="kicker"><span class="live-dot"></span>Brand Partnerships</div>
+    <h1 class="page-title">Advertise With <span class="grad">RiteHear</span></h1>
+    <p>Partner with a station-led media platform that combines on-air programming, creator content, video packages and editorial placements. Brand work is integrated with the platform, not bolted onto it.</p>
   </section>
 
-  <footer>
-    <span>RiteHear FmXm - Executive Label x Streaming Tech x AI Futures</span>
-    <span>© 2026</span>
-  </footer>
-</main>
+  <section class="grid-three reveal">
+    <article class="card"><h3>On-Air Reads</h3><p>Integrated sponsor reads inside live or scheduled programming blocks.</p></article>
+    <article class="card"><h3>Show Sponsorship</h3><p>Podcast and video association around specific series or recurring segments.</p></article>
+    <article class="card"><h3>Editorial Placement</h3><p>Platform-level visibility across home, schedule, playlist and creator surfaces.</p></article>
+  </section>
+
+  <section class="table-shell reveal" style="margin-top:18px;">
+    <h3>Advertising Overview</h3>
+    <table>
+      <thead><tr><th>Package</th><th>Placement</th><th>Ideal For</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Station Sponsor</td><td>Home + on-air</td><td>Brand awareness</td><td>Open</td></tr>
+        <tr><td>Show Partner</td><td>Podcast/video series</td><td>Audience targeting</td><td>Open</td></tr>
+        <tr><td>Launch Package</td><td>Music + creator rollouts</td><td>Campaign bursts</td><td>By request</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="pager" style="margin-top:20px;"><a class="btn btn-secondary" href="about.html">Previous</a><a class="btn btn-primary" href="contact.html">Next</a></div>
+  <footer class="footer"><span>RiteHear FmXm</span><span>Brand partnerships and platform advertising.</span></footer>
+</div>
 <script src="../page.js"></script>
 <script src="../../shared-ui.js"></script>
-<script src="../../shared-player.js"></script>
 </body>
 </html>

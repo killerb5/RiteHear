@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RiteHear - Schedule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../theme.css">
+</head>
+<body>
+<div class="page-shell">
+  <header class="topbar">
+    <a class="brand" href="../../index.html">RiteHear <span>FmXm</span></a>
+    <nav class="navrow">
+      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="live-radio.html">Live Radio</a><a href="schedule.html">Schedule</a><a href="podcasts.html">Podcasts</a><a href="music.html">Music</a><a href="playlists.html">Playlists</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="../company/about.html">About</a><a href="../company/advertise.html">Advertise</a><a href="../company/contact.html">Contact</a><a href="../company/privacy.html">Privacy</a></div></div>
+      <a href="../../index.html">Home</a>
+      <a class="live-pill" href="live-radio.html"><span class="live-dot"></span>On Air</a>
+    </nav>
+  </header>
+
+  <section class="page-hero reveal">
+    <div class="kicker"><span class="live-dot"></span>Program Calendar</div>
+    <h1 class="page-title">Station <span class="grad">Schedule</span></h1>
+    <p>Browse the structured weekly broadcast calendar for shows, hosts, live mixes and interview slots. This is the main program grid used across the station.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="live-radio.html">Open Live Radio</a>
+      <a class="btn btn-secondary" href="podcasts.html">Browse Podcasts</a>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="day-picker">
+      <button class="day-btn" data-day="monday">Monday</button>
+      <button class="day-btn" data-day="tuesday">Tuesday</button>
+      <button class="day-btn" data-day="wednesday">Wednesday</button>
+      <button class="day-btn" data-day="thursday">Thursday</button>
+      <button class="day-btn" data-day="friday">Friday</button>
+    </div>
+    <div class="table-shell" style="margin-top:18px;" data-day-panel="monday">
+      <h3>Monday Programming</h3>
+      <table><thead><tr><th>Time</th><th>Show</th><th>Host</th><th>Format</th></tr></thead><tbody>
+        <tr><td>6:00 AM</td><td>Morning Culture</td><td>Nia Lane</td><td>Talk + Music</td></tr>
+        <tr><td>12:00 PM</td><td>Midday Heat</td><td>DJ Rite</td><td>Live Mix</td></tr>
+        <tr><td>6:00 PM</td><td>Drive Time Bangers</td><td>Rome</td><td>Audience Requests</td></tr>
+        <tr><td>9:00 PM</td><td>Prime Time with Bryson</td><td>Bryson Cole</td><td>Interview + Music</td></tr>
+      </tbody></table>
+    </div>
+    <div class="table-shell hidden" style="margin-top:18px;" data-day-panel="tuesday">
+      <h3>Tuesday Programming</h3>
+      <table><thead><tr><th>Time</th><th>Show</th><th>Host</th><th>Format</th></tr></thead><tbody>
+        <tr><td>7:00 AM</td><td>Newsline Pulse</td><td>Rhea James</td><td>News + Briefing</td></tr>
+        <tr><td>1:00 PM</td><td>Unsigned Heat</td><td>Staff Picks</td><td>Music Discovery</td></tr>
+        <tr><td>7:00 PM</td><td>Studio Session</td><td>Producer Malik</td><td>Video + Audio</td></tr>
+        <tr><td>10:00 PM</td><td>After Hours</td><td>DJ Sol</td><td>Late Night Mix</td></tr>
+      </tbody></table>
+    </div>
+    <div class="table-shell hidden" style="margin-top:18px;" data-day-panel="wednesday">
+      <h3>Wednesday Programming</h3>
+      <table><thead><tr><th>Time</th><th>Show</th><th>Host</th><th>Format</th></tr></thead><tbody>
+        <tr><td>8:00 AM</td><td>Market Moves</td><td>Tasha Reed</td><td>Business Talk</td></tr>
+        <tr><td>2:00 PM</td><td>Playlist Office</td><td>Editorial Desk</td><td>Curated Sets</td></tr>
+        <tr><td>6:30 PM</td><td>Game Day Debrief</td><td>Marcus Hill</td><td>Sports Talk</td></tr>
+        <tr><td>9:30 PM</td><td>City Lights</td><td>Nyla Reign</td><td>Featured Artist Hour</td></tr>
+      </tbody></table>
+    </div>
+    <div class="table-shell hidden" style="margin-top:18px;" data-day-panel="thursday">
+      <h3>Thursday Programming</h3>
+      <table><thead><tr><th>Time</th><th>Show</th><th>Host</th><th>Format</th></tr></thead><tbody>
+        <tr><td>6:30 AM</td><td>Faith & Focus</td><td>Bishop Williams</td><td>Gospel + Talk</td></tr>
+        <tr><td>12:30 PM</td><td>Creator Clinic</td><td>Platform Team</td><td>Advice + Live Q&A</td></tr>
+        <tr><td>6:00 PM</td><td>Thursday Turn Up</td><td>DJ Kai</td><td>Live Mix</td></tr>
+        <tr><td>8:30 PM</td><td>Street to Suite</td><td>Guest Hosts</td><td>Podcast Broadcast</td></tr>
+      </tbody></table>
+    </div>
+    <div class="table-shell hidden" style="margin-top:18px;" data-day-panel="friday">
+      <h3>Friday Programming</h3>
+      <table><thead><tr><th>Time</th><th>Show</th><th>Host</th><th>Format</th></tr></thead><tbody>
+        <tr><td>7:00 AM</td><td>Weekend Start</td><td>Nia Lane</td><td>Music + Culture</td></tr>
+        <tr><td>3:00 PM</td><td>Release Radar</td><td>Music Desk</td><td>New Music</td></tr>
+        <tr><td>7:00 PM</td><td>Live Performance Slot</td><td>Guest Artists</td><td>Video Stage</td></tr>
+        <tr><td>10:00 PM</td><td>Friday Night Frequency</td><td>DJ Rite</td><td>Extended Mix</td></tr>
+      </tbody></table>
+    </div>
+  </section>
+
+  <section class="panel reveal">
+    <h3>Programming Notes</h3>
+    <ul class="info-list">
+      <li>Live interview blocks are held every Tuesday and Thursday after 7 PM.</li>
+      <li>Video-based studio sessions are promoted across the live page and creator dashboard.</li>
+      <li>Weekend schedules are published every Friday afternoon inside the main program office.</li>
+    </ul>
+    <div class="pager" style="margin-top:16px;"><a class="btn btn-secondary" href="playlists.html">Previous</a><a class="btn btn-primary" href="live-radio.html">Next</a></div>
+  </section>
+
+  <footer class="footer"><span>RiteHear FmXm</span><span>Broadcast calendar and programming operations.</span></footer>
+</div>
+<script src="../page.js"></script>
+<script src="../../shared-ui.js"></script>
+</body>
+</html>

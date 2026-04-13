@@ -8,58 +8,60 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../theme.css">
-<link rel="stylesheet" href="../../shared-player.css">
 </head>
-<body data-page="listen-music" data-tracklist="../../data/tracklist.json">
-<div class="backdrop"></div>
-<main>
-  <header class="topbar reveal visible">
+<body>
+<div class="page-shell">
+  <header class="topbar">
     <a class="brand" href="../../index.html">RiteHear <span>FmXm</span></a>
     <nav class="navrow">
-      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="../listen/live-radio.html">Live Radio</a><a href="../listen/podcasts.html">Podcasts</a><a href="../listen/music.html">Music</a><a href="../listen/playlists.html">Playlists</a></div></div>
-      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload Music</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="live-radio.html">Live Radio</a><a href="schedule.html">Schedule</a><a href="podcasts.html">Podcasts</a><a href="music.html">Music</a><a href="playlists.html">Playlists</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
       <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="../company/about.html">About</a><a href="../company/advertise.html">Advertise</a><a href="../company/contact.html">Contact</a><a href="../company/privacy.html">Privacy</a></div></div>
-      <a href="../../index.html#live">Live</a>
       <a href="../../index.html">Home</a>
+      <a class="live-pill" href="live-radio.html"><span class="live-dot"></span>On Air</a>
     </nav>
   </header>
 
-  <section class="hero reveal">
-    <div class="kicker"><span class="dot"></span>Label Rotation Active</div>
-    <h1>Music <span class="accent">Mode</span></h1>
-    <p>High-contrast sonic curation with a futuristic catalog lens. Track journeys, campaign pushes, and playlist architecture are framed for both fans and A&R teams.</p>
-    <div class="hero-illus reveal"><svg viewBox="0 0 900 180" aria-hidden="true"><path class="a" d="M250 126V54l340-24v98"/><circle class="c pulse-node" cx="220" cy="126" r="18"/><circle class="c pulse-node" cx="560" cy="114" r="16"/><path class="b sweep-line" d="M70 156h760"/></svg></div>
-
-    <div class="btns">
-      <a class="btn primary" href="../listen/playlists.html">Next Page</a>
-      <a class="btn ghost" href="../listen/podcasts.html">Previous Page</a>
-      <a class="btn ghost" href="../../index.html">Back To Station</a>
-    </div>
-
-    <div class="panels">
-      <article class="panel reveal">
-        <h2>A&R Watchlist</h2>
-        <div class="lines"><div>Release velocity tuned for peak windows</div><div>Genre clusters adapt to listener cohorts</div><div>AI mastering notes ready for review</div></div>
-      </article>
-      <aside class="panel reveal">
-        <h2>Catalog Insights</h2>
-        <div class="lines"><div>Top growth sound: Afro-fusion</div><div>Night-listen dwell: +21%</div><div>Skip-to-save ratio: improving</div></div>
-      </aside>
-    </div>
-
-    <div class="nextflow reveal">
-      <a href="../listen/podcasts.html">Prev: Move Back</a>
-      <a href="../listen/playlists.html">Next: Continue Flow</a>
-    </div>
+  <section class="page-hero reveal">
+    <div class="kicker"><span class="live-dot"></span>Music Desk</div>
+    <h1 class="page-title">Music <span class="grad">Hub</span></h1>
+    <p>Track releases, editorial picks, artist priorities and format lanes from one clean music page. This is the station’s release-facing and playlist-facing music surface.</p>
+    <div class="actions"><a class="btn btn-primary" href="../create/upload-music.html">Upload Music</a><a class="btn btn-secondary" href="playlists.html">Open Playlists</a></div>
   </section>
 
-  <footer>
-    <span>RiteHear FmXm - Executive Label x Streaming Tech x AI Futures</span>
-    <span>© 2026</span>
-  </footer>
-</main>
+  <section class="grid-two section reveal">
+    <article class="table-shell">
+      <h3>Current Rotation</h3>
+      <table>
+        <thead><tr><th>Track</th><th>Artist</th><th>Genre</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>No Days Off</td><td>King Dre</td><td>Hip-Hop</td><td>A-List</td></tr>
+          <tr><td>Vibrations</td><td>Amara Soul</td><td>R&amp;B</td><td>Heavy</td></tr>
+          <tr><td>Lagos to Raleigh</td><td>Dele X</td><td>Afrobeats</td><td>New</td></tr>
+          <tr><td>Overflow</td><td>Bishop Williams</td><td>Gospel</td><td>Weekend</td></tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="card">
+      <h3>Editorial Notes</h3>
+      <ul class="bullet-list">
+        <li>Independent artists with strong repeat listening are moving into heavier rotation.</li>
+        <li>Afrobeats and alt-R&amp;B continue to overperform on evening blocks.</li>
+        <li>Weekend programming is prioritizing high-energy mix transitions and clean metadata.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="grid-three reveal">
+    <article class="card"><span class="inline-tag">Release Radar</span><h3 style="margin:12px 0 8px;">Friday Drops</h3><p>Tracks lined up for first-spin coverage and editorial review this week.</p></article>
+    <article class="card"><span class="inline-tag">Artist Watch</span><h3 style="margin:12px 0 8px;">Regional Growth</h3><p>Artists seeing strong lift from Raleigh, Atlanta and cross-market playlist carry.</p></article>
+    <article class="card"><span class="inline-tag">Station Mixes</span><h3 style="margin:12px 0 8px;">Curated Sets</h3><p>Station-assembled sequences for workday, drive time and late-night listening blocks.</p></article>
+  </section>
+
+  <div class="pager" style="margin-top:20px;"><a class="btn btn-secondary" href="podcasts.html">Previous</a><a class="btn btn-primary" href="playlists.html">Next</a></div>
+  <footer class="footer"><span>RiteHear FmXm</span><span>Music programming, release review and rotation management.</span></footer>
+</div>
 <script src="../page.js"></script>
 <script src="../../shared-ui.js"></script>
-<script src="../../shared-player.js"></script>
 </body>
 </html>

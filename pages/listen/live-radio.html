@@ -8,58 +8,102 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../theme.css">
-<link rel="stylesheet" href="../../shared-player.css">
 </head>
-<body data-page="listen-live-radio" data-tracklist="../../data/tracklist.json">
-<div class="backdrop"></div>
-<main>
-  <header class="topbar reveal visible">
+<body>
+<div class="page-shell">
+  <header class="topbar">
     <a class="brand" href="../../index.html">RiteHear <span>FmXm</span></a>
     <nav class="navrow">
-      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="../listen/live-radio.html">Live Radio</a><a href="../listen/podcasts.html">Podcasts</a><a href="../listen/music.html">Music</a><a href="../listen/playlists.html">Playlists</a></div></div>
-      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload Music</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="live-radio.html">Live Radio</a><a href="schedule.html">Schedule</a><a href="podcasts.html">Podcasts</a><a href="music.html">Music</a><a href="playlists.html">Playlists</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
       <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="../company/about.html">About</a><a href="../company/advertise.html">Advertise</a><a href="../company/contact.html">Contact</a><a href="../company/privacy.html">Privacy</a></div></div>
-      <a href="../../index.html#live">Live</a>
       <a href="../../index.html">Home</a>
+      <a class="live-pill" href="live-radio.html"><span class="live-dot"></span>On Air</a>
     </nav>
   </header>
 
-  <section class="hero reveal">
-    <div class="kicker"><span class="dot"></span>Realtime Audio Channel</div>
-    <h1>Live Radio <span class="accent">Mode</span></h1>
-    <p>A PS5-clean control deck for nonstop broadcast. Spatial UI cues, dynamic station telemetry, and host presence blend into a premium live listening experience.</p>
-    <div class="hero-illus reveal"><svg viewBox="0 0 900 180" aria-hidden="true"><path class="a sweep-line" d="M40 92 Q110 40 180 92 T320 92 T460 92 T600 92 T740 92 T860 92"/><path class="b" d="M40 118 Q110 66 180 118 T320 118 T460 118 T600 118 T740 118 T860 118"/><circle class="c pulse-node" cx="140" cy="92" r="12"/><circle class="c pulse-node" cx="430" cy="92" r="9"/><circle class="c pulse-node" cx="710" cy="92" r="11"/></svg></div>
-
-    <div class="btns">
-      <a class="btn primary" href="../listen/podcasts.html">Next Page</a>
-      <a class="btn ghost" href="../company/privacy.html">Previous Page</a>
-      <a class="btn ghost" href="../../index.html">Back To Station</a>
-    </div>
-
-    <div class="panels">
-      <article class="panel reveal">
-        <h2>Broadcast Control</h2>
-        <div class="lines"><div>Prime A feed synced to global regions</div><div>Talent relay queue optimized by AI pacing</div><div>Emergency override route tested and stable</div></div>
-      </article>
-      <aside class="panel reveal">
-        <h2>Station Heatmap</h2>
-        <div class="lines"><div>Peak minute window: 8:35 PM</div><div>Most active region: Southeast</div><div>Auto DJ fallback: armed</div></div>
-      </aside>
-    </div>
-
-    <div class="nextflow reveal">
-      <a href="../company/privacy.html">Prev: Move Back</a>
-      <a href="../listen/podcasts.html">Next: Continue Flow</a>
-    </div>
+  <section class="page-hero reveal" id="watch">
+    <div class="kicker"><span class="live-dot"></span>Live Studio Channel</div>
+    <h1 class="page-title">Watch & Listen <span class="grad">Live</span></h1>
+    <p>This page is built like a streaming watch surface. Featured live programming, recommended streams, current show information and production notes sit in one clean viewer layout.</p>
+    <div class="actions"><a class="btn btn-primary" href="schedule.html">View Schedule</a><a class="btn btn-secondary" href="../create/go-live.html">Go Live</a></div>
   </section>
 
-  <footer>
-    <span>RiteHear FmXm - Executive Label x Streaming Tech x AI Futures</span>
-    <span>© 2026</span>
-  </footer>
-</main>
+  <section class="video-shell reveal">
+    <div class="video-stage">
+      <div class="video-frame">
+        <div class="video-top"><span class="video-chip"><span class="live-dot"></span><span data-feature-mode>Now Streaming</span></span><span class="meta-note">1.2K watching</span></div>
+        <div class="video-screen">RiteHear Live Broadcast</div>
+        <div class="video-meta">
+          <h4 data-feature-title>Late Night DJ Set</h4>
+          <p data-feature-channel>DJ Rite • Main studio</p>
+          <p data-feature-desc>Live mix coverage with station commentary, real-time camera cuts and in-studio guests.</p>
+        </div>
+        <div class="video-actions"><button class="active">Live</button><button>Share</button><button>Save</button></div>
+      </div>
+      <div class="card">
+        <div class="tabs" data-tab-group="live-tabs">
+          <button class="tab-btn" data-tab="overview">Overview</button>
+          <button class="tab-btn" data-tab="chat">Live Chat</button>
+          <button class="tab-btn" data-tab="up-next">Up Next</button>
+        </div>
+        <div class="panel" data-tab-panel="live-tabs" data-tab="overview" style="margin-top:14px;padding:0;border:0;background:none;">
+          <ul class="info-list">
+            <li>Primary camera feed from the main studio.</li>
+            <li>Audio chain synchronized with the on-air station mix.</li>
+            <li>Tonight includes guest commentary and new release reactions.</li>
+          </ul>
+        </div>
+        <div class="panel hidden" data-tab-panel="live-tabs" data-tab="chat" style="margin-top:14px;padding:0;border:0;background:none;">
+          <ul class="info-list">
+            <li><strong>@kayworld</strong> This mix is clean.</li>
+            <li><strong>@raleighvibes</strong> Camera work looks sharp tonight.</li>
+            <li><strong>@labelwatch</strong> Need this set posted after the show.</li>
+          </ul>
+        </div>
+        <div class="panel hidden" data-tab-panel="live-tabs" data-tab="up-next" style="margin-top:14px;padding:0;border:0;background:none;">
+          <ul class="info-list">
+            <li>Studio Session with Producer Malik at 10:30 PM.</li>
+            <li>Rising Star interview block scheduled for 11:15 PM.</li>
+            <li>Weekend recap package publishes tomorrow morning.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <aside>
+      <h3 style="margin-bottom:14px;">Recommended Streams</h3>
+      <div class="media-list">
+        <button class="media-item" data-media-title="Late Night DJ Set" data-media-channel="DJ Rite • Main studio" data-media-desc="Live mix coverage with station commentary, real-time camera cuts and in-studio guests." data-media-mode="Now Streaming"><strong>Late Night DJ Set</strong><span>Main studio live mix</span></button>
+        <button class="media-item" data-media-title="Studio Session" data-media-channel="Producer Malik • Control room" data-media-desc="Behind-the-boards production coverage with arrangement breakdowns and creative discussion." data-media-mode="Live in 15"><strong>Studio Session</strong><span>Control room and recording workflow</span></button>
+        <button class="media-item" data-media-title="Interview: Rising Star" data-media-channel="Culture Desk • Interview stage" data-media-desc="An artist spotlight session with performance clips, background story and audience Q&A." data-media-mode="Scheduled"><strong>Interview: Rising Star</strong><span>Profile conversation and live clips</span></button>
+      </div>
+    </aside>
+  </section>
+
+  <section class="grid-two section reveal">
+    <article class="card">
+      <h3>Production Notes</h3>
+      <ul class="bullet-list">
+        <li>Broadcast tone is tuned for audio-first listening with camera coverage that supports the station feed.</li>
+        <li>Featured slots mirror the core station calendar so listeners and viewers stay aligned.</li>
+        <li>All live packages roll into clip edits and episode cutdowns after broadcast.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h3>Channel Queue</h3>
+      <ul class="bullet-list">
+        <li>Next live set: Studio Session</li>
+        <li>Tonight highlight: Rising Star Interview</li>
+        <li>Weekend package: Performance recap and release radar</li>
+      </ul>
+    </article>
+  </section>
+
+  <div class="pager" style="margin-top:20px;"><a class="btn btn-secondary" href="schedule.html">Previous</a><a class="btn btn-primary" href="podcasts.html">Next</a></div>
+
+  <footer class="footer"><span>RiteHear FmXm</span><span>Watch surface for live video and on-air coverage.</span></footer>
+</div>
 <script src="../page.js"></script>
 <script src="../../shared-ui.js"></script>
-<script src="../../shared-player.js"></script>
 </body>
 </html>

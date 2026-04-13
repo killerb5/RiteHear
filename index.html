@@ -3,13 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RiteHear FmXm - Where All Your Music Is Played</title>
-
+<title>RiteHear FmXm - Live radio, podcasts, music and video</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared-player.css">
-
 <style>
 :root{
   --orange:#FF7A18;
@@ -18,1844 +15,370 @@
   --bg:#0E0703;
   --bg2:#1A0B05;
   --bg3:#221208;
-  --white:#F8F8F8;
-  --muted:rgba(248,248,248,.58);
-  --border:rgba(255,122,24,.18);
-  --card:rgba(27,13,7,.84);
-  --danger:#c91f1f;
+  --surface:#160a05;
+  --surface-2:#1d0e07;
+  --text:#F8F8F8;
+  --muted:rgba(248,248,248,.66);
+  --line:rgba(255,122,24,.18);
+  --soft:rgba(255,255,255,.08);
 }
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{
-  font-family:'Barlow',sans-serif;
-  color:var(--white);
-  background:
-    radial-gradient(circle at 8% -10%,rgba(255,179,71,.18),transparent 40%),
-    radial-gradient(circle at 92% 4%,rgba(255,122,24,.2),transparent 38%),
-    linear-gradient(180deg,var(--bg),var(--bg2) 56%,var(--bg3));
-  overflow-x:hidden;
-  cursor:none;
-  opacity:1;
-  transition:opacity .22s ease, filter .22s ease;
+  font-family:'Barlow',sans-serif;color:var(--text);
+  background:radial-gradient(circle at 10% -10%,rgba(255,179,71,.15),transparent 34%),radial-gradient(circle at 92% 0%,rgba(255,122,24,.16),transparent 28%),linear-gradient(180deg,var(--bg),var(--bg2) 52%,var(--bg3));
+  overflow-x:hidden;opacity:1;transition:opacity .22s ease,filter .22s ease;
 }
-
-body.page-prep{
-  opacity:0;
-  filter:blur(3px);
-}
-
-body.page-leave{
-  opacity:0;
-  filter:blur(2px);
-}
-
-a{
-  color:inherit;
-}
-
-img,
-svg{
-  display:block;
-}
-
-main{
-  position:relative;
-  z-index:2;
-}
-
-.container{
-  width:min(1300px,100% - 48px);
-  margin-inline:auto;
-}
-
-.section{
-  padding:92px 0;
-}
-
-.section-label{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  color:var(--orange);
-  margin-bottom:14px;
-}
-
-.section-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(44px,7vw,96px);
-  line-height:.93;
-  letter-spacing:1px;
-  margin-bottom:28px;
-}
-
-.grad-text{
-  background:linear-gradient(130deg,var(--orange),var(--gold));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.cursor,
-.cursor-ring{
-  position:fixed;
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  z-index:200;
-}
-
-.cursor{
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background:var(--orange);
-}
-
-.cursor-ring{
-  width:36px;
-  height:36px;
-  border:1.4px solid var(--orange);
-  border-radius:50%;
-  opacity:.55;
-}
-
+body.page-prep{opacity:0;filter:blur(3px);} body.page-leave{opacity:0;filter:blur(2px);}
+a{color:inherit;} button{font:inherit;} svg{display:block;}
+.container{width:min(1280px,calc(100% - 44px));margin:0 auto;}
 nav{
-  position:fixed;
-  inset:0 0 auto;
-  z-index:100;
-  padding:16px 0;
-  backdrop-filter:blur(6px);
-  background:linear-gradient(180deg,rgba(14,7,3,.92),rgba(14,7,3,.3) 72%,transparent);
+  position:fixed;inset:0 0 auto;z-index:50;padding:16px 0;backdrop-filter:blur(8px);
+  background:linear-gradient(180deg,rgba(14,7,3,.94),rgba(14,7,3,.6) 72%,transparent);
 }
-
-.nav-wrap{
-  width:min(1300px,100% - 48px);
-  margin-inline:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:24px;
-}
-
-.nav-logo{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:30px;
-  letter-spacing:3px;
-  line-height:.95;
-  text-decoration:none;
-  background:linear-gradient(90deg,var(--orange),var(--gold));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.nav-logo span{
-  margin-left:6px;
-  font-size:14px;
-  opacity:.52;
-  color:var(--white);
-  -webkit-text-fill-color:var(--white);
-}
-
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:28px;
-}
-
-.nav-links > a,
-.mega-btn{
-  text-decoration:none;
-  color:var(--muted);
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  transition:.25s color ease;
-}
-
-.nav-group{
-  position:relative;
-}
-
-.mega-btn{
-  background:none;
-  border:0;
-  padding:0;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  cursor:pointer;
-}
-
-.mega-btn::after{
-  content:"";
-  width:7px;
-  height:7px;
-  border-right:1.5px solid currentColor;
-  border-bottom:1.5px solid currentColor;
-  transform:rotate(45deg) translateY(-1px);
-}
-
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;}
+.nav-logo{text-decoration:none;font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;background:linear-gradient(90deg,var(--orange),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-logo span{margin-left:6px;font-size:14px;opacity:.48;color:var(--text);-webkit-text-fill-color:var(--text);}
+.nav-tools{display:flex;align-items:center;gap:12px;}
+.nav-links{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.nav-links>a,.mega-btn{text-decoration:none;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;background:none;border:0;cursor:pointer;padding:0;}
+.nav-links>a:hover,.mega-btn:hover{color:var(--text);}
+.nav-group{position:relative;}
+.mega-btn{display:inline-flex;align-items:center;gap:6px;}
+.mega-btn::after{content:'';width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-1px);}
 .mega-panel{
-  position:absolute;
-  top:145%;
-  left:-16px;
-  width:430px;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:linear-gradient(145deg,rgba(31,15,8,.96),rgba(11,6,4,.95));
-  backdrop-filter:blur(12px);
-  box-shadow:0 20px 44px rgba(0,0,0,.35);
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  opacity:0;
-  transform:translateY(6px);
-  pointer-events:none;
-  transition:opacity .2s ease, transform .2s ease;
-}
-
-.mega-panel a{
-  text-decoration:none;
-  padding:9px 10px;
-  border-radius:8px;
-  border:1px solid transparent;
-  background:rgba(255,122,24,.05);
-  color:#fff;
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:12px;
-  letter-spacing:1.3px;
-  text-transform:uppercase;
-}
-
-.mega-panel a:hover{
-  border-color:var(--border);
-  background:rgba(255,122,24,.12);
-}
-
-.nav-group:hover .mega-panel,
-.nav-group:focus-within .mega-panel{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-}
-
-.nav-group.open .mega-panel{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-}
-
-.nav-tools{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.nav-links a:hover,
-.mega-btn:hover{
-  color:var(--white);
-}
-
-.nav-live{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  padding:8px 14px;
-  border-radius:5px;
-  border:1px solid var(--border);
-  background:rgba(255,122,24,.1);
-  color:var(--orange);
-}
-
-.motion-toggle,
-.menu-toggle{
-  border:1px solid var(--border);
-  background:rgba(255,122,24,.1);
-  color:#fff;
-  border-radius:8px;
-  height:36px;
-  min-width:36px;
-  padding:0 10px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:7px;
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:12px;
-  letter-spacing:1.2px;
-  text-transform:uppercase;
-}
-
-.menu-toggle{
-  display:none;
-  width:36px;
-  padding:0;
-}
-
-.menu-toggle svg{
-  width:18px;
-  height:18px;
-  stroke:#fff;
-}
-
-.mobile-menu{
-  position:fixed;
-  top:68px;
-  left:16px;
-  right:16px;
-  z-index:120;
-  border:1px solid var(--border);
-  border-radius:12px;
-  background:linear-gradient(145deg,rgba(27,13,7,.97),rgba(13,7,4,.94));
-  backdrop-filter:blur(10px);
-  padding:14px;
-  display:none;
-}
-
-.mobile-menu.open{
-  display:grid;
-  gap:8px;
-}
-
-.mobile-menu a{
-  text-decoration:none;
-  padding:10px 8px;
-  border-radius:8px;
-  font-family:'Barlow Condensed',sans-serif;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:rgba(248,248,248,.82);
-  border:1px solid transparent;
-}
-
-.mobile-menu a:hover{
-  border-color:var(--border);
-  background:rgba(255,122,24,.08);
-}
-
-.live-dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--orange);
-  animation:pulse 1.4s infinite;
-}
-
-.hero{
-  position:relative;
-  min-height:100vh;
-  padding:126px 0 84px;
-  display:grid;
-  align-items:center;
-  overflow:hidden;
-}
-
-#heroCanvas{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  z-index:0;
-}
-
-.hero::before,
-.hero::after{
-  content:"";
-  position:absolute;
-  pointer-events:none;
-  z-index:1;
-}
-
-.hero::before{
-  inset:-20% 52% auto -10%;
-  height:72%;
-  background:radial-gradient(circle,rgba(255,122,24,.2),transparent 70%);
-  filter:blur(40px);
-}
-
-.hero::after{
-  inset:auto -16% 6% 56%;
-  height:58%;
-  background:radial-gradient(circle,rgba(255,179,71,.2),transparent 70%);
-  filter:blur(36px);
-}
-
-.hero-grid{
-  position:absolute;
-  inset:0;
-  z-index:1;
-  background-image:
-    linear-gradient(rgba(255,122,24,.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,122,24,.05) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:linear-gradient(180deg,rgba(0,0,0,.75) 0%,rgba(0,0,0,.2) 60%,transparent 100%);
-}
-
-.hero-wrap{
-  position:relative;
-  z-index:3;
-  width:min(1300px,100% - 48px);
-  margin-inline:auto;
-  display:grid;
-  grid-template-columns:1.18fr .82fr;
-  gap:34px;
-  align-items:end;
-}
-
-.hero-kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:22px;
-  padding:6px 14px;
-  border-radius:4px;
-  border:1px solid var(--border);
-  background:rgba(255,122,24,.1);
-  color:var(--amber);
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:2.4px;
-  text-transform:uppercase;
-}
-
-.hero-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(58px,9.8vw,128px);
-  line-height:.88;
-  letter-spacing:1px;
-}
-
-.hero-sub{
-  margin-top:20px;
-  max-width:780px;
-  color:var(--muted);
-  font-size:18px;
-  letter-spacing:2.2px;
-  line-height:1.6;
-  text-transform:uppercase;
-}
-
-.hero-sub strong{
-  color:var(--orange);
-}
-
-.hero-cta{
-  margin-top:34px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  padding:13px 22px;
-  border-radius:6px;
-  border:1px solid transparent;
-  text-decoration:none;
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;
-  font-weight:700;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
-}
-
-.btn:hover{
-  transform:translateY(-2px);
-}
-
-.btn svg{
-  width:16px;
-  height:16px;
-  flex:0 0 16px;
-}
-
-.btn-primary{
-  background:linear-gradient(135deg,var(--orange),#e85f00);
-  color:#fff;
-  box-shadow:0 0 26px rgba(255,122,24,.35);
-}
-
-.btn-secondary{
-  background:rgba(255,122,24,.08);
-  border-color:var(--border);
-  color:#fff;
-}
-
-.side-stack{
-  display:grid;
-  gap:16px;
-  justify-items:end;
-}
-
-.glass-card{
-  width:min(430px,100%);
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:linear-gradient(145deg,rgba(31,15,8,.9),rgba(15,8,4,.72));
-  backdrop-filter:blur(14px);
-  box-shadow:0 22px 40px rgba(0,0,0,.35);
-}
-
-.now-playing{
-  padding:18px;
-  display:grid;
-  grid-template-columns:auto 1fr auto;
-  gap:14px;
-  align-items:center;
-}
-
-.record{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  background:radial-gradient(circle at 34% 34%,#fff 0 4px,var(--orange) 5px 18px,#632100 20px 100%);
-  border:1px solid rgba(255,255,255,.2);
-  animation:spin 4.5s linear infinite;
-}
-
-.now-playing h3{
-  font-size:16px;
-  letter-spacing:.2px;
-}
-
-.small-label{
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--orange);
-  margin-bottom:5px;
-}
-
-.meta{
-  font-size:12px;
-  color:var(--muted);
-}
-
-.play-btn{
-  width:40px;
-  height:40px;
-  border:0;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:var(--orange);
-  color:#fff;
-}
-
-.eq{
-  padding:14px 18px 16px;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-
-.eq-track{
-  height:58px;
-  display:flex;
-  align-items:flex-end;
-  gap:7px;
-}
-
-.eq-track span{
-  width:7px;
-  border-radius:10px;
-  background:linear-gradient(180deg,var(--gold),var(--orange));
-  opacity:.86;
-  animation:eq 1.6s ease-in-out infinite;
-}
-
-.eq-track span:nth-child(odd){animation-duration:1.9s;}
-.eq-track span:nth-child(3n){animation-duration:1.25s;}
-.eq-track span:nth-child(4n){animation-duration:2.1s;}
-
-.media-orbit{
-  position:relative;
-  min-height:240px;
-}
-
-.orbit-ring{
-  position:absolute;
-  inset:18px;
-  border-radius:50%;
-  border:1px dashed rgba(255,179,71,.22);
-}
-
-.orbit-item{
-  position:absolute;
-  width:52px;
-  height:52px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:rgba(23,11,6,.78);
-  display:grid;
-  place-items:center;
-}
-
-.orbit-item svg{
-  width:24px;
-  height:24px;
-  stroke:var(--amber);
-}
-
-.o1{top:10px;left:50%;transform:translateX(-50%);animation:floatA 5.4s ease-in-out infinite;}
-.o2{right:12px;top:50%;transform:translateY(-50%);animation:floatB 6.2s ease-in-out infinite;}
-.o3{left:14px;bottom:10px;animation:floatC 5.8s ease-in-out infinite;}
-.o4{left:18px;top:22%;animation:floatA 6.8s ease-in-out infinite;}
-.o5{right:18px;top:18%;animation:floatB 7.1s ease-in-out infinite;}
-.o6{left:50%;bottom:8px;transform:translateX(-50%);animation:floatC 6.4s ease-in-out infinite;}
-.o7{left:20%;top:62%;animation:floatA 6.1s ease-in-out infinite;}
-.o8{right:20%;bottom:18%;animation:floatB 6.6s ease-in-out infinite;}
-
-.layout-two{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:22px;
-}
-
-.brand-card,
-.schedule-card,
-.grid-card,
-.track,
-.stream,
-.creator,
-footer{
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:12px;
-}
-
-.brand-card{
-  min-height:520px;
-  padding:34px;
-  position:relative;
-  overflow:hidden;
-}
-
-.brand-card::before{
-  content:"";
-  position:absolute;
-  width:360px;
-  height:360px;
-  right:-130px;
-  bottom:-120px;
-  background:radial-gradient(circle,rgba(255,122,24,.24),transparent 70%);
-}
-
-.brand-big{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(74px,9vw,108px);
-  line-height:.88;
-  letter-spacing:1px;
-}
-
-.brand-sub{
-  margin-top:8px;
-  font-family:'Barlow Condensed',sans-serif;
-  color:var(--muted);
-  letter-spacing:5px;
-  text-transform:uppercase;
-}
-
-.brand-card p{
-  margin-top:30px;
-  max-width:560px;
-  color:rgba(248,248,248,.72);
-  line-height:1.8;
-  font-size:19px;
-}
-
-.schedule-card{
-  padding:24px;
-}
-
-.schedule-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:16px;
-}
-
-.schedule-head h3{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:28px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-.schedule-list{
-  display:grid;
-  gap:8px;
-}
-
-.schedule-item{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  padding:14px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.schedule-item:last-child{
-  border-bottom:0;
-}
-
-.schedule-item strong{
-  color:var(--amber);
-}
-
-.wave-box{
-  height:170px;
-  margin-top:16px;
-  border-radius:10px;
-  background:linear-gradient(180deg,rgba(255,122,24,.08),rgba(255,122,24,.01));
-  position:relative;
-  overflow:hidden;
-}
-
-.wave-line{
-  position:absolute;
-  width:180%;
-  height:72px;
-  left:-40%;
-  top:48%;
-  border-radius:50%;
-  border:2px solid rgba(255,122,24,.6);
-  animation:wave 4s linear infinite;
-}
-
-.wave-line:nth-child(2){
-  top:40%;
-  opacity:.62;
-  animation-duration:5s;
-}
-
-.wave-line:nth-child(3){
-  top:56%;
-  opacity:.45;
-  animation-duration:6.2s;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
-}
-
-.grid-card{
-  overflow:hidden;
-}
-
-.grid-visual{
-  height:170px;
-  position:relative;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(140deg,#2a1108,#7a2a00);
-}
-
-.grid-visual svg{
-  width:62px;
-  height:62px;
-  stroke:#fff;
-  stroke-width:1.7;
-  opacity:.9;
-}
-
-.grid-card:nth-child(2) .grid-visual{background:linear-gradient(140deg,#462402,#a36400);}
-.grid-card:nth-child(3) .grid-visual{background:linear-gradient(140deg,#341406,#7f2f00);}
-.grid-card:nth-child(4) .grid-visual{background:linear-gradient(140deg,#4a2a0a,#9a4d00);}
-
-.grid-body{
-  padding:20px;
-}
-
-.grid-body h3{
-  font-size:22px;
-  margin:8px 0;
-}
-
-.grid-meta{
-  color:var(--muted);
-  line-height:1.55;
-}
-
-.grid-bottom{
-  margin-top:16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  color:var(--muted);
-}
-
-.icon-btn{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  border:1px solid var(--border);
-  background:rgba(255,122,24,.14);
-  display:grid;
-  place-items:center;
-}
-
-.icon-btn svg{
-  width:14px;
-  height:14px;
-  fill:#fff;
-}
-
-.tracklist{
-  display:grid;
-  gap:12px;
-}
-
-.track{
-  display:grid;
-  grid-template-columns:42px 56px 1fr auto auto;
-  gap:14px;
-  align-items:center;
-  padding:14px;
-}
-
-.track-no{
-  text-align:center;
-  color:var(--muted);
-}
-
-.track-art{
-  width:52px;
-  height:52px;
-  border-radius:9px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(130deg,#ff7a18,#692100);
-}
-
-.track-art svg{
-  width:25px;
-  height:25px;
-  stroke:#fff;
-}
-
-.track:nth-child(2) .track-art{background:linear-gradient(130deg,#ffb347,#8c4f00);}
-.track:nth-child(3) .track-art{background:linear-gradient(130deg,#e85f00,#4c1900);}
-.track:nth-child(4) .track-art{background:linear-gradient(130deg,#ff8f33,#5d2600);}
-.track:nth-child(5) .track-art{background:linear-gradient(130deg,#ffd27d,#7e4300);}
-
-.track h3{
-  font-size:18px;
-  margin-bottom:3px;
-}
-
-.track p{
-  font-size:14px;
-  color:var(--muted);
-}
-
-.genre{
-  padding:6px 11px;
-  border-radius:20px;
-  background:rgba(255,122,24,.12);
-  color:var(--orange);
-  font-size:11px;
-  letter-spacing:1.8px;
-  text-transform:uppercase;
-}
-
-.track-time{
-  color:var(--muted);
-}
-
-.live-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-}
-
-.stream{
-  overflow:hidden;
-}
-
-.stream-preview{
-  height:220px;
-  position:relative;
-  background:linear-gradient(130deg,#1f0d06,#3f1700);
-  display:grid;
-  place-items:center;
-}
-
-.stream:nth-child(2) .stream-preview{background:linear-gradient(130deg,#2e1307,#582300);}
-.stream:nth-child(3) .stream-preview{background:linear-gradient(130deg,#190c06,#2f1200);}
-
-.stream-preview svg{
-  width:66px;
-  height:66px;
-  stroke:#fff;
-  stroke-width:1.6;
-}
-
-.badge{
-  position:absolute;
-  top:14px;
-  left:14px;
-  font-size:11px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  border-radius:4px;
-  padding:6px 10px;
-}
-
-.badge-live{
-  background:var(--danger);
-}
-
-.badge-upcoming{
-  background:#555;
-}
-
-.viewers{
-  position:absolute;
-  right:14px;
-  bottom:14px;
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:6px 10px;
-  border-radius:4px;
-  background:rgba(0,0,0,.58);
-  font-size:12px;
-}
-
-.viewers svg{
-  width:13px;
-  height:13px;
-  stroke:#fff;
-}
-
-.stream-body{
-  padding:18px;
-}
-
-.stream-body h3{
-  font-size:23px;
-  margin-bottom:6px;
-}
-
-.stream-body p{
-  color:var(--muted);
-}
-
-.creator{
-  position:relative;
-  overflow:hidden;
-  padding:62px 28px;
-  text-align:center;
-  background:linear-gradient(140deg,#1e0d05,#0d0502);
-}
-
-.creator::before,
-.creator::after{
-  content:"";
-  position:absolute;
-  width:460px;
-  height:460px;
-  border-radius:50%;
-  pointer-events:none;
-}
-
-.creator::before{
-  left:-180px;
-  top:-230px;
-  background:radial-gradient(circle,rgba(255,122,24,.2),transparent 72%);
-}
-
-.creator::after{
-  right:-160px;
-  bottom:-220px;
-  background:radial-gradient(circle,rgba(255,179,71,.18),transparent 72%);
-}
-
-.creator .section-title{
-  margin-bottom:16px;
-}
-
-.creator p{
-  position:relative;
-  z-index:2;
-  max-width:760px;
-  margin:0 auto 26px;
-  color:var(--muted);
-  font-size:18px;
-  line-height:1.75;
-}
-
-.creator-tags{
-  position:relative;
-  z-index:2;
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:26px;
-}
-
-.tag{
-  padding:9px 14px;
-  border-radius:22px;
-  border:1px solid var(--border);
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  color:rgba(248,248,248,.85);
-}
-
-.tag svg{
-  width:14px;
-  height:14px;
-  stroke:var(--amber);
-}
-
-footer{
-  margin:44px auto 24px;
-  width:min(1300px,100% - 48px);
-  padding:42px 26px 24px;
-}
-
-.footer-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:24px;
-}
-
-.brand-name{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:40px;
-  letter-spacing:2px;
-  margin-bottom:14px;
-  background:linear-gradient(90deg,var(--orange),var(--gold));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.brand-name span{
-  opacity:.45;
-  color:var(--white);
-  -webkit-text-fill-color:var(--white);
-}
-
-.footer-text{
-  color:var(--muted);
-  line-height:1.7;
-  max-width:360px;
-  margin-bottom:14px;
-}
-
-.socials{
-  display:flex;
-  gap:9px;
-}
-
-.socials a{
-  width:34px;
-  height:34px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  background:rgba(255,122,24,.08);
-  display:grid;
-  place-items:center;
-}
-
-.socials svg{
-  width:14px;
-  height:14px;
-  stroke:#fff;
-}
-
-.footer-col h4{
-  color:var(--orange);
-  text-transform:uppercase;
-  letter-spacing:3px;
-  font-size:12px;
-  margin-bottom:12px;
-}
-
-.footer-col a{
-  text-decoration:none;
-  color:var(--muted);
-  margin-bottom:9px;
-  display:block;
-}
-
-.footer-bottom{
-  margin-top:24px;
-  padding-top:16px;
-  border-top:1px solid rgba(255,255,255,.08);
-  display:flex;
-  justify-content:space-between;
-  gap:16px;
-  flex-wrap:wrap;
-  color:rgba(255,255,255,.42);
-  font-size:13px;
-}
-
-.reveal{
-  opacity:0;
-  transform:translateY(26px) scale(.985);
-  transition:opacity .7s ease, transform .7s ease;
-  will-change:opacity,transform;
-}
-
-.reveal.visible{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
-
-body[data-motion="subtle"] .eq-track span{
-  animation-duration:2.6s !important;
-}
-
-body[data-motion="energetic"] .eq-track span{
-  animation-duration:1.25s !important;
-}
-
-@keyframes pulse{
-  0%,100%{opacity:1;transform:scale(1);}
-  50%{opacity:.42;transform:scale(.72);}
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg);}
-}
-
-@keyframes eq{
-  0%,100%{height:12px;}
-  50%{height:52px;}
-}
-
-@keyframes wave{
-  from{transform:translateX(0) rotate(-2deg);}
-  to{transform:translateX(-24%) rotate(2deg);}
-}
-
-@keyframes floatA{
-  0%,100%{transform:translate(-50%,0);} 
-  50%{transform:translate(-50%,-8px);} 
-}
-
-@keyframes floatB{
-  0%,100%{transform:translateY(-50%);} 
-  50%{transform:translateY(calc(-50% - 10px));}
-}
-
-@keyframes floatC{
-  0%,100%{transform:translateY(0);} 
-  50%{transform:translateY(-9px);} 
-}
-
-@media (max-width:1050px){
-  .hero-wrap,
-  .layout-two,
-  .footer-grid{
-    grid-template-columns:1fr;
-  }
-
-  .side-stack{
-    justify-items:start;
-  }
-
-  .track{
-    grid-template-columns:34px 56px 1fr auto;
-  }
-
-  .genre{
-    display:none;
-  }
-}
-
-@media (max-width:768px){
-  body{
-    cursor:auto;
-  }
-
-  .cursor,
-  .cursor-ring,
-  .nav-links,
-  .motion-toggle{
-    display:none;
-  }
-
-  .menu-toggle{
-    display:inline-flex;
-  }
-
-  .container,
-  .nav-wrap,
-  .hero-wrap,
-  footer{
-    width:min(1300px,100% - 32px);
-  }
-
-  .hero{
-    padding:110px 0 70px;
-  }
-
-  .hero-title{
-    font-size:62px;
-  }
-
-  .hero-sub{
-    font-size:14px;
-    letter-spacing:1.5px;
-  }
-
-  .btn{
-    width:100%;
-    justify-content:center;
-  }
-
-  .track{
-    grid-template-columns:30px 48px 1fr;
-  }
-
-  .track-time{
-    display:none;
-  }
-
-  .track-art{
-    width:46px;
-    height:46px;
-  }
-
-  .brand-card,
-  .creator,
-  .section{
-    padding-top:70px;
-    padding-bottom:70px;
-  }
-}
+  position:absolute;top:145%;left:-14px;min-width:380px;padding:14px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(27,13,7,.98),rgba(13,7,4,.95));backdrop-filter:blur(12px);box-shadow:0 18px 40px rgba(0,0,0,.34);display:grid;grid-template-columns:1fr 1fr;gap:10px;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s ease,transform .2s ease;
+}
+.nav-group.open .mega-panel,.nav-group:hover .mega-panel,.nav-group:focus-within .mega-panel{opacity:1;transform:translateY(0);pointer-events:auto;}
+.mega-panel a{text-decoration:none;padding:10px 12px;border-radius:10px;border:1px solid var(--soft);background:rgba(255,122,24,.05);color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;}
+.mega-panel a:hover{border-color:var(--line);background:rgba(255,122,24,.1);}
+.live-pill{text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,122,24,.08);color:var(--orange);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 1.4s infinite;}
+.menu-toggle{display:none;border:1px solid var(--line);background:rgba(255,122,24,.08);color:#fff;border-radius:8px;width:38px;height:38px;}
+.mobile-menu{display:none;position:fixed;top:72px;left:16px;right:16px;z-index:55;padding:14px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(27,13,7,.98),rgba(13,7,4,.95));}
+.mobile-menu.open{display:grid;gap:8px;}
+.mobile-menu a{text-decoration:none;padding:10px 8px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;letter-spacing:2px;text-transform:uppercase;border:1px solid transparent;}
+.mobile-menu a:hover{border-color:var(--line);background:rgba(255,122,24,.08);}
+.hero{padding:132px 0 76px;min-height:100vh;display:grid;align-items:center;position:relative;}
+.hero::before{content:'';position:absolute;inset:80px auto auto 50%;transform:translateX(-50%);width:min(1200px,92vw);height:520px;border-radius:24px;background:linear-gradient(180deg,rgba(255,122,24,.05),transparent 70%);border:1px solid rgba(255,122,24,.08);pointer-events:none;}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:26px;align-items:end;}
+.hero-copy-block,.hero-stack,.feature-card,.table-card,.list-card,.video-home,.creator-cta,.footer-wrap{border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,rgba(26,11,5,.95),rgba(15,8,4,.9));}
+.hero-copy-block{padding:38px;}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,122,24,.08);color:var(--amber);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,9vw,138px);line-height:.88;letter-spacing:1px;}
+.grad{background:linear-gradient(135deg,var(--orange),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-copy{margin-top:18px;max-width:760px;color:var(--muted);font-size:18px;line-height:1.75;}
+.hero-meta{margin-top:18px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:3px;text-transform:uppercase;}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:8px;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.btn-primary{background:linear-gradient(135deg,var(--orange),#de5f00);color:#fff;box-shadow:0 0 24px rgba(255,122,24,.26);} .btn-secondary{border:1px solid var(--line);background:rgba(255,122,24,.06);color:#fff;}
+.hero-stack{padding:18px;display:grid;gap:16px;}
+.now-card{padding:18px;border-radius:12px;border:1px solid var(--soft);background:rgba(255,255,255,.02);}
+.now-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;}
+.record-badge{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 34% 34%,#fff 0 4px,var(--orange) 5px 16px,#632100 17px 100%);}
+.eq{display:flex;align-items:flex-end;gap:6px;height:56px;margin-top:14px;}
+.eq span{width:7px;border-radius:10px;background:linear-gradient(180deg,var(--gold),var(--orange));animation:eq 1.7s ease-in-out infinite;}
+.eq span:nth-child(odd){animation-duration:2s;} .eq span:nth-child(3n){animation-duration:1.3s;}
+.quick-links{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.quick-links a{padding:16px;border-radius:12px;border:1px solid var(--soft);background:rgba(255,255,255,.02);text-decoration:none;}
+.quick-links strong{display:block;font-size:18px;margin-bottom:6px;}
+.quick-links span{color:var(--muted);font-size:14px;line-height:1.6;}
+.section{padding:78px 0;}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:12px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,6vw,88px);line-height:.92;margin-bottom:22px;}
+.grid-two{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;}
+.grid-three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.feature-card,.table-card,.list-card,.video-home,.creator-cta,.footer-wrap{padding:24px;}
+.feature-card p,.list-card p,.creator-cta p{color:var(--muted);line-height:1.75;}
+.feature-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(68px,8vw,106px);line-height:.88;}
+.schedule-list,.bullet-list,.track-list,.stream-list{display:grid;gap:10px;list-style:none;}
+.schedule-list li,.bullet-list li,.track-row,.stream-item{padding:14px;border-radius:12px;border:1px solid var(--soft);background:rgba(255,255,255,.02);}
+.track-row{display:grid;grid-template-columns:40px 1fr auto auto;gap:14px;align-items:center;}
+.track-row .tag{padding:6px 10px;border-radius:999px;background:rgba(255,122,24,.12);color:var(--orange);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;}
+.video-home{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;}
+.video-frame{aspect-ratio:16/9;border-radius:14px;border:1px solid var(--soft);background:linear-gradient(180deg,#0b0b0b,#17110c);padding:18px;display:flex;flex-direction:column;justify-content:space-between;}
+.video-screen{flex:1;display:grid;place-items:center;font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:1px;border:1px dashed rgba(255,255,255,.1);border-radius:12px;margin:16px 0;}
+.video-meta p,.stream-item span,.table-card p{color:var(--muted);line-height:1.7;}
+.stream-item button{margin-top:10px;border:1px solid var(--line);background:rgba(255,122,24,.06);color:#fff;border-radius:8px;padding:10px 12px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1.7px;text-transform:uppercase;}
+.creator-cta{text-align:center;padding:52px 26px;}
+.footer-wrap{margin:24px 0 30px;display:grid;gap:20px;}
+.footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:20px;}
+.footer-grid h4{color:var(--orange);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.footer-grid a{display:block;text-decoration:none;color:var(--muted);margin-bottom:9px;}
+.footer-grid p{color:var(--muted);line-height:1.75;max-width:360px;}
+.footer-bottom{padding-top:18px;border-top:1px solid var(--soft);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:rgba(248,248,248,.44);font-size:13px;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;} .reveal.visible{opacity:1;transform:none;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.42;transform:scale(.72);}}
+@keyframes eq{0%,100%{height:14px;}50%{height:54px;}}
+@media (max-width:1024px){.hero-grid,.grid-two,.video-home,.footer-grid,.grid-three{grid-template-columns:1fr;}.mega-panel{min-width:320px;}.track-row{grid-template-columns:30px 1fr auto;}.track-row .time{display:none;}}
+@media (max-width:760px){.container{width:min(1280px,calc(100% - 28px));}.nav-links,.live-pill{display:none;}.menu-toggle{display:inline-grid;place-items:center;}.hero{padding-top:106px;min-height:auto;}.hero-copy-block,.hero-stack,.feature-card,.table-card,.list-card,.video-home,.creator-cta,.footer-wrap{padding:18px;}.hero-title{font-size:76px;}.hero-copy{font-size:16px;}.quick-links{grid-template-columns:1fr;}.btn{width:100%;}.mega-panel{display:none;}}
 </style>
 </head>
-<body data-page="home" data-tracklist="data/tracklist.json">
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
+<body data-page="home">
 <nav>
-  <div class="nav-wrap">
+  <div class="container nav-wrap">
     <a href="index.html" class="nav-logo">RiteHear<span>FmXm</span></a>
-
     <div class="nav-tools">
       <div class="nav-links">
         <a href="#radio">Radio</a>
-        <a href="#shows">Podcasts</a>
+        <a href="#shows">Shows</a>
         <a href="#music">Music</a>
         <a href="#live">Live</a>
-        <a href="#creators">Creators</a>
         <div class="nav-group">
-          <button class="mega-btn" aria-haspopup="true">Listen</button>
-          <div class="mega-panel" aria-label="Listen menu">
+          <button class="mega-btn" type="button">Listen</button>
+          <div class="mega-panel">
             <a href="pages/listen/live-radio.html">Live Radio</a>
+            <a href="pages/listen/schedule.html">Schedule</a>
             <a href="pages/listen/podcasts.html">Podcasts</a>
             <a href="pages/listen/music.html">Music</a>
             <a href="pages/listen/playlists.html">Playlists</a>
           </div>
         </div>
         <div class="nav-group">
-          <button class="mega-btn" aria-haspopup="true">Create</button>
-          <div class="mega-panel" aria-label="Create menu">
-            <a href="pages/create/upload-music.html">Upload Music</a>
+          <button class="mega-btn" type="button">Create</button>
+          <div class="mega-panel">
+            <a href="pages/create/upload-music.html">Upload</a>
             <a href="pages/create/start-podcast.html">Start Podcast</a>
             <a href="pages/create/go-live.html">Go Live</a>
             <a href="pages/create/dashboard.html">Dashboard</a>
           </div>
         </div>
         <div class="nav-group">
-          <button class="mega-btn" aria-haspopup="true">Company</button>
-          <div class="mega-panel" aria-label="Company menu">
+          <button class="mega-btn" type="button">Company</button>
+          <div class="mega-panel">
             <a href="pages/company/about.html">About</a>
             <a href="pages/company/advertise.html">Advertise</a>
             <a href="pages/company/contact.html">Contact</a>
             <a href="pages/company/privacy.html">Privacy</a>
           </div>
         </div>
-        <div class="nav-group">
-          <button class="mega-btn" aria-haspopup="true">All Pages</button>
-          <div class="mega-panel" aria-label="All pages menu" style="width:520px;grid-template-columns:repeat(3,1fr);">
-            <a href="pages/listen/live-radio.html">Live Radio</a>
-            <a href="pages/listen/podcasts.html">Podcasts</a>
-            <a href="pages/listen/music.html">Music</a>
-            <a href="pages/listen/playlists.html">Playlists</a>
-            <a href="pages/create/upload-music.html">Upload Music</a>
-            <a href="pages/create/start-podcast.html">Start Podcast</a>
-            <a href="pages/create/go-live.html">Go Live</a>
-            <a href="pages/create/dashboard.html">Dashboard</a>
-            <a href="pages/company/about.html">About</a>
-            <a href="pages/company/advertise.html">Advertise</a>
-            <a href="pages/company/contact.html">Contact</a>
-            <a href="pages/company/privacy.html">Privacy</a>
-          </div>
-        </div>
-        <a href="pages/listen/live-radio.html" class="nav-live"><span class="live-dot"></span>On Air</a>
       </div>
-      <button class="motion-toggle" id="motionToggle" aria-label="Toggle motion intensity">Energetic</button>
-      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
-      </button>
+      <a href="pages/listen/live-radio.html" class="live-pill"><span class="live-dot"></span>On Air</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">≡</button>
     </div>
   </div>
 </nav>
-
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#radio">Radio</a>
-  <a href="#shows">Podcasts</a>
-  <a href="#music">Music</a>
-  <a href="#live">Live</a>
-  <a href="#creators">Creators</a>
-  <a href="pages/listen/live-radio.html">On Air</a>
-  <a href="pages/create/upload-music.html">Upload Music</a>
+  <a href="pages/listen/live-radio.html">Live Radio</a>
+  <a href="pages/listen/schedule.html">Schedule</a>
+  <a href="pages/listen/podcasts.html">Podcasts</a>
+  <a href="pages/listen/music.html">Music</a>
+  <a href="pages/listen/playlists.html">Playlists</a>
+  <a href="pages/create/upload-music.html">Upload</a>
+  <a href="pages/create/start-podcast.html">Start Podcast</a>
+  <a href="pages/create/go-live.html">Go Live</a>
+  <a href="pages/create/dashboard.html">Dashboard</a>
+  <a href="pages/company/about.html">About</a>
   <a href="pages/company/contact.html">Contact</a>
 </div>
-
 <main>
-  <section class="hero reveal">
-    <canvas id="heroCanvas"></canvas>
-    <div class="hero-grid"></div>
-
-    <div class="hero-wrap">
-      <div>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy-block reveal">
         <div class="hero-kicker"><span class="live-dot"></span>Broadcasting Live Now</div>
-
-        <h1 class="hero-title">
-          Where All<br>
-          Your <span class="grad-text">Music</span><br>
-          Is Played
-        </h1>
-
-        <p class="hero-sub">
-          <strong>Live Radio</strong> • Podcasts • Music • <strong>Video</strong> • Streaming • Culture
-        </p>
-
-        <div class="hero-cta">
-          <a href="pages/listen/live-radio.html" class="btn btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 0 1 8-8"></path><path d="M20 12a8 8 0 0 0-8-8"></path><path d="M8.8 16.2a4.5 4.5 0 0 1 6.4 0"></path><circle cx="12" cy="18" r="1.7" fill="currentColor" stroke="none"></circle></svg>
-            Listen Live
-          </a>
-          <a href="pages/create/upload-music.html" class="btn btn-secondary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 10a6.5 6.5 0 0 0 13 0"></path><path d="M12 18v3"></path><path d="M8 21h8"></path></svg>
-            Upload Content
-          </a>
-          <a href="pages/create/go-live.html" class="btn btn-secondary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="14" height="12" rx="2"></rect><path d="m17 10 4-2.5v9L17 14"></path></svg>
-            Watch Live
-          </a>
-          <a href="pages/listen/music.html" class="btn btn-secondary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3"></path><path d="M12 19v3"></path><path d="M2 12h3"></path><path d="M19 12h3"></path><path d="m4.9 4.9 2.2 2.2"></path><path d="m16.9 16.9 2.2 2.2"></path><path d="m19.1 4.9-2.2 2.2"></path><path d="m7.1 16.9-2.2 2.2"></path></svg>
-            Explore Music
-          </a>
+        <h1 class="hero-title">Where All<br>Your <span class="grad">Music</span><br>Is Played</h1>
+        <p class="hero-copy">RiteHear is a digital station and media platform for live radio, podcasts, music releases, live video and creator publishing. The look is clean. The programming is sharp. The platform is built to feel like a real broadcast network.</p>
+        <div class="hero-meta">Live Radio • Podcasts • Music • Video • Streaming • Culture</div>
+        <div class="actions">
+          <a href="pages/listen/live-radio.html" class="btn btn-primary">Listen Live</a>
+          <a href="pages/create/upload-music.html" class="btn btn-secondary">Start Uploading</a>
+          <a href="pages/listen/live-radio.html#watch" class="btn btn-secondary">Watch Live</a>
+          <a href="pages/listen/music.html" class="btn btn-secondary">Explore Music</a>
         </div>
       </div>
-
-      <div class="side-stack">
-        <div class="glass-card now-playing">
-          <div class="record"></div>
-
-          <div>
-            <div class="small-label">Now Playing</div>
-            <h3>Late Night Frequencies</h3>
-            <div class="meta">DJ Rite • RiteHear FM</div>
-          </div>
-
-          <button class="play-btn" aria-label="Play">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="#fff"><path d="m8 5 11 7-11 7z"></path></svg>
-          </button>
-
-          <div class="eq" style="grid-column:1/-1;">
-            <div class="eq-track">
-              <span></span><span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span>
+      <div class="hero-stack reveal">
+        <div class="now-card">
+          <div class="now-head">
+            <div>
+              <div class="section-label" style="margin:0 0 6px;">Now Airing</div>
+              <h3 style="font-size:24px;">Late Night Frequencies</h3>
+              <p style="color:var(--muted);margin-top:6px;">DJ Rite • Live from the main studio</p>
             </div>
+            <div class="record-badge"></div>
           </div>
+          <div class="eq"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         </div>
-
-        <div class="glass-card media-orbit">
-          <div class="orbit-ring"></div>
-          <div class="orbit-item o1" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 15a8 8 0 0 1 16 0"></path><circle cx="12" cy="15" r="2.2"></circle></svg>
-          </div>
-          <div class="orbit-item o2" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="7" width="14" height="10" rx="2"></rect><path d="m17 10 4-2.5v9L17 14"></path></svg>
-          </div>
-          <div class="orbit-item o3" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="2"></rect><circle cx="12" cy="12" r="3"></circle></svg>
-          </div>
-          <div class="orbit-item o4" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 6h18v12H3z"></path><path d="m3 7 9 6 9-6"></path></svg>
-          </div>
-          <div class="orbit-item o5" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="3.7"></circle><circle cx="17.3" cy="6.8" r="1"></circle></svg>
-          </div>
-          <div class="orbit-item o6" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 12s0-4-1-5-4-1-9-1-8 0-9 1-1 5-1 5 0 4 1 5 4 1 9 1 8 0 9-1 1-5 1-5Z"></path><path d="m10 9 5 3-5 3z"></path></svg>
-          </div>
-          <div class="orbit-item o7" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M15 8c0-2-1.4-3-3-3S9 6 9 8v3h6V8Z"></path><path d="M8 11h8v5a4 4 0 0 1-8 0v-5Z"></path></svg>
-          </div>
-          <div class="orbit-item o8" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 12c0 4.4 3.6 8 8 8"></path><path d="M20 12c0-4.4-3.6-8-8-8"></path><circle cx="12" cy="12" r="2"></circle></svg>
-          </div>
+        <div class="quick-links">
+          <a href="pages/listen/schedule.html"><strong>Program Schedule</strong><span>Open the full day-by-day station calendar and hosted show lineup.</span></a>
+          <a href="pages/listen/live-radio.html"><strong>Watch & Live</strong><span>Browse live video, featured streams and recommended broadcasts.</span></a>
+          <a href="pages/create/upload-music.html"><strong>Creator Upload</strong><span>Submit tracks, podcasts or video content through a real upload flow.</span></a>
+          <a href="pages/company/about.html"><strong>About RiteHear</strong><span>Read the company story, mission, platform model and leadership direction.</span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="radio" class="section reveal">
-    <div class="container">
-      <div class="section-label">Live Radio</div>
-      <h2 class="section-title">RiteHear</h2>
-
-      <div class="layout-two">
-        <article class="brand-card">
-          <h3 class="brand-big grad-text">RiteHear</h3>
-          <div class="brand-sub">FM • XM • Digital</div>
-          <p>
-            The sound of culture, curated live 24/7. Hip-hop, R&amp;B, Afrobeats, gospel, trap, soul - all genres, all day.
-            Real hosts. Real energy. Real music.
-          </p>
-
-          <div class="hero-cta">
-            <a href="pages/listen/live-radio.html" class="btn btn-primary">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 0 1 8-8"></path><path d="M20 12a8 8 0 0 0-8-8"></path><circle cx="12" cy="18" r="1.7" fill="currentColor" stroke="none"></circle></svg>
-              Tune In
-            </a>
-            <a href="pages/listen/playlists.html" class="btn btn-secondary">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4"></path><path d="M16 3v4"></path><path d="M8 11h8"></path></svg>
-              Schedule
-            </a>
-          </div>
-        </article>
-
-        <aside class="schedule-card">
-          <div class="schedule-head">
-            <h3>Today Lineup</h3>
-            <span class="section-label" style="margin:0;font-size:11px;">Live</span>
-          </div>
-
-          <div class="schedule-list">
-            <div class="schedule-item"><div><strong>6 AM</strong> Morning Culture</div><span>Live</span></div>
-            <div class="schedule-item"><div><strong>12 PM</strong> Midday Heat</div><span>Live</span></div>
-            <div class="schedule-item"><div><strong>6 PM</strong> Drive Time Bangers</div><span>Live</span></div>
-            <div class="schedule-item"><div><strong>9 PM</strong> Prime Time with Bryson</div><span>Tonight</span></div>
-          </div>
-
-          <div class="wave-box" aria-hidden="true">
-            <div class="wave-line"></div>
-            <div class="wave-line"></div>
-            <div class="wave-line"></div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <section id="shows" class="section reveal">
-    <div class="container">
-      <div class="section-label">Hot Right Now</div>
-      <h2 class="section-title">Trending <span class="grad-text">Shows</span></h2>
-
-      <div class="cards">
-        <article class="grid-card">
-          <div class="grid-visual">
-            <svg viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 10a6.5 6.5 0 0 0 13 0"></path><path d="M12 18v3"></path><path d="M8 21h8"></path></svg>
-          </div>
-          <div class="grid-body">
-            <div class="section-label" style="font-size:11px;margin:0 0 8px;">Podcast • Culture</div>
-            <h3>Street to Suite</h3>
-            <p class="grid-meta">Business + Hustle + Real Talk</p>
-            <div class="grid-bottom"><span>Ep. 42 • 58 min</span><button class="icon-btn" aria-label="Play"><svg viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z"></path></svg></button></div>
-          </div>
-        </article>
-
-        <article class="grid-card">
-          <div class="grid-visual">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M5 16a7 7 0 0 1 14 0"></path><path d="M8 16a4 4 0 0 1 8 0"></path><circle cx="12" cy="16" r="1.7"></circle><path d="M12 4v4"></path></svg>
-          </div>
-          <div class="grid-body">
-            <div class="section-label" style="font-size:11px;margin:0 0 8px;">Music • Hip-Hop</div>
-            <h3>Unsigned Heat</h3>
-            <p class="grid-meta">Independent artists getting real exposure.</p>
-            <div class="grid-bottom"><span>Daily Playlist</span><button class="icon-btn" aria-label="Play"><svg viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z"></path></svg></button></div>
-          </div>
-        </article>
-
-        <article class="grid-card">
-          <div class="grid-visual">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v3"></path><path d="M12 19v3"></path><path d="M2 12h3"></path><path d="M19 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg>
-          </div>
-          <div class="grid-body">
-            <div class="section-label" style="font-size:11px;margin:0 0 8px;">Sports • Talk</div>
-            <h3>Game Day Debrief</h3>
-            <p class="grid-meta">Scores, Stats, No Filter</p>
-            <div class="grid-bottom"><span>Ep. 88 • 1h 12m</span><button class="icon-btn" aria-label="Play"><svg viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z"></path></svg></button></div>
-          </div>
-        </article>
-
-        <article class="grid-card">
-          <div class="grid-visual">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18"></path><path d="M5 9h14"></path><path d="M4.5 18a7.5 7.5 0 0 1 15 0"></path></svg>
-          </div>
-          <div class="grid-body">
-            <div class="section-label" style="font-size:11px;margin:0 0 8px;">Motivation • Life</div>
-            <h3>Built Different</h3>
-            <p class="grid-meta">Mindset. Money. Movement.</p>
-            <div class="grid-bottom"><span>Ep. 31 • 36 min</span><button class="icon-btn" aria-label="Play"><svg viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z"></path></svg></button></div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="music" class="section reveal">
-    <div class="container">
-      <div class="section-label">New Drops</div>
-      <h2 class="section-title">Fresh <span class="grad-text">Music</span></h2>
-
-      <div class="tracklist">
-        <article class="track">
-          <div class="track-no">1</div>
-          <div class="track-art"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 18V6l10-2v12"></path><circle cx="7" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg></div>
-          <div><h3>No Days Off</h3><p>King Dre</p></div>
-          <div class="genre">Hip-Hop</div>
-          <div class="track-time">3:22</div>
-        </article>
-
-        <article class="track">
-          <div class="track-no">2</div>
-          <div class="track-art"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 18V6l10-2v12"></path><circle cx="7" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg></div>
-          <div><h3>Vibrations</h3><p>Amara Soul</p></div>
-          <div class="genre">R&amp;B</div>
-          <div class="track-time">4:01</div>
-        </article>
-
-        <article class="track">
-          <div class="track-no">3</div>
-          <div class="track-art"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 18V6l10-2v12"></path><circle cx="7" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg></div>
-          <div><h3>Lagos to Raleigh</h3><p>Dele X</p></div>
-          <div class="genre">Afrobeats</div>
-          <div class="track-time">3:48</div>
-        </article>
-
-        <article class="track">
-          <div class="track-no">4</div>
-          <div class="track-art"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 18V6l10-2v12"></path><circle cx="7" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg></div>
-          <div><h3>Overflow</h3><p>Bishop Williams</p></div>
-          <div class="genre">Gospel</div>
-          <div class="track-time">5:14</div>
-        </article>
-
-        <article class="track">
-          <div class="track-no">5</div>
-          <div class="track-art"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 18V6l10-2v12"></path><circle cx="7" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg></div>
-          <div><h3>City Lights</h3><p>Nyla Reign</p></div>
-          <div class="genre">Trap/Soul</div>
-          <div class="track-time">3:33</div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="live" class="section reveal">
-    <div class="container">
-      <div class="section-label">Live Now</div>
-      <h2 class="section-title">Watch <span class="grad-text">Live</span></h2>
-
-      <div class="live-grid">
-        <article class="stream">
-          <div class="stream-preview">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M5 16a7 7 0 0 1 14 0"></path><path d="M8 16a4 4 0 0 1 8 0"></path><circle cx="12" cy="16" r="1.7"></circle><path d="M12 4v4"></path></svg>
-            <span class="badge badge-live">Live</span>
-            <span class="viewers">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-              1.2K
-            </span>
-          </div>
-          <div class="stream-body"><h3>Late Night DJ Set</h3><p>DJ Rite • Hip-Hop &amp; R&amp;B</p></div>
-        </article>
-
-        <article class="stream">
-          <div class="stream-preview">
-            <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="2"></rect><circle cx="12" cy="12" r="3"></circle></svg>
-            <span class="badge badge-live">Live</span>
-            <span class="viewers">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-              487
-            </span>
-          </div>
-          <div class="stream-body"><h3>Studio Session</h3><p>Producer Malik • Behind the Boards</p></div>
-        </article>
-
-        <article class="stream">
-          <div class="stream-preview">
-            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="14" height="10" rx="2"></rect><path d="m17 10 4-2.5v9L17 14"></path></svg>
-            <span class="badge badge-upcoming">Upcoming</span>
-            <span class="viewers">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 22c4 0 7-2 7-5V9a7 7 0 0 0-14 0v8c0 3 3 5 7 5Z"></path></svg>
-              Reminder
-            </span>
-          </div>
-          <div class="stream-body"><h3>Interview: Rising Star</h3><p>Tonight 9 PM • Culture Talk</p></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="creators" class="section reveal">
-    <div class="container">
-      <article class="creator">
-        <div class="section-label">Your Platform Awaits</div>
-        <h2 class="section-title">Create.<br><span class="grad-text">Upload.</span><br>Broadcast.</h2>
-
-        <p>
-          RiteHear FmXm is built for creators. Upload your music, start your podcast, go live, and reach a real audience - no gatekeepers.
-        </p>
-
-        <div class="creator-tags">
-          <span class="tag"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18V6l10-2v12"></path><circle cx="7" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg>Music</span>
-          <span class="tag"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 10a6.5 6.5 0 0 0 13 0"></path></svg>Podcasts</span>
-          <span class="tag"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="14" height="12" rx="2"></rect><path d="m17 10 4-2.5v9L17 14"></path></svg>Live Streams</span>
-          <span class="tag"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="2"></rect><circle cx="12" cy="12" r="3"></circle></svg>Videos</span>
+  <section id="radio" class="section">
+    <div class="container grid-two">
+      <article class="feature-card reveal">
+        <div class="section-label">Live Radio</div>
+        <h2 class="feature-big">RiteHear</h2>
+        <p>The core station runs like a modern broadcast channel. Hosts, mixes, interviews and culture programming move on a real schedule with dedicated live windows and recurring flagship shows.</p>
+        <div class="actions">
+          <a href="pages/listen/live-radio.html" class="btn btn-primary">Tune In</a>
+          <a href="pages/listen/schedule.html" class="btn btn-secondary">Schedule</a>
         </div>
+      </article>
+      <aside class="table-card reveal">
+        <div class="section-label">Today Lineup</div>
+        <ul class="schedule-list">
+          <li><strong>6 AM</strong><br><span style="color:var(--muted);">Morning Culture</span></li>
+          <li><strong>12 PM</strong><br><span style="color:var(--muted);">Midday Heat</span></li>
+          <li><strong>6 PM</strong><br><span style="color:var(--muted);">Drive Time Bangers</span></li>
+          <li><strong>9 PM</strong><br><span style="color:var(--muted);">Prime Time with Bryson</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
 
-        <div class="hero-cta" style="justify-content:center;">
-          <a href="pages/create/upload-music.html" class="btn btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5.5 10a6.5 6.5 0 0 0 13 0"></path></svg>
-            Start Uploading
-          </a>
+  <section id="shows" class="section">
+    <div class="container">
+      <div class="section-label">Podcast Network</div>
+      <h2 class="section-title">Featured <span class="grad">Shows</span></h2>
+      <div class="grid-three">
+        <article class="list-card reveal">
+          <span class="inline-tag">Culture</span>
+          <h3 style="margin:12px 0 8px;">Street to Suite</h3>
+          <p>Conversations around growth, money, brand building and business moves.</p>
+          <div class="actions"><a href="pages/listen/podcasts.html" class="btn btn-secondary">Open Show Page</a></div>
+        </article>
+        <article class="list-card reveal">
+          <span class="inline-tag">Music</span>
+          <h3 style="margin:12px 0 8px;">Unsigned Heat</h3>
+          <p>A curated lane for new artists, live commentary and discovery-driven listening.</p>
+          <div class="actions"><a href="pages/listen/music.html" class="btn btn-secondary">Open Music Page</a></div>
+        </article>
+        <article class="list-card reveal">
+          <span class="inline-tag">Talk</span>
+          <h3 style="margin:12px 0 8px;">Game Day Debrief</h3>
+          <p>Sharp reactions, analysis and weekly highlight segments built for streaming audiences.</p>
+          <div class="actions"><a href="pages/listen/playlists.html" class="btn btn-secondary">Open Playlist Page</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="music" class="section">
+    <div class="container grid-two">
+      <article class="table-card reveal">
+        <div class="section-label">New Drops</div>
+        <h2 class="section-title" style="font-size:64px;margin-bottom:12px;">Fresh Music</h2>
+        <div class="track-list">
+          <div class="track-row"><strong>1</strong><div><strong>No Days Off</strong><br><span style="color:var(--muted);">King Dre</span></div><span class="tag">Hip-Hop</span><span class="time">3:22</span></div>
+          <div class="track-row"><strong>2</strong><div><strong>Vibrations</strong><br><span style="color:var(--muted);">Amara Soul</span></div><span class="tag">R&B</span><span class="time">4:01</span></div>
+          <div class="track-row"><strong>3</strong><div><strong>Lagos to Raleigh</strong><br><span style="color:var(--muted);">Dele X</span></div><span class="tag">Afrobeats</span><span class="time">3:48</span></div>
+          <div class="track-row"><strong>4</strong><div><strong>Overflow</strong><br><span style="color:var(--muted);">Bishop Williams</span></div><span class="tag">Gospel</span><span class="time">5:14</span></div>
+        </div>
+      </article>
+      <aside class="list-card reveal">
+        <div class="section-label">Editorial</div>
+        <h3>What the station is pushing this week</h3>
+        <ul class="bullet-list" style="margin-top:16px;">
+          <li>Independent releases with strong replay depth and clean metadata.</li>
+          <li>Regional records trending in North Carolina, Atlanta and Lagos lanes.</li>
+          <li>Playlist sequencing for workday, night drive and weekend culture blocks.</li>
+        </ul>
+        <div class="actions"><a href="pages/listen/music.html" class="btn btn-primary">View Music Hub</a></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="live" class="section">
+    <div class="container">
+      <div class="section-label">Live Video</div>
+      <h2 class="section-title">Watch <span class="grad">Live</span></h2>
+      <div class="video-home reveal">
+        <div class="video-frame">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
+            <span class="live-pill" style="padding:6px 10px;"><span class="live-dot"></span>Live Studio Feed</span>
+            <span style="color:var(--muted);font-size:14px;">1.2K watching</span>
+          </div>
+          <div class="video-screen">RiteHear Live Studio</div>
+          <div class="video-meta">
+            <h3 style="font-size:24px;">Late Night DJ Set</h3>
+            <p>Open the live page for featured streams, recommended video lanes and a studio-style watch layout.</p>
+          </div>
+          <div class="actions"><a href="pages/listen/live-radio.html#watch" class="btn btn-primary">Open Live Page</a></div>
+        </div>
+        <div class="stream-list">
+          <div class="stream-item"><strong>Studio Session</strong><br><span>Producer Malik • Behind the boards</span><button onclick="window.location.href='pages/listen/live-radio.html#watch'">Watch Stream</button></div>
+          <div class="stream-item"><strong>Interview: Rising Star</strong><br><span>Tonight at 9 PM • Culture talk</span><button onclick="window.location.href='pages/listen/live-radio.html#watch'">Set Reminder</button></div>
+          <div class="stream-item"><strong>Weekend Recap</strong><br><span>Video highlights and top segments</span><button onclick="window.location.href='pages/listen/podcasts.html'">Browse Shows</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article id="creators" class="creator-cta reveal">
+        <div class="section-label">Creator Tools</div>
+        <h2 class="section-title" style="margin-bottom:14px;">Create. <span class="grad">Upload.</span> Broadcast.</h2>
+        <p>RiteHear supports music, podcasts and live streaming with a creator workflow that feels intentional, organized and ready for a real media operation.</p>
+        <div class="actions" style="justify-content:center;">
+          <a href="pages/create/upload-music.html" class="btn btn-primary">Start Uploading</a>
+          <a href="pages/create/go-live.html" class="btn btn-secondary">Go Live</a>
           <a href="pages/company/about.html" class="btn btn-secondary">Learn More</a>
         </div>
       </article>
     </div>
   </section>
 </main>
-
-<footer class="reveal">
-  <div class="footer-grid">
-    <div>
-      <div class="brand-name">RiteHear <span>FmXm</span></div>
-      <p class="footer-text">
-        The digital broadcast network for independent culture. Live radio, podcasts, music, and streaming - all in one place.
-      </p>
-      <div class="socials">
-        <a href="pages/company/contact.html" aria-label="X">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 4 20 20"></path><path d="M20 4 4 20"></path></svg>
-        </a>
-        <a href="pages/create/dashboard.html" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg>
-        </a>
-        <a href="pages/listen/live-radio.html" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M22 12s0-4-1-5-4-1-9-1-8 0-9 1-1 5-1 5 0 4 1 5 4 1 9 1 8 0 9-1 1-5 1-5Z"></path><path d="m10 9 5 3-5 3z"></path></svg>
-        </a>
-        <a href="pages/listen/music.html" aria-label="Music">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M9 18V6l10-2v12"></path><circle cx="7" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg>
-        </a>
+<footer>
+  <div class="container footer-wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="font-size:38px;display:inline-block;margin-bottom:12px;">RiteHear <span>FmXm</span></div>
+        <p>The digital broadcast network for live radio, creator publishing, podcasts, music releases and video streaming in one clean platform.</p>
+      </div>
+      <div>
+        <h4>Listen</h4>
+        <a href="pages/listen/live-radio.html">Live Radio</a>
+        <a href="pages/listen/schedule.html">Schedule</a>
+        <a href="pages/listen/podcasts.html">Podcasts</a>
+        <a href="pages/listen/music.html">Music</a>
+        <a href="pages/listen/playlists.html">Playlists</a>
+      </div>
+      <div>
+        <h4>Create</h4>
+        <a href="pages/create/upload-music.html">Upload</a>
+        <a href="pages/create/start-podcast.html">Start Podcast</a>
+        <a href="pages/create/go-live.html">Go Live</a>
+        <a href="pages/create/dashboard.html">Dashboard</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="pages/company/about.html">About</a>
+        <a href="pages/company/advertise.html">Advertise</a>
+        <a href="pages/company/contact.html">Contact</a>
+        <a href="pages/company/privacy.html">Privacy</a>
       </div>
     </div>
-
-    <div class="footer-col">
-      <h4>Listen</h4>
-      <a href="pages/listen/live-radio.html">Live Radio</a>
-      <a href="pages/listen/podcasts.html">Podcasts</a>
-      <a href="pages/listen/music.html">Music</a>
-      <a href="pages/listen/playlists.html">Playlists</a>
+    <div class="footer-bottom">
+      <span>© 2026 RiteHear FmXm. All Rights Reserved.</span>
+      <span>Built for broadcast, streaming and culture.</span>
     </div>
-
-    <div class="footer-col">
-      <h4>Create</h4>
-      <a href="pages/create/upload-music.html">Upload Music</a>
-      <a href="pages/create/start-podcast.html">Start Podcast</a>
-      <a href="pages/create/go-live.html">Go Live</a>
-      <a href="pages/create/dashboard.html">Dashboard</a>
-    </div>
-
-    <div class="footer-col">
-      <h4>Company</h4>
-      <a href="pages/company/about.html">About</a>
-      <a href="pages/company/advertise.html">Advertise</a>
-      <a href="pages/company/contact.html">Contact</a>
-      <a href="pages/company/privacy.html">Privacy</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <span>© 2026 RiteHear FmXm. All Rights Reserved.</span>
-    <span>Built for the culture</span>
   </div>
 </footer>
-
 <script>
-const cursor = document.getElementById("cursor");
-const ring = document.getElementById("cursorRing");
-const menuToggle = document.getElementById("menuToggle");
-const mobileMenu = document.getElementById("mobileMenu");
-const motionToggle = document.getElementById("motionToggle");
-
-let motionMode = "energetic";
-document.body.setAttribute("data-motion", motionMode);
-
-if (motionToggle) {
-  motionToggle.addEventListener("click", () => {
-    motionMode = motionMode === "energetic" ? "subtle" : "energetic";
-    motionToggle.textContent = motionMode === "energetic" ? "Energetic" : "Subtle";
-    document.body.setAttribute("data-motion", motionMode);
-  });
-}
-
-if (menuToggle && mobileMenu) {
-  menuToggle.addEventListener("click", () => {
-    mobileMenu.classList.toggle("open");
-  });
-
-  mobileMenu.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      mobileMenu.classList.remove("open");
-    });
-  });
-}
-
-const revealItems = document.querySelectorAll(".reveal");
-const homePlay = document.querySelector(".play-btn");
-const showButtons = Array.from(document.querySelectorAll(".icon-btn"));
-
-if (homePlay) {
-  homePlay.addEventListener("click", () => {
-    window.location.href = "pages/listen/live-radio.html";
-  });
-}
-
-const showLinks = [
-  "pages/listen/podcasts.html",
-  "pages/listen/music.html",
-  "pages/listen/live-radio.html",
-  "pages/listen/playlists.html"
-];
-
-showButtons.forEach((button, index) => {
-  button.addEventListener("click", () => {
-    window.location.href = showLinks[index] || "pages/listen/live-radio.html";
-  });
-});
-
-if ("IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(entries => {
+const revealItems = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
-
-  revealItems.forEach(item => revealObserver.observe(item));
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealItems.forEach(node => observer.observe(node));
 } else {
-  revealItems.forEach(item => item.classList.add("visible"));
+  revealItems.forEach(node => node.classList.add('visible'));
 }
-
-if (window.innerWidth > 768 && cursor && ring) {
-  let mx = 0;
-  let my = 0;
-  let rx = 0;
-  let ry = 0;
-
-  document.addEventListener("mousemove", event => {
-    mx = event.clientX;
-    my = event.clientY;
-  });
-
-  function loopCursor(){
-    cursor.style.left = mx + "px";
-    cursor.style.top = my + "px";
-
-    rx += (mx - rx) * 0.14;
-    ry += (my - ry) * 0.14;
-
-    ring.style.left = rx + "px";
-    ring.style.top = ry + "px";
-
-    requestAnimationFrame(loopCursor);
-  }
-
-  loopCursor();
-}
-
-const canvas = document.getElementById("heroCanvas");
-
-if (canvas) {
-  const context = canvas.getContext("2d");
-
-  function resizeCanvas(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  let tick = 0;
-
-  function drawWavePath(shift, opacity, amp){
-    context.beginPath();
-
-    for (let x = 0; x <= canvas.width; x += 8) {
-      const y = canvas.height * 0.55 + Math.sin((x * 0.013) + tick + shift) * amp;
-      if (x === 0) {
-        context.moveTo(x, y);
-      } else {
-        context.lineTo(x, y);
-      }
-    }
-
-    context.strokeStyle = "rgba(255,122,24," + opacity + ")";
-    context.lineWidth = 1.2;
-    context.stroke();
-  }
-
-  function animate(){
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    const energetic = motionMode === "energetic";
-    const speed = energetic ? 0.022 : 0.012;
-    const arcCount = energetic ? 6 : 4;
-    const waveA = energetic ? 24 : 14;
-    tick += speed;
-
-    for (let i = 0; i < arcCount; i += 1) {
-      const radius = (tick * 130 + i * 90) % (canvas.width * 0.84);
-      context.beginPath();
-      context.arc(canvas.width * 0.72, canvas.height * 0.34, radius, 0, Math.PI * 2);
-      context.strokeStyle = energetic ? "rgba(255,179,71,0.06)" : "rgba(255,179,71,0.035)";
-      context.lineWidth = 1;
-      context.stroke();
-    }
-
-    drawWavePath(0, energetic ? 0.16 : 0.1, waveA);
-    drawWavePath(1.2, energetic ? 0.1 : 0.07, waveA * 0.7);
-    drawWavePath(2.4, energetic ? 0.07 : 0.05, waveA * 0.45);
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
 }
 </script>
 <script src="shared-ui.js"></script>
-<script src="shared-player.js"></script>
 </body>
 </html>

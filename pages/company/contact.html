@@ -8,58 +8,50 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../theme.css">
-<link rel="stylesheet" href="../../shared-player.css">
 </head>
-<body data-page="company-contact" data-tracklist="../../data/tracklist.json">
-<div class="backdrop"></div>
-<main>
-  <header class="topbar reveal visible">
+<body>
+<div class="page-shell">
+  <header class="topbar">
     <a class="brand" href="../../index.html">RiteHear <span>FmXm</span></a>
     <nav class="navrow">
-      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="../listen/live-radio.html">Live Radio</a><a href="../listen/podcasts.html">Podcasts</a><a href="../listen/music.html">Music</a><a href="../listen/playlists.html">Playlists</a></div></div>
-      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload Music</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
-      <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="../company/about.html">About</a><a href="../company/advertise.html">Advertise</a><a href="../company/contact.html">Contact</a><a href="../company/privacy.html">Privacy</a></div></div>
-      <a href="../../index.html#live">Live</a>
+      <div class="navgroup"><button class="navbtn" type="button">Listen</button><div class="navmega"><a href="../listen/live-radio.html">Live Radio</a><a href="../listen/schedule.html">Schedule</a><a href="../listen/podcasts.html">Podcasts</a><a href="../listen/music.html">Music</a><a href="../listen/playlists.html">Playlists</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Create</button><div class="navmega"><a href="../create/upload-music.html">Upload</a><a href="../create/start-podcast.html">Start Podcast</a><a href="../create/go-live.html">Go Live</a><a href="../create/dashboard.html">Dashboard</a></div></div>
+      <div class="navgroup"><button class="navbtn" type="button">Company</button><div class="navmega"><a href="about.html">About</a><a href="advertise.html">Advertise</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div></div>
       <a href="../../index.html">Home</a>
+      <a class="live-pill" href="../listen/live-radio.html"><span class="live-dot"></span>On Air</a>
     </nav>
   </header>
 
-  <section class="hero reveal">
-    <div class="kicker"><span class="dot"></span>Communication Node</div>
-    <h1>Contact <span class="accent">Mode</span></h1>
-    <p>Direct channels to programming, partnerships, creator success, and technical operations. Clean routing ensures your message reaches the right team fast.</p>
-    <div class="hero-illus reveal"><svg viewBox="0 0 900 180" aria-hidden="true"><rect class="c" x="170" y="38" width="560" height="104" rx="16"/><path class="a" d="m170 52 280 48 280-48"/><circle class="c pulse-node" cx="450" cy="90" r="10"/><path class="b" d="M110 150h680"/></svg></div>
-
-    <div class="btns">
-      <a class="btn primary" href="../company/privacy.html">Next Page</a>
-      <a class="btn ghost" href="../company/advertise.html">Previous Page</a>
-      <a class="btn ghost" href="../../index.html">Back To Station</a>
-    </div>
-
-    <div class="panels">
-      <article class="panel reveal">
-        <h2>Response Desk</h2>
-        <div class="lines"><div>Support desk triage online</div><div>Partnership hotline enabled</div><div>Creator success inbox staffed</div></div>
-      </article>
-      <aside class="panel reveal">
-        <h2>Routing Grid</h2>
-        <div class="lines"><div>Priority queue: enterprise</div><div>Global support shift: 24/7</div><div>Smart escalation map: enabled</div></div>
-      </aside>
-    </div>
-
-    <div class="nextflow reveal">
-      <a href="../company/advertise.html">Prev: Move Back</a>
-      <a href="../company/privacy.html">Next: Continue Flow</a>
-    </div>
+  <section class="page-hero reveal">
+    <div class="kicker"><span class="live-dot"></span>Reach The Team</div>
+    <h1 class="page-title">Contact <span class="grad">RiteHear</span></h1>
+    <p>Use the correct channel based on your purpose. Programming, creator submissions, brand partnerships and general questions are routed separately so response times stay clear.</p>
   </section>
 
-  <footer>
-    <span>RiteHear FmXm - Executive Label x Streaming Tech x AI Futures</span>
-    <span>© 2026</span>
-  </footer>
-</main>
+  <section class="grid-two reveal">
+    <article class="card">
+      <h3>Department Contacts</h3>
+      <ul class="info-list">
+        <li><strong>Programming</strong><br>programming@ritehear.fm</li>
+        <li><strong>Creator Support</strong><br>creators@ritehear.fm</li>
+        <li><strong>Partnerships</strong><br>partners@ritehear.fm</li>
+        <li><strong>General</strong><br>hello@ritehear.fm</li>
+      </ul>
+    </article>
+    <form class="form-shell" id="contactForm">
+      <h3>Inquiry Form</h3>
+      <div class="field"><label for="contactName">Name</label><input id="contactName" name="name" placeholder="Your name" required></div>
+      <div class="field" style="margin-top:12px;"><label for="contactEmail">Email</label><input id="contactEmail" name="email" placeholder="Your email" required></div>
+      <div class="field" style="margin-top:12px;"><label for="contactMessage">Message</label><textarea id="contactMessage" name="message" placeholder="Tell us what you need." required></textarea></div>
+      <div class="actions"><button class="submit-btn" type="submit">Send Inquiry</button></div>
+      <div id="contactResult" class="upload-summary"></div>
+    </form>
+  </section>
+
+  <div class="pager" style="margin-top:20px;"><a class="btn btn-secondary" href="advertise.html">Previous</a><a class="btn btn-primary" href="privacy.html">Next</a></div>
+  <footer class="footer"><span>RiteHear FmXm</span><span>Department contacts and direct inquiries.</span></footer>
+</div>
 <script src="../page.js"></script>
 <script src="../../shared-ui.js"></script>
-<script src="../../shared-player.js"></script>
 </body>
 </html>
