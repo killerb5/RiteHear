@@ -3,298 +3,859 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RiteHear FmXm - Where All Your Music Is Played</title>
+<title>RiteHear FmXm - Premium Audio Network</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --orange:#FF7A18;
-  --amber:#FFB347;
-  --gold:#FFD27D;
-  --bg:#0E0703;
-  --bg2:#1A0B05;
-  --bg3:#221208;
-  --white:#F8F8F8;
-  --muted:rgba(248,248,248,.45);
-  --border:rgba(255,122,24,.18);
+  --coal:#080706;
+  --obsidian:#100d0b;
+  --char:#17120f;
+  --char-2:#1e1712;
+  --char-3:#261d16;
+  --bronze:#9b7650;
+  --bronze-soft:#c49a70;
+  --sand:#e2ccb0;
+  --ember:#ff8c3b;
+  --ember-2:#ffb06d;
+  --text:#f7f1ea;
+  --muted:rgba(247,241,234,.68);
+  --muted-2:rgba(247,241,234,.44);
+  --line:rgba(196,154,112,.18);
+  --line-strong:rgba(196,154,112,.34);
+  --glass:rgba(24,18,14,.72);
+  --glass-2:rgba(29,22,17,.88);
+  --shadow:0 28px 90px rgba(0,0,0,.46);
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{
-  font-family:'Barlow',sans-serif;
-  background:var(--bg);
-  color:var(--white);
+  font-family:'Sora',sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 18%,rgba(196,154,112,.18),transparent 22%),
+    radial-gradient(circle at 82% 12%,rgba(255,140,59,.14),transparent 26%),
+    radial-gradient(circle at 50% 82%,rgba(155,118,80,.16),transparent 28%),
+    linear-gradient(180deg,#060505 0%,#0c0908 24%,#120f0d 58%,#080706 100%);
   overflow-x:hidden;
   cursor:none;
 }
+
+body::before,
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+}
+
+body::before{
+  background:
+    linear-gradient(115deg,rgba(255,255,255,.02),transparent 24%),
+    linear-gradient(245deg,rgba(196,154,112,.03),transparent 30%),
+    linear-gradient(transparent 0 96%,rgba(255,255,255,.02) 96% 100%);
+  background-size:100% 100%,100% 100%,100% 26px;
+  opacity:.65;
+}
+
+body::after{
+  background:radial-gradient(circle at center,rgba(255,255,255,.06) 0 1px,transparent 1px 100%);
+  background-size:18px 18px;
+  mix-blend-mode:soft-light;
+  opacity:.06;
+}
+
+a{color:inherit;}
 
 .cursor{
   position:fixed;
   width:12px;
   height:12px;
-  background:var(--orange);
+  background:linear-gradient(135deg,var(--bronze-soft),var(--ember));
   border-radius:50%;
   pointer-events:none;
   z-index:9999;
   transform:translate(-50%,-50%);
+  box-shadow:0 0 18px rgba(255,140,59,.32);
 }
 
 .cursor-ring{
   position:fixed;
-  width:36px;
-  height:36px;
-  border:1.5px solid var(--orange);
+  width:38px;
+  height:38px;
+  border:1.5px solid rgba(196,154,112,.48);
   border-radius:50%;
   pointer-events:none;
   z-index:9998;
   transform:translate(-50%,-50%);
-  opacity:.5;
+  opacity:.68;
 }
+
+.site-shell{width:min(1380px,calc(100% - 40px));margin:0 auto;}
 
 nav{
   position:fixed;
-  top:0;
-  left:0;
-  right:0;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
   z-index:100;
-  padding:14px 24px;
-  background:linear-gradient(180deg,rgba(14,7,3,.95) 0%,transparent 100%);
-  backdrop-filter:blur(8px);
+  width:min(1380px,calc(100% - 32px));
 }
 
 .nav-shell{
-  max-width:1300px;
-  margin:0 auto;
   display:grid;
-  gap:10px;
+  gap:14px;
+  padding:18px 20px 16px;
+  border:1px solid rgba(196,154,112,.16);
+  border-radius:28px;
+  background:linear-gradient(180deg,rgba(16,13,11,.88),rgba(16,13,11,.58));
+  box-shadow:0 22px 70px rgba(0,0,0,.34);
+  backdrop-filter:blur(26px);
 }
 
 .nav-logo{
-  text-decoration:none;
   display:inline-flex;
   align-items:center;
   width:fit-content;
+  text-decoration:none;
 }
 
 .nav-logo img{
   display:block;
-  height:60px;
+  height:86px;
   width:auto;
-  max-width:min(230px,54vw);
+  max-width:min(360px,72vw);
   object-fit:contain;
-}
-
-.footer-logo{
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  margin-bottom:14px;
-}
-
-.footer-logo img{
-  display:block;
-  height:74px;
-  width:auto;
-  max-width:min(280px,72vw);
-  object-fit:contain;
+  filter:drop-shadow(0 18px 26px rgba(0,0,0,.35));
 }
 
 .nav-links{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
+  gap:10px;
   align-items:center;
 }
 
 .nav-links a{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:1.3px;
-  text-transform:uppercase;
   text-decoration:none;
-  color:#fff;
-  border:1px solid var(--border);
-  background:rgba(255,122,24,.12);
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:var(--text);
   border-radius:999px;
-  padding:8px 12px;
-  white-space:nowrap;
+  padding:9px 14px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.9px;
+  text-transform:uppercase;
+  transition:transform .24s ease, border-color .24s ease, background .24s ease, box-shadow .24s ease;
 }
 
-.nav-links a:hover{
-  border-color:rgba(255,122,24,.32);
-}
-
+.nav-links a:hover,
 .nav-links a.active{
-  background:linear-gradient(135deg,var(--orange),#de5f00);
-  border-color:transparent;
-}
-
-.live-dot{
-  width:7px;
-  height:7px;
-  background:var(--orange);
-  border-radius:50%;
-  animation:pulse 1.4s infinite;
-}
-
-@keyframes pulse{
-  0%,100%{opacity:1;transform:scale(1);}
-  50%{opacity:.4;transform:scale(.7);}
+  transform:translateY(-1px);
+  border-color:var(--line-strong);
+  background:linear-gradient(135deg,rgba(196,154,112,.2),rgba(255,140,59,.16));
+  box-shadow:0 12px 24px rgba(0,0,0,.22);
 }
 
 .hero{
   position:relative;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  padding:198px 0 108px;
   overflow:hidden;
-  padding:120px 24px 80px;
 }
 
-#heroCanvas{
+.hero::before,
+.hero::after{
+  content:'';
   position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  z-index:0;
+  border-radius:50%;
+  filter:blur(10px);
+  pointer-events:none;
+}
+
+.hero::before{
+  top:72px;
+  left:-90px;
+  width:420px;
+  height:420px;
+  background:radial-gradient(circle,rgba(196,154,112,.18),transparent 68%);
+  animation:floatCloud 13s ease-in-out infinite;
+}
+
+.hero::after{
+  right:-110px;
+  top:160px;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle,rgba(255,140,59,.16),transparent 72%);
+  animation:floatCloud 15s ease-in-out infinite reverse;
 }
 
 .hero-grid{
-  position:absolute;
-  inset:0;
-  background-image:
-  linear-gradient(rgba(255,122,24,.04) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(255,122,24,.04) 1px,transparent 1px);
-  background-size:60px 60px;
-  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);
+  gap:30px;
+  align-items:center;
 }
 
-.hero-glow{
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 16px;
+  margin-bottom:22px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:rgba(255,255,255,.035);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2.4px;
+  text-transform:uppercase;
+  color:var(--sand);
+}
+
+.live-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--ember);
+  box-shadow:0 0 12px rgba(255,140,59,.55);
+  animation:pulse 1.6s ease-in-out infinite;
+}
+
+.hero-copy{position:relative;z-index:2;}
+
+.hero-copy h1{
+  font-size:clamp(40px,5.4vw,84px);
+  line-height:.96;
+  letter-spacing:-.04em;
+  margin-bottom:18px;
+}
+
+.hero-copy h1 span{color:var(--sand);}
+
+.hero-logo-mark{margin:26px 0 24px;}
+
+.hero-logo-mark img{
+  display:block;
+  width:min(100%,860px);
+  height:auto;
+  filter:drop-shadow(0 24px 34px rgba(0,0,0,.48));
+}
+
+.hero-subcopy{
+  max-width:690px;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.82;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:28px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:0 22px;
+  border-radius:16px;
+  text-decoration:none;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+}
+
+.btn:hover{transform:translateY(-2px);}
+
+.btn-primary{
+  color:#140f0c;
+  background:linear-gradient(135deg,var(--sand),var(--ember-2));
+  box-shadow:0 18px 32px rgba(255,140,59,.2);
+}
+
+.btn-secondary{
+  color:var(--text);
+  border:1px solid var(--line-strong);
+  background:rgba(255,255,255,.03);
+}
+
+.trust-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:24px;
+}
+
+.trust-pill{
+  padding:9px 12px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:999px;
+  background:rgba(255,255,255,.025);
+  color:var(--muted);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.hero-stage{position:relative;min-height:680px;}
+
+.glass-card{
+  position:relative;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(30,23,18,.82),rgba(17,13,11,.9));
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(20px);
+  overflow:hidden;
+}
+
+.glass-card::before{
+  content:'';
   position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.05),transparent 38%,transparent 62%,rgba(196,154,112,.05));
+  pointer-events:none;
+}
+
+.showcase-main{
+  position:absolute;
+  inset:64px 0 auto 42px;
+  padding:28px;
+  min-height:470px;
+}
+
+.showcase-kicker{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  margin-bottom:26px;
+}
+
+.showcase-kicker span,
+.mini-label,
+.metric-label,
+.section-label,
+.queue-meta,
+.signal-copy strong,
+.investor-intro strong,
+.footer-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2.6px;
+  text-transform:uppercase;
+}
+
+.showcase-title{
+  font-size:34px;
+  line-height:1.1;
+  max-width:320px;
+}
+
+.player-surface{
+  margin-top:28px;
+  display:grid;
+  gap:18px;
+}
+
+.album-shell{
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:24px;
+  padding:22px;
+  background:
+    linear-gradient(145deg,rgba(226,204,176,.16),transparent 34%),
+    linear-gradient(160deg,#231912,#15100d 68%,#0d0a08);
+}
+
+.album-art{
+  aspect-ratio:1/1;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.06);
+  background:
+    radial-gradient(circle at 30% 20%,rgba(255,176,109,.45),transparent 28%),
+    radial-gradient(circle at 72% 80%,rgba(196,154,112,.3),transparent 26%),
+    linear-gradient(135deg,#1f1712,#0f0c0a 56%,#241a14);
+  position:relative;
+  overflow:hidden;
+}
+
+.album-art::before,
+.album-art::after{
+  content:'';
+  position:absolute;
+}
+
+.album-art::before{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.08);
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:900px;
-  height:900px;
-  background:radial-gradient(ellipse,rgba(255,122,24,.13) 0%,transparent 70%);
-  z-index:1;
+  box-shadow:inset 0 0 0 22px rgba(0,0,0,.14), inset 0 0 0 54px rgba(255,255,255,.02);
 }
 
-.hero-content{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  max-width:1000px;
+.album-art::after{
+  width:22px;
+  height:22px;
+  background:var(--sand);
+  border-radius:50%;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 
-.hero-h1{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(72px,12vw,160px);
-  line-height:.9;
+.track-meta{display:grid;gap:8px;}
+.track-meta h3{font-size:26px;}
+.track-meta p{color:var(--muted);line-height:1.7;}
+
+.eq-row{
+  display:flex;
+  align-items:flex-end;
+  gap:8px;
+  height:84px;
 }
 
-.hero-h1 .highlight{
-  background:linear-gradient(135deg,var(--orange),var(--gold));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+.eq-row span{
+  flex:1;
+  border-radius:999px 999px 0 0;
+  background:linear-gradient(180deg,var(--sand),var(--bronze),rgba(255,140,59,.34));
+  animation:eqBounce 1.8s ease-in-out infinite;
+  opacity:.9;
 }
 
-.section-wrap{
-  max-width:1300px;
-  margin:auto;
-  padding:90px 24px;
+.eq-row span:nth-child(1){height:28%;animation-delay:.05s;}
+.eq-row span:nth-child(2){height:82%;animation-delay:.2s;}
+.eq-row span:nth-child(3){height:52%;animation-delay:.1s;}
+.eq-row span:nth-child(4){height:94%;animation-delay:.28s;}
+.eq-row span:nth-child(5){height:44%;animation-delay:.14s;}
+.eq-row span:nth-child(6){height:70%;animation-delay:.34s;}
+
+.floating-stat,
+.floating-queue,
+.floating-metric{
+  position:absolute;
+  padding:18px 20px;
 }
 
-.section-kicker{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:14px;
-  letter-spacing:5px;
-  text-transform:uppercase;
-  color:var(--orange);
-  margin-bottom:14px;
+.floating-stat{top:18px;right:18px;width:210px;}
+.floating-queue{right:0;bottom:76px;width:260px;}
+.floating-metric{left:0;bottom:12px;width:230px;}
+
+.metric-value{
+  display:block;
+  margin-top:10px;
+  font-size:42px;
+  line-height:1;
+  letter-spacing:-.04em;
 }
+
+.metric-copy,
+.queue-meta,
+.queue-item p,
+.signal-copy p,
+.section-copy,
+.investor-intro p,
+.footer-copy,
+.footer-links a,
+.footnote{color:var(--muted);}
+
+.queue-list{display:grid;gap:12px;margin-top:12px;}
+
+.queue-item{
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.queue-item strong{display:block;font-size:16px;margin-bottom:4px;}
+
+.section{padding:36px 0 88px;}
+
+.section-header{display:grid;gap:14px;margin-bottom:28px;}
+.section-label{color:var(--bronze-soft);}
 
 .section-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(44px,7vw,92px);
+  font-size:clamp(34px,5.5vw,72px);
   line-height:.95;
-  margin-bottom:30px;
+  letter-spacing:-.04em;
+  max-width:820px;
 }
 
-.grad-text{
-  background:linear-gradient(135deg,var(--orange),var(--gold));
+.accent{
+  background:linear-gradient(135deg,var(--sand),var(--ember));
+  background-clip:text;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-@media (min-width: 1024px){
-  .hero-h1{
-    font-size:150px;
-  }
+.section-copy{max-width:720px;line-height:1.84;}
+
+.platform-grid,
+.show-grid,
+.signal-grid,
+.investor-grid,
+.footer-grid{display:grid;gap:20px;}
+
+.platform-grid{grid-template-columns:repeat(4,minmax(0,1fr));}
+
+.platform-card,
+.show-card,
+.investor-card,
+.signal-panel,
+.footer-panel,
+.cta-band{
+  position:relative;
+  padding:26px;
+  border-radius:26px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(28,21,17,.86),rgba(16,13,11,.92));
+  box-shadow:0 22px 60px rgba(0,0,0,.28);
+  overflow:hidden;
+  transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease;
 }
 
-@media (max-width: 980px){
-  .section-grid-two{
-    grid-template-columns:1fr !important;
-  }
+.platform-card:hover,
+.show-card:hover,
+.investor-card:hover,
+.signal-panel:hover,
+.cta-band:hover{
+  transform:translateY(-4px);
+  border-color:var(--line-strong);
+  box-shadow:0 28px 70px rgba(0,0,0,.34);
+}
 
-  .footer-grid{
-    grid-template-columns:1fr 1fr !important;
-  }
+.platform-card::before,
+.show-card::before,
+.investor-card::before,
+.signal-panel::before,
+.cta-band::before{
+  content:'';
+  position:absolute;
+  inset:auto -50px -60px auto;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(196,154,112,.14),transparent 72%);
+  pointer-events:none;
+}
+
+.platform-icon{
+  display:grid;
+  place-items:center;
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  margin-bottom:20px;
+  border:1px solid rgba(255,255,255,.06);
+  background:linear-gradient(135deg,rgba(226,204,176,.22),rgba(255,140,59,.12));
+  font-size:20px;
+}
+
+.platform-card h3,
+.show-card h3,
+.signal-panel h3,
+.investor-card h3{font-size:24px;margin-bottom:12px;}
+
+.platform-card p,
+.show-card p,
+.signal-panel p,
+.investor-card p{line-height:1.74;color:var(--muted);}
+
+.show-grid{grid-template-columns:1.06fr .94fr;align-items:start;}
+.feature-show{min-height:460px;}
+
+.feature-show .head{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:center;
+  margin-bottom:22px;
+}
+
+.feature-screen{
+  min-height:260px;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.06);
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,176,109,.14),transparent 24%),
+    linear-gradient(135deg,#1f1814,#0f0c0a 58%,#231a14);
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+.feature-screen strong{
+  font-size:42px;
+  line-height:1;
+  letter-spacing:-.04em;
+  max-width:320px;
+}
+
+.feature-screen span{
+  margin-top:10px;
+  font-family:'Barlow Condensed',sans-serif;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--bronze-soft);
+  font-size:12px;
+}
+
+.schedule-list{display:grid;gap:12px;}
+
+.schedule-item,
+.track-row{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:14px;
+  align-items:center;
+  padding:14px 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.schedule-item strong,
+.track-row strong{font-size:15px;}
+
+.schedule-item span,
+.track-row span{color:var(--muted);font-size:14px;}
+
+.pill{
+  padding:7px 11px;
+  border-radius:999px;
+  background:rgba(255,176,109,.1);
+  border:1px solid rgba(196,154,112,.2);
+  color:var(--sand);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
+}
+
+.signal-grid{grid-template-columns:1.15fr .85fr;}
+.signal-visual{padding:28px;min-height:420px;}
+
+.signal-stack{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:18px;
+  align-items:stretch;
+  margin-top:18px;
+}
+
+.signal-wave{
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.06);
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,176,109,.14),transparent 46%),
+    linear-gradient(180deg,#19130f,#0e0b09);
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.wave-bars{display:flex;align-items:flex-end;gap:10px;height:140px;}
+
+.wave-bars span{
+  flex:1;
+  border-radius:999px 999px 0 0;
+  background:linear-gradient(180deg,var(--sand),var(--bronze));
+  animation:eqBounce 2.1s ease-in-out infinite;
+}
+
+.wave-bars span:nth-child(1){height:34%;animation-delay:.16s;}
+.wave-bars span:nth-child(2){height:78%;animation-delay:.07s;}
+.wave-bars span:nth-child(3){height:58%;animation-delay:.2s;}
+.wave-bars span:nth-child(4){height:92%;animation-delay:.28s;}
+.wave-bars span:nth-child(5){height:48%;animation-delay:.11s;}
+.wave-bars span:nth-child(6){height:76%;animation-delay:.31s;}
+.wave-bars span:nth-child(7){height:62%;animation-delay:.15s;}
+
+.signal-copy h3{margin-bottom:10px;}
+.track-table{display:grid;gap:12px;}
+
+.investor-grid{grid-template-columns:1.15fr .85fr;align-items:start;}
+.investor-intro{padding:30px;}
+.investor-intro strong{color:var(--bronze-soft);}
+.investor-intro p{margin-top:16px;line-height:1.82;}
+
+.kpi-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin-top:22px;
+}
+
+.kpi-card{
+  padding:22px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.03);
+}
+
+.kpi-card strong{
+  display:block;
+  font-size:38px;
+  line-height:1;
+  letter-spacing:-.05em;
+  margin-bottom:8px;
+}
+
+.kpi-card span{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--bronze-soft);
+  margin-bottom:10px;
+}
+
+.roadmap{display:grid;gap:14px;}
+
+.roadmap-item{
+  padding:18px 18px 18px 20px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.03);
+}
+
+.roadmap-item strong{display:block;margin-bottom:8px;font-size:18px;}
+.roadmap-item p{line-height:1.7;color:var(--muted);}
+
+.cta-band{
+  padding:34px;
+  display:grid;
+  grid-template-columns:1.1fr auto;
+  gap:20px;
+  align-items:center;
+}
+
+.cta-band h2{
+  font-size:clamp(30px,4.6vw,60px);
+  line-height:.96;
+  letter-spacing:-.04em;
+}
+
+.cta-band p{
+  margin-top:14px;
+  max-width:720px;
+  line-height:1.84;
+  color:var(--muted);
+}
+
+footer{padding:10px 0 42px;}
+.footer-panel{padding:30px;}
+.footer-grid{grid-template-columns:1.4fr .9fr .9fr .9fr;align-items:start;}
+
+.footer-logo{display:inline-flex;width:fit-content;margin-bottom:18px;}
+.footer-logo img{
+  display:block;
+  height:96px;
+  width:auto;
+  max-width:min(360px,74vw);
+  object-fit:contain;
+}
+
+.footer-copy{max-width:380px;line-height:1.8;}
+.footer-label{display:block;color:var(--bronze-soft);margin-bottom:16px;}
+.footer-links{display:grid;gap:12px;}
+.footer-links a{text-decoration:none;transition:color .22s ease, transform .22s ease;}
+.footer-links a:hover{color:var(--text);transform:translateX(2px);}
+
+.footnote{
+  margin-top:20px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.06);
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+  font-size:13px;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(24px) scale(.985);
+  transition:opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible{opacity:1;transform:none;}
+
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:.48;transform:scale(.76);}
+}
+
+@keyframes eqBounce{
+  0%,100%{transform:scaleY(.88);opacity:.72;}
+  50%{transform:scaleY(1.08);opacity:1;}
+}
+
+@keyframes floatCloud{
+  0%,100%{transform:translate3d(0,0,0);}
+  50%{transform:translate3d(0,-18px,0);}
+}
+
+@media (max-width:1100px){
+  .hero-grid,
+  .show-grid,
+  .signal-grid,
+  .investor-grid,
+  .cta-band,
+  .footer-grid,
+  .platform-grid{grid-template-columns:1fr;}
+
+  .hero-stage{min-height:auto;padding-top:8px;}
+  .showcase-main,.floating-stat,.floating-queue,.floating-metric{position:relative;inset:auto;width:auto;}
+  .showcase-main{margin:0;padding:24px;min-height:auto;}
+  .floating-stat,.floating-queue,.floating-metric{margin-top:18px;}
+  .signal-stack{grid-template-columns:1fr;}
 }
 
 @media (max-width:768px){
-  body{
-    cursor:auto;
-  }
-
-  .cursor,
-  .cursor-ring{
-    display:none;
-  }
-
-  nav{
-    padding:16px 20px;
-  }
-
-  .nav-links{
-    overflow-x:auto;
-    scrollbar-width:none;
-  }
-
+  body{cursor:auto;}
+  .cursor,.cursor-ring{display:none;}
+  nav{top:10px;width:min(1380px,calc(100% - 18px));}
+  .site-shell{width:min(1380px,calc(100% - 18px));}
+  .nav-shell{padding:16px 14px 14px;border-radius:22px;gap:12px;}
+  .nav-logo img{height:92px;max-width:82vw;}
+  .nav-links{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;padding-bottom:4px;}
   .nav-links::-webkit-scrollbar{display:none;}
-
-  .hero{
-    padding:110px 20px 60px;
-  }
-
-  .hero-h1{
-    font-size:72px;
-  }
-
-  .now-playing{
-    min-width:auto !important;
-    width:calc(100% - 28px);
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr !important;
-  }
+  .hero{padding:202px 0 88px;}
+  .hero-copy h1{font-size:34px;}
+  .hero-subcopy{font-size:15px;}
+  .hero-actions .btn{width:100%;}
+  .hero-logo-mark img{width:100%;}
+  .platform-card,.show-card,.investor-card,.signal-panel,.footer-panel,.cta-band,.showcase-main{padding:22px;}
+  .feature-screen strong{font-size:32px;}
+  .kpi-grid{grid-template-columns:1fr;}
+  .footer-logo img{height:84px;}
 }
 </style>
 </head>
@@ -324,1003 +885,415 @@ nav{
   </div>
 </nav>
 
-<section class="hero" style="max-width:100%;padding-left:0;padding-right:0;">
+<main>
+  <section class="hero">
+    <div class="site-shell hero-grid">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="live-dot"></span>Premium Broadcast Platform For Music, Culture, And Creator Growth</div>
+        <h1>Built to feel like a <span>premium streaming brand</span> and present like an investor-ready media company.</h1>
 
-  <canvas id="heroCanvas"></canvas>
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-
-  <div class="hero-content">
-
-    <div style="
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      background:rgba(255,122,24,.1);
-      border:1px solid var(--border);
-      padding:6px 18px;
-      border-radius:2px;
-      margin-bottom:36px;
-      font-family:'Barlow Condensed',sans-serif;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:3px;
-      text-transform:uppercase;
-      color:var(--amber);
-    ">
-      <span class="live-dot"></span>
-      Broadcasting Live Now
-    </div>
-
-    <h1 class="hero-h1">
-      Where All<br>
-      Your <span class="highlight">Music</span><br>
-      Is Played
-    </h1>
-
-    <p style="
-      margin-top:24px;
-      font-family:'Barlow Condensed',sans-serif;
-      font-size:18px;
-      font-weight:600;
-      letter-spacing:5px;
-      text-transform:uppercase;
-      color:var(--muted);
-    ">
-      <span style="color:var(--orange);">Live Radio</span>
-      - Podcasts - Music -
-      <span style="color:var(--orange);">Video</span>
-      - Streaming - Culture
-    </p>
-
-    <div style="
-      width:60px;
-      height:2px;
-      background:linear-gradient(90deg,var(--orange),var(--gold));
-      margin:32px auto;
-    "></div>
-
-    <div style="
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      justify-content:center;
-    ">
-
-      <a href="pages/listen/live-radio.html" style="
-        padding:14px 28px;
-        text-decoration:none;
-        border-radius:3px;
-        font-family:'Barlow Condensed',sans-serif;
-        font-size:13px;
-        font-weight:700;
-        letter-spacing:2px;
-        text-transform:uppercase;
-        background:linear-gradient(135deg,var(--orange),#e85f00);
-        color:#fff;
-        box-shadow:0 0 30px rgba(255,122,24,.35);
-      ">Listen Live</a>
-
-      <a href="pages/create/upload-music.html" style="
-        padding:14px 28px;
-        text-decoration:none;
-        border-radius:3px;
-        font-family:'Barlow Condensed',sans-serif;
-        font-size:13px;
-        font-weight:700;
-        letter-spacing:2px;
-        text-transform:uppercase;
-        border:1px solid var(--border);
-        color:#fff;
-      ">Upload Content</a>
-
-      <a href="pages/listen/live-radio.html" style="
-        padding:14px 28px;
-        text-decoration:none;
-        border-radius:3px;
-        font-family:'Barlow Condensed',sans-serif;
-        font-size:13px;
-        font-weight:700;
-        letter-spacing:2px;
-        text-transform:uppercase;
-        border:1px solid var(--border);
-        color:#fff;
-      ">Watch Live</a>
-
-      <a href="pages/listen/explore.html" style="
-        padding:14px 28px;
-        text-decoration:none;
-        border-radius:3px;
-        font-family:'Barlow Condensed',sans-serif;
-        font-size:13px;
-        font-weight:700;
-        letter-spacing:2px;
-        text-transform:uppercase;
-        border:1px solid var(--border);
-        color:#fff;
-      ">Explore Music</a>
-
-    </div>
-  </div>
-
-  <div class="now-playing" style="
-    position:absolute;
-    bottom:40px;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:3;
-    display:flex;
-    align-items:center;
-    gap:16px;
-    background:rgba(26,11,5,.85);
-    border:1px solid var(--border);
-    backdrop-filter:blur(16px);
-    padding:14px 24px;
-    border-radius:6px;
-    min-width:340px;
-  ">
-
-    <div style="
-      width:44px;
-      height:44px;
-      border-radius:4px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(135deg,var(--orange),#7a2900);
-      font-size:20px;
-    ">ON</div>
-
-    <div style="flex:1;">
-      <div style="
-        font-size:10px;
-        font-weight:700;
-        letter-spacing:2px;
-        color:var(--orange);
-        text-transform:uppercase;
-      ">Now Playing</div>
-
-      <div style="
-        font-family:'Barlow Condensed',sans-serif;
-        font-size:16px;
-        font-weight:700;
-      ">Late Night Frequencies</div>
-
-      <div style="
-        font-size:12px;
-        color:var(--muted);
-      ">DJ Rite - RiteHear FM</div>
-    </div>
-
-    <button style="
-      width:38px;
-      height:38px;
-      border:none;
-      border-radius:50%;
-      background:var(--orange);
-      color:#fff;
-      font-size:14px;
-    ">Play</button>
-
-  </div>
-
-</section>
-
-<section class="section-wrap" id="radio">
-
-  <div class="section-kicker">Live Radio</div>
-
-  <h2 class="section-title">
-    RiteHear
-  </h2>
-
-  <div class="section-grid-two" style="
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:24px;
-  ">
-
-    <div style="
-      background:linear-gradient(135deg,#220d05,#120905);
-      border:1px solid var(--border);
-      border-radius:10px;
-      padding:34px;
-      min-height:520px;
-      position:relative;
-      overflow:hidden;
-    ">
-
-      <div style="
-        position:absolute;
-        inset:auto -100px -100px auto;
-        width:280px;
-        height:280px;
-        background:radial-gradient(circle,rgba(255,122,24,.18),transparent 70%);
-      "></div>
-
-      <div style="
-        font-family:'Bebas Neue',sans-serif;
-        font-size:90px;
-        line-height:.9;
-        background:linear-gradient(90deg,var(--orange),var(--gold));
-        -webkit-background-clip:text;
-        -webkit-text-fill-color:transparent;
-      ">RiteHear</div>
-
-      <div style="
-        margin-top:10px;
-        font-family:'Barlow Condensed',sans-serif;
-        letter-spacing:6px;
-        color:var(--muted);
-        text-transform:uppercase;
-      ">FM - XM - Digital</div>
-
-      <p style="
-        margin-top:34px;
-        max-width:540px;
-        font-size:20px;
-        line-height:1.8;
-        color:rgba(248,248,248,.62);
-      ">
-        The sound of culture, curated live 24/7.
-        Hip-hop, R&B, Afrobeats, gospel, trap, soul -
-        all genres, all day. Real hosts. Real energy.
-        Real music.
-      </p>
-
-      <div style="
-        display:flex;
-        gap:14px;
-        flex-wrap:wrap;
-        margin-top:34px;
-      ">
-
-        <a href="pages/listen/live-radio.html" style="
-          padding:14px 26px;
-          border-radius:4px;
-          text-decoration:none;
-          font-family:'Barlow Condensed',sans-serif;
-          letter-spacing:2px;
-          text-transform:uppercase;
-          font-weight:700;
-          background:linear-gradient(135deg,var(--orange),#e85f00);
-          color:#fff;
-        ">Tune In</a>
-
-        <a href="pages/listen/schedule.html" style="
-          padding:14px 26px;
-          border-radius:4px;
-          text-decoration:none;
-          border:1px solid var(--border);
-          color:#fff;
-          font-family:'Barlow Condensed',sans-serif;
-          letter-spacing:2px;
-          text-transform:uppercase;
-          font-weight:700;
-        ">Schedule</a>
-
-      </div>
-
-    </div>
-
-    <div style="
-      background:#130904;
-      border:1px solid var(--border);
-      border-radius:10px;
-      padding:28px;
-    ">
-
-      <div style="
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        margin-bottom:18px;
-      ">
-        <h3 style="
-          font-family:'Barlow Condensed',sans-serif;
-          font-size:26px;
-          letter-spacing:2px;
-          text-transform:uppercase;
-        ">Today Lineup</h3>
-
-        <span style="
-          font-size:12px;
-          color:var(--orange);
-          letter-spacing:2px;
-          text-transform:uppercase;
-        ">Live</span>
-      </div>
-
-      <div style="display:grid;gap:12px;">
-
-        <div style="padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);">
-          <strong>6 AM</strong> - Morning Culture
+        <div class="hero-logo-mark">
+          <img src="4020E2B9-4CDE-4648-9AA0-27DB0AA2CE6D (2).png" alt="RiteHear FmXm logo">
         </div>
 
-        <div style="padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);">
-          <strong>12 PM</strong> - Midday Heat
+        <p class="hero-subcopy">The homepage now leads with the brand itself instead of a generic slogan. RiteHear is framed as a modern audio network with live radio, original shows, creator tools, and monetizable programming surfaces designed to scale without losing culture.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="pages/listen/live-radio.html">Enter Live Radio</a>
+          <a class="btn btn-secondary" href="pages/create/upload-music.html">Open Creator Pipeline</a>
+          <a class="btn btn-secondary" href="#investor">See Platform Story</a>
         </div>
 
-        <div style="padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);">
-          <strong>6 PM</strong> - Drive Time Bangers
+        <div class="trust-row">
+          <span class="trust-pill">Live Programming</span>
+          <span class="trust-pill">Creator Onboarding</span>
+          <span class="trust-pill">Sponsor Inventory</span>
+          <span class="trust-pill">Cross-Format Distribution</span>
+        </div>
+      </div>
+
+      <div class="hero-stage reveal" data-tilt>
+        <article class="glass-card showcase-main">
+          <div class="showcase-kicker">
+            <span>Featured Listening Surface</span>
+            <span class="pill">Live Now</span>
+          </div>
+
+          <div class="showcase-title">RiteHear feels closer to Apple Music polish with Spotify-style momentum.</div>
+
+          <div class="player-surface">
+            <div class="album-shell">
+              <div class="album-art"></div>
+            </div>
+
+            <div class="track-meta">
+              <span class="mini-label">Now Streaming</span>
+              <h3>Late Night Frequencies</h3>
+              <p>Curated live radio with a presentation layer that feels premium, editorial, and built for attention retention.</p>
+            </div>
+
+            <div class="eq-row" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </article>
+
+        <aside class="glass-card floating-stat reveal" data-tilt>
+          <span class="metric-label">Brand Positioning</span>
+          <strong class="metric-value">24/7</strong>
+          <p class="metric-copy">Broadcast cadence with premium visual presentation and room for creator, radio, and sponsor storytelling.</p>
+        </aside>
+
+        <aside class="glass-card floating-queue reveal" data-tilt>
+          <span class="queue-meta">Programming Queue</span>
+          <div class="queue-list">
+            <div class="queue-item">
+              <strong>Midday Heat</strong>
+              <p>Editorial mix with live host moments.</p>
+            </div>
+            <div class="queue-item">
+              <strong>Unsigned Heat</strong>
+              <p>Creator discovery lane with direct upload tie-in.</p>
+            </div>
+          </div>
+        </aside>
+
+        <aside class="glass-card floating-metric reveal" data-tilt>
+          <span class="metric-label">Investor Angle</span>
+          <strong class="metric-value">4</strong>
+          <p class="metric-copy">Primary surfaces: radio, podcasts, music, and live video. One brand system connects all of them.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="site-shell">
+      <div class="section-header reveal">
+        <span class="section-label">Platform Design</span>
+        <h2 class="section-title">A better flow for listeners, creators, and <span class="accent">investor conversations</span>.</h2>
+        <p class="section-copy">Instead of isolated blocks, the site now reads like a real media platform: strong brand arrival, product surfaces, live programming, creator pipeline, and a clearer business narrative. The styling pulls from the logo texture with dark graphite, bronze metal, warm stone, and subtle motion.</p>
+      </div>
+
+      <div class="platform-grid">
+        <article class="platform-card reveal">
+          <div class="platform-icon">01</div>
+          <h3>Live-First Presentation</h3>
+          <p>Station energy shows up immediately through motion, active states, queue surfaces, and premium playback treatment.</p>
+        </article>
+
+        <article class="platform-card reveal">
+          <div class="platform-icon">02</div>
+          <h3>Unified Creator Funnel</h3>
+          <p>Uploads, podcasts, and live tools feel connected to the same flagship product instead of separate utility pages.</p>
+        </article>
+
+        <article class="platform-card reveal">
+          <div class="platform-icon">03</div>
+          <h3>Sponsor-Ready Inventory</h3>
+          <p>Brand-safe sections, structured content shelves, and premium presentation make monetization easier to explain.</p>
+        </article>
+
+        <article class="platform-card reveal">
+          <div class="platform-icon">04</div>
+          <h3>Stronger Brand Recall</h3>
+          <p>The logo becomes the hero asset and the rest of the interface borrows its texture, warmth, and edge.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="shows">
+    <div class="site-shell show-grid">
+      <article class="show-card feature-show reveal" data-tilt>
+        <div class="head">
+          <div>
+            <span class="section-label">Featured Show</span>
+            <h3>RiteHear Editorial</h3>
+          </div>
+          <span class="pill">Premium Surface</span>
         </div>
 
-        <div style="padding:14px 0;">
-          <strong>9 PM</strong> - Prime Time with Bryson
+        <div class="feature-screen">
+          <strong>Street To Suite</strong>
+          <span>Culture, business, and momentum with a premium studio feel</span>
         </div>
 
-      </div>
+        <p style="margin-top:18px;">This section reframes programming from generic cards into something closer to a streaming editorial shelf. It feels more curated, higher-value, and easier to pitch.</p>
+      </article>
 
-      <div style="
-        margin-top:28px;
-        height:180px;
-        border-radius:8px;
-        background:
-          repeating-linear-gradient(
-            90deg,
-            rgba(255,122,24,.8) 0 8px,
-            transparent 8px 22px
-          );
-        opacity:.8;
-      "></div>
+      <article class="show-card reveal">
+        <span class="section-label">Programming Flow</span>
+        <h3>Today Lineup</h3>
 
+        <div class="schedule-list" style="margin-top:18px;">
+          <div class="schedule-item">
+            <strong>06 AM</strong>
+            <span>Morning Culture</span>
+            <span class="pill">Live</span>
+          </div>
+          <div class="schedule-item">
+            <strong>12 PM</strong>
+            <span>Midday Heat</span>
+            <span class="pill">Rotation</span>
+          </div>
+          <div class="schedule-item">
+            <strong>06 PM</strong>
+            <span>Drive Time Bangers</span>
+            <span class="pill">Peak</span>
+          </div>
+          <div class="schedule-item">
+            <strong>09 PM</strong>
+            <span>Prime Time With Bryson</span>
+            <span class="pill">Spotlight</span>
+          </div>
+        </div>
+      </article>
     </div>
+  </section>
 
-  </div>
+  <section class="section" id="signal">
+    <div class="site-shell signal-grid">
+      <article class="signal-panel signal-visual reveal">
+        <span class="section-label">Live Signal</span>
+        <h3>Motion that feels intentional, not decorative.</h3>
+        <p style="margin-top:12px;max-width:640px;">The animated bars, floating glass surfaces, and bronze glows create a music-platform atmosphere without drifting into a generic template. It feels more cinematic and aligned with the logo art.</p>
 
-</section>
+        <div class="signal-stack">
+          <div class="signal-wave">
+            <div>
+              <strong class="section-label" style="display:block;margin-bottom:10px;">Waveform Surface</strong>
+              <h3 style="font-size:28px;">Active Broadcast Energy</h3>
+            </div>
+            <div class="wave-bars" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
 
-<section class="section-wrap" id="shows">
+          <div class="signal-copy">
+            <strong>Why It Helps</strong>
+            <h3>Premium interfaces increase trust.</h3>
+            <p>For users, it makes RiteHear feel active and curated. For investors, it signals care in product execution and a stronger consumer-facing identity.</p>
+          </div>
+        </div>
+      </article>
 
-  <div class="section-kicker">Hot Right Now</div>
+      <article class="signal-panel reveal">
+        <span class="section-label">Fresh Rotation</span>
+        <h3>New Music Shelf</h3>
 
-  <h2 class="section-title">
-    Trending <span class="grad-text">Shows</span>
-  </h2>
-
-  <div style="
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:22px;
-  ">
-
-    <div style="
-      background:#180904;
-      border:1px solid var(--border);
-      border-radius:12px;
-      overflow:hidden;
-    ">
-      <div style="
-        height:170px;
-        background:linear-gradient(135deg,#d66a00,#7a1f00);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        opacity:.9;
-        font-size:70px;
-      ">🎙️</div>
-
-      <div style="padding:24px;">
-        <div style="
-          font-size:12px;
-          color:var(--orange);
-          letter-spacing:3px;
-          text-transform:uppercase;
-          margin-bottom:10px;
-        ">Podcast - Culture</div>
-
-        <h3 style="
-          font-size:22px;
-          margin-bottom:10px;
-        ">Street to Suite</h3>
-
-        <p style="
-          color:var(--muted);
-          line-height:1.6;
-          margin-bottom:18px;
-        ">
-          Business + Hustle + Real Talk
-        </p>
-      </div>
+        <div class="track-table" style="margin-top:18px;">
+          <div class="track-row">
+            <strong>01</strong>
+            <div>
+              <strong>No Days Off</strong>
+              <span>King Dre</span>
+            </div>
+            <span class="pill">3:22</span>
+          </div>
+          <div class="track-row">
+            <strong>02</strong>
+            <div>
+              <strong>Vibrations</strong>
+              <span>Amara Soul</span>
+            </div>
+            <span class="pill">4:01</span>
+          </div>
+          <div class="track-row">
+            <strong>03</strong>
+            <div>
+              <strong>Lagos To Raleigh</strong>
+              <span>Dele X</span>
+            </div>
+            <span class="pill">3:48</span>
+          </div>
+        </div>
+      </article>
     </div>
+  </section>
 
-    <div style="
-      background:#180904;
-      border:1px solid var(--border);
-      border-radius:12px;
-      overflow:hidden;
-    ">
-      <div style="
-        height:170px;
-        background:linear-gradient(135deg,#f0b14a,#8a5300);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:70px;
-      ">🎵</div>
+  <section class="section" id="investor">
+    <div class="site-shell investor-grid">
+      <article class="investor-card investor-intro reveal">
+        <strong>Investor Narrative</strong>
+        <h3 style="font-size:38px;line-height:1.08;margin-top:12px;">RiteHear now presents as a real audio product, not just a themed landing page.</h3>
+        <p>The structure shows what the company is, how the surfaces connect, and why the brand can support audience growth, creator acquisition, and sponsor visibility. The visual language is sharper, the hierarchy is cleaner, and the story flows in the order an investor expects to understand it.</p>
 
-      <div style="padding:24px;">
-        <div style="
-          font-size:12px;
-          color:var(--orange);
-          letter-spacing:3px;
-          text-transform:uppercase;
-          margin-bottom:10px;
-        ">Music - Hip-Hop</div>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <strong>24/7</strong>
+            <span>Broadcast Rhythm</span>
+            <p class="section-copy">A live mindset gives the brand energy even when users are not inside a player.</p>
+          </div>
+          <div class="kpi-card">
+            <strong>4</strong>
+            <span>Core Product Surfaces</span>
+            <p class="section-copy">Radio, podcasts, music, and live video connect under one brand system.</p>
+          </div>
+        </div>
+      </article>
 
-        <h3 style="font-size:22px;margin-bottom:10px;">Unsigned Heat</h3>
+      <article class="investor-card reveal">
+        <span class="section-label">What Makes It Stronger</span>
+        <h3>Website flow now supports the pitch.</h3>
 
-        <p style="color:var(--muted);line-height:1.6;margin-bottom:18px;">
-          Independent artists getting real exposure.
-        </p>
-      </div>
+        <div class="roadmap" style="margin-top:18px;">
+          <div class="roadmap-item">
+            <strong>Premium Arrival</strong>
+            <p>Logo-first hero, better spacing, cleaner motion, and a richer material palette create a stronger first impression.</p>
+          </div>
+          <div class="roadmap-item">
+            <strong>Product Clarity</strong>
+            <p>Listeners, creators, and partners can see the platform lanes without hunting through disconnected sections.</p>
+          </div>
+          <div class="roadmap-item">
+            <strong>Brand Cohesion</strong>
+            <p>The rugged metallic identity from the logo now informs color, lighting, shadows, and surface treatment throughout the site.</p>
+          </div>
+        </div>
+      </article>
     </div>
+  </section>
 
-    <div style="
-      background:#180904;
-      border:1px solid var(--border);
-      border-radius:12px;
-      overflow:hidden;
-    ">
-      <div style="
-        height:170px;
-        background:linear-gradient(135deg,#bb5c00,#632000);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:70px;
-      ">🏆</div>
+  <section class="section" id="creators">
+    <div class="site-shell">
+      <div class="cta-band reveal" data-tilt>
+        <div>
+          <span class="section-label">Creator Entry Point</span>
+          <h2>Upload music, launch shows, and step into a platform that already feels established.</h2>
+          <p>The site now communicates confidence before a creator even clicks into a tool. That improves perception, strengthens trust, and makes the product feel worth joining.</p>
+        </div>
 
-      <div style="padding:24px;">
-        <div style="
-          font-size:12px;
-          color:var(--orange);
-          letter-spacing:3px;
-          text-transform:uppercase;
-          margin-bottom:10px;
-        ">Sports - Talk</div>
-
-        <h3 style="font-size:22px;margin-bottom:10px;">Game Day Debrief</h3>
-
-        <p style="color:var(--muted);line-height:1.6;margin-bottom:18px;">
-          Scores, Stats, No Filter
-        </p>
-      </div>
-    </div>
-
-    <div style="
-      background:#180904;
-      border:1px solid var(--border);
-      border-radius:12px;
-      overflow:hidden;
-    ">
-      <div style="
-        height:170px;
-        background:linear-gradient(135deg,#d87911,#7b3600);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:70px;
-      ">✊</div>
-
-      <div style="padding:24px;">
-        <div style="
-          font-size:12px;
-          color:var(--orange);
-          letter-spacing:3px;
-          text-transform:uppercase;
-          margin-bottom:10px;
-        ">Motivation - Life</div>
-
-        <h3 style="font-size:22px;margin-bottom:10px;">Built Different</h3>
-
-        <p style="color:var(--muted);line-height:1.6;margin-bottom:18px;">
-          Mindset. Money. Movement.
-        </p>
+        <div class="hero-actions" style="margin-top:0;justify-content:flex-end;">
+          <a class="btn btn-primary" href="pages/create/upload-music.html">Start Uploading</a>
+          <a class="btn btn-secondary" href="pages/company/about.html">View Company Story</a>
+        </div>
       </div>
     </div>
+  </section>
+</main>
 
-  </div>
-</section>
-
-<section class="section-wrap" id="music">
-
-  <div class="section-kicker">New Drops</div>
-
-  <h2 class="section-title">
-    Fresh <span class="grad-text">Music</span>
-  </h2>
-
-  <div style="display:grid;gap:14px;">
-
-    <div style="
-      display:grid;
-      grid-template-columns:60px 1fr auto auto;
-      gap:16px;
-      align-items:center;
-      padding:16px;
-      border:1px solid var(--border);
-      border-radius:10px;
-      background:#140904;
-    ">
-      <div style="color:var(--muted);text-align:center;">1</div>
+<footer>
+  <div class="site-shell footer-panel reveal">
+    <div class="footer-grid">
       <div>
-        <div style="font-weight:700;font-size:18px;">No Days Off</div>
-        <div style="color:var(--muted);font-size:14px;">King Dre</div>
+        <a class="footer-logo" href="index.html" aria-label="RiteHear home">
+          <img src="4020E2B9-4CDE-4648-9AA0-27DB0AA2CE6D (2).png" alt="RiteHear logo">
+        </a>
+        <p class="footer-copy">A premium digital broadcast brand for live radio, podcasts, new music discovery, creator publishing, and sponsor-ready programming.</p>
       </div>
-      <div style="
-        padding:6px 12px;
-        border-radius:30px;
-        background:rgba(255,122,24,.12);
-        color:var(--orange);
-        font-size:12px;
-        letter-spacing:2px;
-        text-transform:uppercase;
-      ">Hip-Hop</div>
-      <div style="color:var(--muted);">3:22</div>
-    </div>
 
-    <div style="
-      display:grid;
-      grid-template-columns:60px 1fr auto auto;
-      gap:16px;
-      align-items:center;
-      padding:16px;
-      border:1px solid var(--border);
-      border-radius:10px;
-      background:#140904;
-    ">
-      <div style="color:var(--muted);text-align:center;">2</div>
       <div>
-        <div style="font-weight:700;font-size:18px;">Vibrations</div>
-        <div style="color:var(--muted);font-size:14px;">Amara Soul</div>
+        <span class="footer-label">Listen</span>
+        <div class="footer-links">
+          <a href="pages/listen/live-radio.html">Live Radio</a>
+          <a href="pages/listen/podcasts.html">Podcasts</a>
+          <a href="pages/listen/music.html">Music</a>
+          <a href="pages/listen/playlists.html">Playlists</a>
+        </div>
       </div>
-      <div style="
-        padding:6px 12px;
-        border-radius:30px;
-        background:rgba(255,122,24,.12);
-        color:var(--orange);
-        font-size:12px;
-        letter-spacing:2px;
-        text-transform:uppercase;
-      ">R&B</div>
-      <div style="color:var(--muted);">4:01</div>
-    </div>
 
-    <div style="
-      display:grid;
-      grid-template-columns:60px 1fr auto auto;
-      gap:16px;
-      align-items:center;
-      padding:16px;
-      border:1px solid var(--border);
-      border-radius:10px;
-      background:#140904;
-    ">
-      <div style="color:var(--muted);text-align:center;">3</div>
       <div>
-        <div style="font-weight:700;font-size:18px;">Lagos to Raleigh</div>
-        <div style="color:var(--muted);font-size:14px;">Dele X</div>
+        <span class="footer-label">Create</span>
+        <div class="footer-links">
+          <a href="pages/create/upload-music.html">Upload Music</a>
+          <a href="pages/create/start-podcast.html">Start Podcast</a>
+          <a href="pages/create/go-live.html">Go Live</a>
+          <a href="pages/create/dashboard.html">Dashboard</a>
+        </div>
       </div>
-      <div style="
-        padding:6px 12px;
-        border-radius:30px;
-        background:rgba(255,122,24,.12);
-        color:var(--orange);
-        font-size:12px;
-        letter-spacing:2px;
-        text-transform:uppercase;
-      ">Afrobeats</div>
-      <div style="color:var(--muted);">3:48</div>
+
+      <div>
+        <span class="footer-label">Company</span>
+        <div class="footer-links">
+          <a href="pages/company/about.html">About</a>
+          <a href="pages/company/advertise.html">Advertise</a>
+          <a href="pages/company/contact.html">Contact</a>
+          <a href="pages/company/privacy.html">Privacy</a>
+        </div>
+      </div>
     </div>
 
+    <div class="footnote">
+      <span>Copyright 2026 RiteHear FmXm. All rights reserved.</span>
+      <span>Built for culture. Designed to scale.</span>
+    </div>
   </div>
-
-</section>
-
-<section class="section-wrap" id="live">
-
-  <div class="section-kicker">Live Now</div>
-
-  <h2 class="section-title">
-    Watch <span class="grad-text">Live</span>
-  </h2>
-
-  <div style="
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:22px;
-  ">
-
-    <div style="
-      background:#160904;
-      border:1px solid var(--border);
-      border-radius:12px;
-      overflow:hidden;
-    ">
-      <div style="
-        height:220px;
-        background:linear-gradient(135deg,#1f0c05,#3b1400);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:34px;
-        position:relative;
-      ">Live DJ Set
-
-        <div style="
-          position:absolute;
-          top:14px;
-          left:14px;
-          background:#c91f1f;
-          color:#fff;
-          padding:6px 10px;
-          border-radius:4px;
-          font-size:11px;
-          letter-spacing:2px;
-          text-transform:uppercase;
-        ">Live</div>
-      </div>
-
-      <div style="padding:22px;">
-        <h3 style="font-size:22px;margin-bottom:8px;">Late Night DJ Set</h3>
-        <p style="color:var(--muted);">DJ Rite - Hip-Hop and R&B</p>
-      </div>
-    </div>
-
-    <div style="
-      background:#160904;
-      border:1px solid var(--border);
-      border-radius:12px;
-      overflow:hidden;
-    ">
-      <div style="
-        height:220px;
-        background:linear-gradient(135deg,#2a1005,#522000);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:34px;
-        position:relative;
-      ">Studio Session
-
-        <div style="
-          position:absolute;
-          top:14px;
-          left:14px;
-          background:#c91f1f;
-          color:#fff;
-          padding:6px 10px;
-          border-radius:4px;
-          font-size:11px;
-          letter-spacing:2px;
-          text-transform:uppercase;
-        ">Live</div>
-      </div>
-
-      <div style="padding:22px;">
-        <h3 style="font-size:22px;margin-bottom:8px;">Studio Session</h3>
-        <p style="color:var(--muted);">Producer Malik - Behind the Boards</p>
-      </div>
-    </div>
-
-    <div style="
-      background:#160904;
-      border:1px solid var(--border);
-      border-radius:12px;
-      overflow:hidden;
-    ">
-      <div style="
-        height:220px;
-        background:linear-gradient(135deg,#140904,#311400);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:34px;
-        position:relative;
-      ">Interview
-
-        <div style="
-          position:absolute;
-          top:14px;
-          left:14px;
-          background:#555;
-          color:#fff;
-          padding:6px 10px;
-          border-radius:4px;
-          font-size:11px;
-          letter-spacing:2px;
-          text-transform:uppercase;
-        ">Upcoming</div>
-      </div>
-
-      <div style="padding:22px;">
-        <h3 style="font-size:22px;margin-bottom:8px;">Interview: Rising Star</h3>
-        <p style="color:var(--muted);">Tonight 9 PM - Culture Talk</p>
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-<section class="section-wrap" id="creators">
-
-  <div style="
-    background:linear-gradient(135deg,#1f0c05,#0d0502);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:70px 30px;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
-  ">
-
-    <div style="
-      position:absolute;
-      inset:auto auto -180px 50%;
-      transform:translateX(-50%);
-      width:520px;
-      height:520px;
-      background:radial-gradient(circle,rgba(255,122,24,.15),transparent 70%);
-    "></div>
-
-    <div style="
-      position:relative;
-      z-index:2;
-      font-family:'Barlow Condensed',sans-serif;
-      font-size:14px;
-      letter-spacing:5px;
-      text-transform:uppercase;
-      color:var(--orange);
-      margin-bottom:16px;
-    ">Your Platform Awaits</div>
-
-    <h2 style="
-      position:relative;
-      z-index:2;
-      font-family:'Bebas Neue',sans-serif;
-      font-size:clamp(56px,9vw,120px);
-      line-height:.9;
-      margin-bottom:20px;
-    ">
-      Create.<br>
-      <span style="
-        background:linear-gradient(135deg,var(--orange),var(--gold));
-        -webkit-background-clip:text;
-        -webkit-text-fill-color:transparent;
-      ">Upload.</span><br>
-      Broadcast.
-    </h2>
-
-    <p style="
-      position:relative;
-      z-index:2;
-      max-width:720px;
-      margin:0 auto 28px;
-      color:var(--muted);
-      font-size:18px;
-      line-height:1.8;
-    ">
-      RiteHear FmXm is built for creators. Upload your music,
-      start your podcast, go live, and reach a real audience -
-      no gatekeepers.
-    </p>
-
-    <div style="
-      position:relative;
-      z-index:2;
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      justify-content:center;
-      margin-bottom:28px;
-    ">
-      <span style="padding:10px 16px;border:1px solid var(--border);border-radius:30px;">Music</span>
-      <span style="padding:10px 16px;border:1px solid var(--border);border-radius:30px;">Podcasts</span>
-      <span style="padding:10px 16px;border:1px solid var(--border);border-radius:30px;">Live Streams</span>
-      <span style="padding:10px 16px;border:1px solid var(--border);border-radius:30px;">Videos</span>
-    </div>
-
-    <div style="
-      position:relative;
-      z-index:2;
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      justify-content:center;
-    ">
-      <a href="pages/create/upload-music.html" style="
-        padding:14px 28px;
-        border-radius:4px;
-        text-decoration:none;
-        background:linear-gradient(135deg,var(--orange),#e85f00);
-        color:#fff;
-        font-family:'Barlow Condensed',sans-serif;
-        text-transform:uppercase;
-        letter-spacing:2px;
-        font-weight:700;
-      ">Start Uploading</a>
-
-      <a href="pages/company/about.html" style="
-        padding:14px 28px;
-        border-radius:4px;
-        text-decoration:none;
-        border:1px solid var(--border);
-        color:#fff;
-        font-family:'Barlow Condensed',sans-serif;
-        text-transform:uppercase;
-        letter-spacing:2px;
-        font-weight:700;
-      ">Learn More</a>
-    </div>
-
-  </div>
-
-</section>
-
-<footer style="
-  border-top:1px solid var(--border);
-  margin-top:40px;
-  padding:60px 24px 30px;
-">
-
-  <div class="footer-grid" style="
-    max-width:1300px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:30px;
-  ">
-
-    <div>
-      <a class="footer-logo" href="index.html" aria-label="RiteHear home">
-        <img src="4020E2B9-4CDE-4648-9AA0-27DB0AA2CE6D (2).png" alt="RiteHear logo">
-      </a>
-
-      <p style="
-        color:var(--muted);
-        line-height:1.8;
-        max-width:340px;
-        margin-bottom:18px;
-      ">
-        The digital broadcast network for independent culture.
-        Live radio, podcasts, music, and streaming - all in one place.
-      </p>
-    </div>
-
-    <div>
-      <h4 style="
-        color:var(--orange);
-        letter-spacing:3px;
-        text-transform:uppercase;
-        margin-bottom:14px;
-        font-size:12px;
-      ">Listen</h4>
-
-      <div style="display:grid;gap:10px;">
-        <a href="pages/listen/live-radio.html" style="color:var(--muted);text-decoration:none;">Live Radio</a>
-        <a href="pages/listen/podcasts.html" style="color:var(--muted);text-decoration:none;">Podcasts</a>
-        <a href="pages/listen/music.html" style="color:var(--muted);text-decoration:none;">Music</a>
-        <a href="pages/listen/playlists.html" style="color:var(--muted);text-decoration:none;">Playlists</a>
-      </div>
-    </div>
-
-    <div>
-      <h4 style="
-        color:var(--orange);
-        letter-spacing:3px;
-        text-transform:uppercase;
-        margin-bottom:14px;
-        font-size:12px;
-      ">Create</h4>
-
-      <div style="display:grid;gap:10px;">
-        <a href="pages/create/upload-music.html" style="color:var(--muted);text-decoration:none;">Upload Music</a>
-        <a href="pages/create/start-podcast.html" style="color:var(--muted);text-decoration:none;">Start Podcast</a>
-        <a href="pages/create/go-live.html" style="color:var(--muted);text-decoration:none;">Go Live</a>
-        <a href="pages/create/dashboard.html" style="color:var(--muted);text-decoration:none;">Dashboard</a>
-      </div>
-    </div>
-
-    <div>
-      <h4 style="
-        color:var(--orange);
-        letter-spacing:3px;
-        text-transform:uppercase;
-        margin-bottom:14px;
-        font-size:12px;
-      ">Company</h4>
-
-      <div style="display:grid;gap:10px;">
-        <a href="pages/company/about.html" style="color:var(--muted);text-decoration:none;">About</a>
-        <a href="pages/company/advertise.html" style="color:var(--muted);text-decoration:none;">Advertise</a>
-        <a href="pages/company/contact.html" style="color:var(--muted);text-decoration:none;">Contact</a>
-        <a href="pages/company/privacy.html" style="color:var(--muted);text-decoration:none;">Privacy</a>
-      </div>
-    </div>
-
-  </div>
-
-  <div style="
-    max-width:1300px;
-    margin:30px auto 0;
-    padding-top:20px;
-    border-top:1px solid rgba(255,255,255,.05);
-    display:flex;
-    justify-content:space-between;
-    gap:20px;
-    flex-wrap:wrap;
-    color:rgba(255,255,255,.35);
-    font-size:13px;
-  ">
-    <span>Copyright 2026 RiteHear FmXm. All Rights Reserved.</span>
-    <span>Built for the culture.</span>
-  </div>
-
 </footer>
 
 <script>
-const cursor = document.getElementById("cursor");
-const ring = document.getElementById("cursorRing");
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
 
 if (window.innerWidth > 768 && cursor && ring) {
-  let mx = 0, my = 0, rx = 0, ry = 0;
+  let mouseX = 0;
+  let mouseY = 0;
+  let ringX = 0;
+  let ringY = 0;
 
-  document.addEventListener("mousemove", e => {
-    mx = e.clientX;
-    my = e.clientY;
+  document.addEventListener('mousemove', event => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
   });
 
-  function loopCursor(){
-    cursor.style.left = mx + "px";
-    cursor.style.top = my + "px";
+  function animateCursor() {
+    cursor.style.left = `${mouseX}px`;
+    cursor.style.top = `${mouseY}px`;
 
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
+    ringX += (mouseX - ringX) * 0.14;
+    ringY += (mouseY - ringY) * 0.14;
 
-    ring.style.left = rx + "px";
-    ring.style.top = ry + "px";
+    ring.style.left = `${ringX}px`;
+    ring.style.top = `${ringY}px`;
 
-    requestAnimationFrame(loopCursor);
+    window.requestAnimationFrame(animateCursor);
   }
-  loopCursor();
+
+  animateCursor();
 }
 
-const canvas = document.getElementById("heroCanvas");
+const revealItems = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -60px 0px' });
 
-if (canvas) {
-  const ctx = canvas.getContext("2d");
-
-  function resizeCanvas(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  let t = 0;
-
-  function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    t += 0.01;
-
-    for(let i=0;i<7;i++){
-      const r = (t * 140 + i * 90) % (canvas.width * 0.9);
-
-      ctx.beginPath();
-      ctx.arc(canvas.width/2, canvas.height/2, r, 0, Math.PI*2);
-      ctx.strokeStyle = "rgba(255,122,24,0.08)";
-      ctx.lineWidth = 1.2;
-      ctx.stroke();
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
+  revealItems.forEach(item => revealObserver.observe(item));
+} else {
+  revealItems.forEach(item => item.classList.add('visible'));
 }
+
+const tiltItems = document.querySelectorAll('[data-tilt]');
+tiltItems.forEach(item => {
+  item.addEventListener('mousemove', event => {
+    if (window.innerWidth <= 1100) return;
+    const rect = item.getBoundingClientRect();
+    const px = (event.clientX - rect.left) / rect.width;
+    const py = (event.clientY - rect.top) / rect.height;
+    const rotateY = (px - 0.5) * 8;
+    const rotateX = (0.5 - py) * 8;
+    item.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+  });
+
+  item.addEventListener('mouseleave', () => {
+    item.style.transform = '';
+  });
+});
 </script>
 <script src="shared-ui.js"></script>
 </body>
