@@ -16,7 +16,7 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'Plus Jakarta Sans',sans-serif;
+  font-family:'Barlow',sans-serif;
   color:var(--text);
   background:
     radial-gradient(circle at 12% -10%,rgba(255,179,71,.15),transparent 32%),
@@ -43,17 +43,19 @@ button,input,select,textarea{font:inherit;}
 }
 .brand{
   text-decoration:none;
-  font-family:'DM Sans',sans-serif;
-  font-size:30px;
-  font-weight:800;
-  letter-spacing:.6px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:34px;
+  font-weight:400;
+  letter-spacing:2px;
   background:linear-gradient(90deg,var(--orange),var(--gold));
+  background-clip:text;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
-.brand span{font-size:14px;opacity:.52;-webkit-text-fill-color:var(--text);margin-left:6px;}
+.brand span{font-size:14px;opacity:.52;-webkit-text-fill-color:var(--text);margin-left:6px;letter-spacing:1px;}
 .navrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
 .navrow a{
+  font-family:'Barlow Condensed',sans-serif;
   text-decoration:none;
   border:1px solid var(--line);
   background:rgba(255,122,24,.08);
@@ -83,8 +85,8 @@ button,input,select,textarea{font:inherit;}
 }
 .live-dot{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 1.4s infinite;}
 
-.page-title,.hero-title{font-family:'DM Sans',sans-serif;font-size:clamp(44px,7vw,96px);line-height:.95;letter-spacing:-.5px;}
-.grad{background:linear-gradient(135deg,var(--orange),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.page-title,.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,8vw,114px);line-height:.9;letter-spacing:1px;}
+.grad{background:linear-gradient(135deg,var(--orange),var(--gold));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .page-hero p,.hero-copy,.lead{color:var(--muted);font-size:17px;line-height:1.75;max-width:860px;}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
 .btn{
@@ -96,8 +98,8 @@ button,input,select,textarea{font:inherit;}
 .btn-secondary{border:1px solid var(--line);background:rgba(255,122,24,.08);color:#fff;}
 
 .section{padding:70px 0;}
-.section-label{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:12px;}
-.section-title{font-family:'DM Sans',sans-serif;font-size:clamp(38px,5.6vw,76px);line-height:.96;margin-bottom:16px;}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:12px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6.2vw,88px);line-height:.92;margin-bottom:16px;letter-spacing:1px;}
 .grid-two{display:grid;grid-template-columns:1.08fr .92fr;gap:20px;}
 .grid-three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .card,.panel,.table-shell,.form-shell,.video-shell,.about-shell,.feature-card,.list-card,.video-home,.creator-cta,.footer-wrap{padding:22px;}
@@ -113,7 +115,7 @@ button,input,select,textarea{font:inherit;}
 .video-frame{aspect-ratio:16/9;border-radius:12px;border:1px solid var(--soft-line);background:#0f0f10;padding:16px;display:flex;flex-direction:column;justify-content:space-between;}
 .video-top{display:flex;justify-content:space-between;align-items:center;gap:10px;}
 .video-chip{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:999px;background:rgba(201,31,31,.18);color:#ff9b9b;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;}
-.video-screen{flex:1;display:grid;place-items:center;border:1px dashed rgba(255,255,255,.14);border-radius:10px;margin:14px 0;font-family:'DM Sans',sans-serif;font-weight:700;font-size:32px;}
+.video-screen{flex:1;display:grid;place-items:center;border:1px dashed rgba(255,255,255,.14);border-radius:10px;margin:14px 0;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:32px;letter-spacing:1px;}
 .video-meta p,.meta-note{color:var(--muted);line-height:1.72;}
 .video-actions,.tabs,.day-picker{display:flex;gap:8px;flex-wrap:wrap;}
 .video-actions button,.tab-btn,.day-btn,.submit-btn{border:1px solid var(--line);background:rgba(255,122,24,.08);color:#fff;border-radius:8px;padding:10px 12px;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;}
