@@ -69,9 +69,9 @@ button,input,select,textarea{font:inherit;}
 }
 .brand img{
   display:block;
-  height:100px;
+  height:120px;
   width:auto;
-  max-width:min(360px,70vw);
+  max-width:min(420px,74vw);
   object-fit:contain;
   filter:drop-shadow(0 18px 28px rgba(0,0,0,.35));
   transition:transform .28s ease, filter .28s ease;
@@ -94,6 +94,81 @@ button,input,select,textarea{font:inherit;}
   transition:transform .24s ease, border-color .24s ease, background .24s ease, box-shadow .24s ease;
 }
   .navrow a:hover,.navrow a.active{background:linear-gradient(135deg,rgba(255,122,24,.18),rgba(255,179,71,.12));border-color:var(--line-strong);transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.22);}
+
+.investor-nav{display:flex;flex-wrap:wrap;gap:10px;align-items:center;position:relative;}
+.investor-tab{position:relative;}
+.investor-tab-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:#fff;
+  border-radius:999px;
+  padding:10px 15px;
+  text-decoration:none;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:transform .24s ease, border-color .24s ease, background .24s ease, box-shadow .24s ease;
+}
+.investor-tab-btn::after{content:'▾';font-size:11px;opacity:.68;transform:translateY(-1px);}
+.investor-tab-btn.no-caret::after{display:none;}
+.investor-tab:hover .investor-tab-btn,
+.investor-tab:focus-within .investor-tab-btn,
+.investor-tab-btn.active{
+  background:linear-gradient(135deg,rgba(255,122,24,.2),rgba(255,179,71,.12));
+  border-color:var(--line-strong);
+  transform:translateY(-2px);
+  box-shadow:0 14px 28px rgba(0,0,0,.22);
+}
+.investor-menu{
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;
+  min-width:230px;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:linear-gradient(160deg,rgba(30,23,18,.98),rgba(16,13,11,.98));
+  box-shadow:0 18px 44px rgba(0,0,0,.38);
+  display:grid;
+  gap:6px;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(8px);
+  transition:opacity .2s ease, transform .2s ease;
+  z-index:30;
+}
+.investor-tab:hover .investor-menu,
+.investor-tab:focus-within .investor-menu{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.investor-menu a{
+  display:block;
+  border:1px solid transparent;
+  border-radius:10px;
+  padding:10px 11px;
+  text-decoration:none;
+  color:var(--muted);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  transition:all .2s ease;
+}
+.investor-menu a:hover,
+.investor-menu a.active{
+  color:#fff;
+  border-color:var(--line);
+  background:rgba(255,122,24,.12);
+}
 
 .page-hero,.card,.panel,.table-shell,.form-shell,.video-shell,.about-shell,.hero-card,.feature-card,.list-card,.video-home,.creator-cta,.footer-wrap{
   border:1px solid var(--line);
@@ -211,6 +286,63 @@ button,input,select,textarea{font:inherit;}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
 .reveal.visible{opacity:1;transform:none;}
 .footer{margin-top:48px;padding:28px 0 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:rgba(245,247,250,.42);font-size:13px;}
+.footer.footer-rich{
+  border:1px solid var(--line);
+  border-radius:26px;
+  background:linear-gradient(160deg,rgba(30,23,18,.88),rgba(18,15,13,.92));
+  box-shadow:var(--shadow);
+  padding:24px;
+  display:block;
+  position:relative;
+  overflow:hidden;
+}
+.footer.footer-rich::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.04),transparent 34%,transparent 62%,rgba(255,122,24,.04));
+  pointer-events:none;
+}
+.footer-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:1.35fr repeat(3,minmax(0,1fr));
+  gap:20px;
+}
+.footer-brand-logo{height:72px;width:auto;display:block;filter:drop-shadow(0 14px 20px rgba(0,0,0,.34));margin-bottom:10px;}
+.footer-brand-copy{color:var(--muted);line-height:1.7;font-size:14px;max-width:340px;}
+.footer-col-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
+.footer-col-links{display:grid;gap:7px;}
+.footer-col-links a{text-decoration:none;color:var(--muted);font-size:14px;transition:color .2s ease;}
+.footer-col-links a:hover{color:#fff;}
+.footer-bottom-row{
+  position:relative;
+  z-index:1;
+  margin-top:18px;
+  padding-top:14px;
+  border-top:1px solid var(--soft-line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  font-size:12px;
+  color:rgba(245,247,250,.46);
+}
+
+.calendar-shell{padding:24px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(160deg,rgba(30,23,18,.88),rgba(18,15,13,.92));box-shadow:var(--shadow);}
+.calendar-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.calendar-nav{display:flex;gap:8px;}
+.calendar-nav button{border:1px solid var(--line);background:rgba(255,255,255,.03);color:#fff;border-radius:10px;padding:8px 10px;font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;cursor:pointer;}
+.calendar-nav button:hover{border-color:var(--line-strong);background:rgba(255,122,24,.12);}
+.calendar-weekdays,.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;}
+.calendar-weekdays div{padding:8px 6px;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--amber);text-transform:uppercase;}
+.calendar-day{border:1px solid var(--soft-line);border-radius:12px;padding:10px 8px;min-height:72px;background:rgba(255,255,255,.02);display:grid;align-content:start;gap:6px;}
+.calendar-day.muted{opacity:.38;}
+.calendar-day strong{font-size:13px;line-height:1;}
+.calendar-day em{font-style:normal;font-size:10px;letter-spacing:1px;color:var(--gold);text-transform:uppercase;}
+.calendar-day.today{border-color:var(--line-strong);box-shadow:0 0 0 1px rgba(255,122,24,.2) inset;}
 
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.42;transform:scale(.72);}}
 
@@ -222,9 +354,15 @@ button,input,select,textarea{font:inherit;}
   body{cursor:auto;}
   .page-shell{width:min(1320px,calc(100% - 24px));padding-top:162px;}
   .topbar{width:min(1320px,calc(100% - 24px));padding:14px 16px 12px;margin:14px 12px 0;}
-  .brand img{height:96px;max-width:82vw;}
+  .brand img{height:104px;max-width:82vw;}
   .navrow{overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap;padding-bottom:2px;}
   .navrow::-webkit-scrollbar{display:none;}
+  .investor-nav{overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap;padding-bottom:2px;}
+  .investor-nav::-webkit-scrollbar{display:none;}
+  .investor-menu{position:fixed;left:12px;right:12px;min-width:unset;}
+  .footer-grid{grid-template-columns:1fr;}
+  .calendar-weekdays,.calendar-grid{gap:6px;}
+  .calendar-day{min-height:66px;}
   .page-hero,.hero-card,.card,.panel,.table-shell,.form-shell,.video-shell,.about-shell,.feature-card,.list-card,.video-home,.creator-cta,.footer-wrap{padding:18px;}
   .page-title,.hero-title{font-size:54px;}
   .page-hero p,.hero-copy,.lead{font-size:15px;}

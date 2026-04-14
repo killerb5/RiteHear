@@ -46,6 +46,87 @@ if (dayButtons.length && dayPanels.length) {
   showDay(dayButtons[0].dataset.day);
 }
 
+const calendarRoot = document.querySelector('[data-calendar]');
+if (calendarRoot) {
+  const titleNode = calendarRoot.querySelector('[data-calendar-title]');
+  const gridNode = calendarRoot.querySelector('[data-calendar-grid]');
+  const prevBtn = calendarRoot.querySelector('[data-calendar-prev]');
+  const nextBtn = calendarRoot.querySelector('[data-calendar-next]');
+  const todayBtn = calendarRoot.querySelector('[data-calendar-today]');
+  const today = new Date();
+  let current = new Date(today.getFullYear(), today.getMonth(), 1);
+
+  const calendarEvents = {
+    '2026-4-8': 'Prime Time',
+    '2026-4-10': 'Live Set',
+    '2026-4-13': 'Creator Q&A',
+    '2026-4-18': 'Unsigned Heat',
+    '2026-4-24': 'Studio Session',
+    '2026-4-29': 'Culture Roundup'
+  };
+
+  function renderCalendar() {
+    if (!titleNode || !gridNode) return;
+    titleNode.textContent = current.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    gridNode.innerHTML = '';
+
+    const year = current.getFullYear();
+    const month = current.getMonth();
+    const firstDayOfWeek = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const prevMonthDays = new Date(year, month, 0).getDate();
+
+    for (let i = firstDayOfWeek - 1; i >= 0; i -= 1) {
+      const date = prevMonthDays - i;
+      const cell = document.createElement('div');
+      cell.className = 'calendar-day muted';
+      cell.innerHTML = `<strong>${date}</strong>`;
+      gridNode.appendChild(cell);
+    }
+
+    for (let day = 1; day <= daysInMonth; day += 1) {
+      const cell = document.createElement('div');
+      const key = `${year}-${month + 1}-${day}`;
+      const isToday = year === today.getFullYear() && month === today.getMonth() && day === today.getDate();
+      cell.className = `calendar-day${isToday ? ' today' : ''}`;
+      cell.innerHTML = `<strong>${day}</strong>${calendarEvents[key] ? `<em>${calendarEvents[key]}</em>` : ''}`;
+      gridNode.appendChild(cell);
+    }
+
+    const used = firstDayOfWeek + daysInMonth;
+    const filler = (7 - (used % 7)) % 7;
+    for (let i = 1; i <= filler; i += 1) {
+      const cell = document.createElement('div');
+      cell.className = 'calendar-day muted';
+      cell.innerHTML = `<strong>${i}</strong>`;
+      gridNode.appendChild(cell);
+    }
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      current = new Date(current.getFullYear(), current.getMonth() - 1, 1);
+      renderCalendar();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      current = new Date(current.getFullYear(), current.getMonth() + 1, 1);
+      renderCalendar();
+    });
+  }
+
+  if (todayBtn) {
+    todayBtn.addEventListener('click', () => {
+      current = new Date(today.getFullYear(), today.getMonth(), 1);
+      renderCalendar();
+    });
+  }
+
+  renderCalendar();
+}
+
 const mediaItems = document.querySelectorAll('[data-media-title]');
 const mediaTitle = document.querySelector('[data-feature-title]');
 const mediaChannel = document.querySelector('[data-feature-channel]');

@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>RiteHear FmXm — Where All Your Music Is Played</title>
-<meta name="description" content="RiteHear FMXM - Live radio, podcasts, music and streaming for the culture.">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RiteHear FmXm - Where All Your Music Is Played</title>
+<meta name="description" content="RiteHear FMXM - Live radio, podcasts, music, and creator streaming.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --orange:#FF7A18;
@@ -19,296 +17,322 @@
   --bg2:#1A0B05;
   --bg3:#221208;
   --white:#F8F8F8;
-  --muted:rgba(248,248,248,.55);
+  --muted:rgba(248,248,248,.58);
   --border:rgba(255,122,24,.18);
 }
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{
   font-family:'Barlow',sans-serif;
-  background:var(--bg);
+  background:radial-gradient(circle at 16% 10%,rgba(255,122,24,.16),transparent 24%),radial-gradient(circle at 84% 8%,rgba(255,179,71,.1),transparent 26%),linear-gradient(180deg,var(--bg),var(--bg2) 56%,var(--bg3));
   color:var(--white);
   overflow-x:hidden;
 }
+a{color:inherit;text-decoration:none;}
 
-/* Desktop custom cursor only */
-@media (min-width:769px){
-  body{cursor:none;}
-  .cursor,.cursor-ring{display:block;}
-}
-@media (max-width:768px){
-  .cursor,.cursor-ring{display:none;}
-}
+.cursor{position:fixed;width:12px;height:12px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--orange);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;}
 
-.cursor{
-  position:fixed;
-  width:12px;
-  height:12px;
-  background:var(--orange);
-  border-radius:50%;
-  pointer-events:none;
-  z-index:9999;
-  transform:translate(-50%,-50%);
-}
-.cursor-ring{
-  position:fixed;
-  width:36px;
-  height:36px;
-  border:1px solid var(--orange);
-  border-radius:50%;
-  pointer-events:none;
-  z-index:9998;
-  transform:translate(-50%,-50%);
-  opacity:.5;
-}
-
-/* NAV */
 nav{
   position:fixed;
-  top:0;
-  left:0;
-  right:0;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1360px,calc(100% - 28px));
   z-index:100;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 28px;
-  background:linear-gradient(180deg,rgba(14,7,3,.95),transparent);
+  border:1px solid var(--border);
+  border-radius:26px;
+  background:linear-gradient(180deg,rgba(16,13,11,.9),rgba(16,13,11,.6));
+  backdrop-filter:blur(20px);
+  box-shadow:0 18px 55px rgba(0,0,0,.35);
+  padding:14px 18px;
 }
-
-.logo{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:30px;
-  letter-spacing:2px;
-  background:linear-gradient(90deg,var(--orange),var(--gold));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.links{
-  display:flex;
-  gap:26px;
-}
-
-.links a{
-  text-decoration:none;
-  color:var(--muted);
-  font-family:'Barlow Condensed',sans-serif;
-  letter-spacing:2px;
-  font-size:14px;
-  text-transform:uppercase;
-}
-
-.links a:hover{
-  color:var(--white);
-}
+.nav-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.nav-home{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.03);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;}
+.investor-nav{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.investor-tab{position:relative;}
+.investor-tab-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.03);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;transition:all .22s ease;}
+.investor-tab-btn::after{content:'▾';font-size:11px;opacity:.72;}
+.investor-tab:hover .investor-tab-btn{background:linear-gradient(135deg,rgba(255,122,24,.2),rgba(255,179,71,.12));border-color:rgba(255,122,24,.34);transform:translateY(-2px);}
+.investor-menu{position:absolute;top:calc(100% + 8px);left:0;min-width:210px;padding:10px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(160deg,rgba(30,23,18,.97),rgba(16,13,11,.97));display:grid;gap:6px;opacity:0;pointer-events:none;transform:translateY(8px);transition:all .2s ease;}
+.investor-tab:hover .investor-menu,.investor-tab:focus-within .investor-menu{opacity:1;pointer-events:auto;transform:translateY(0);}
+.investor-menu a{padding:9px 10px;border-radius:10px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);}
+.investor-menu a:hover{background:rgba(255,122,24,.12);color:var(--white);}
 
 .hero{
+  position:relative;
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:130px 20px 80px;
-  position:relative;
   overflow:hidden;
+  padding:170px 20px 90px;
 }
+#heroCanvas{position:absolute;inset:0;z-index:0;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,122,24,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,122,24,.04) 1px,transparent 1px);background-size:58px 58px;z-index:1;}
+.hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:940px;height:940px;background:radial-gradient(ellipse,rgba(255,122,24,.13) 0%,transparent 72%);z-index:1;}
+.hero-content{position:relative;z-index:2;max-width:1100px;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:7px 18px;border:1px solid var(--border);background:rgba(255,122,24,.1);border-radius:2px;margin-bottom:28px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amber);}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);animation:pulse 1.4s infinite;}
+.hero-logo-wrap{display:flex;justify-content:center;margin:8px 0 24px;}
+.hero-logo{width:min(760px,92vw);height:auto;filter:drop-shadow(0 30px 42px rgba(0,0,0,.5));}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(62px,10vw,128px);line-height:.92;letter-spacing:1px;}
+.hero-h1 .highlight{background:linear-gradient(135deg,var(--orange),var(--gold));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{margin-top:18px;font-family:'Barlow Condensed',sans-serif;font-size:clamp(14px,2vw,18px);font-weight:600;letter-spacing:4px;color:var(--muted);text-transform:uppercase;}
+.hero-divider{width:72px;height:2px;margin:26px auto;background:linear-gradient(90deg,var(--orange),var(--gold));}
+.hero-ctas{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.btn-primary{background:linear-gradient(135deg,var(--orange),#e85f00);}
+.btn-outline{border:1px solid var(--border);background:transparent;}
 
-#heroCanvas{
-  position:absolute;
-  inset:0;
+.section{max-width:1360px;margin:0 auto;padding:80px 20px;}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,82px);line-height:.95;}
+.grad{background:linear-gradient(135deg,var(--orange),var(--gold));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:26px;}
+.card{padding:24px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(150deg,rgba(34,18,8,.95),rgba(20,10,5,.9));}
+.card h3{font-family:'Barlow Condensed',sans-serif;font-size:24px;margin-bottom:8px;}
+.card p{line-height:1.7;color:var(--muted);}
+
+.footer-rich{max-width:1360px;margin:0 auto 34px;padding:26px;border:1px solid var(--border);border-radius:24px;background:linear-gradient(160deg,rgba(30,23,18,.88),rgba(18,15,13,.92));}
+.footer-grid{display:grid;grid-template-columns:1.35fr repeat(3,minmax(0,1fr));gap:20px;}
+.footer-brand-logo{height:74px;width:auto;display:block;filter:drop-shadow(0 14px 20px rgba(0,0,0,.32));margin-bottom:10px;}
+.footer-brand-copy{max-width:330px;color:var(--muted);line-height:1.7;font-size:14px;}
+.footer-col-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
+.footer-col-links{display:grid;gap:7px;}
+.footer-col-links a{color:var(--muted);font-size:14px;}
+.footer-col-links a:hover{color:var(--white);}
+.footer-bottom-row{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,122,24,.12);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:rgba(248,248,248,.44);}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+
+@media (max-width:900px){
+  .footer-grid{grid-template-columns:1fr 1fr;}
 }
-
-.overlay{
-  position:absolute;
-  inset:0;
-  background-image:
-   linear-gradient(rgba(255,122,24,.04) 1px, transparent 1px),
-   linear-gradient(90deg, rgba(255,122,24,.04) 1px, transparent 1px);
-  background-size:60px 60px;
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-  max-width:1100px;
-}
-
-.badge{
-  display:inline-block;
-  border:1px solid var(--border);
-  background:rgba(255,122,24,.08);
-  padding:8px 18px;
-  letter-spacing:3px;
-  font-size:12px;
-  text-transform:uppercase;
-  margin-bottom:28px;
-}
-
-.hero h1{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(60px,11vw,160px);
-  line-height:.9;
-}
-
-.hero .accent{
-  background:linear-gradient(135deg,var(--orange),var(--gold));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.sub{
-  margin-top:20px;
-  color:var(--muted);
-  letter-spacing:4px;
-  text-transform:uppercase;
-  font-family:'Barlow Condensed',sans-serif;
-}
-
-.divider{
-  width:70px;
-  height:2px;
-  margin:28px auto;
-  background:linear-gradient(90deg,var(--orange),var(--gold));
-}
-
-.cta{
-  display:flex;
-  gap:14px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.btn{
-  padding:14px 24px;
-  border-radius:4px;
-  text-decoration:none;
-  font-family:'Barlow Condensed',sans-serif;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  font-weight:700;
-}
-
-.primary{
-  background:linear-gradient(135deg,var(--orange),#e85f00);
-  color:#fff;
-}
-
-.outline{
-  border:1px solid var(--border);
-  color:#fff;
-}
-
-.now-playing{
-  position:absolute;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(26,11,5,.9);
-  border:1px solid var(--border);
-  padding:14px 20px;
-  border-radius:8px;
-  min-width:320px;
-  z-index:2;
-}
-
-section{
-  max-width:1300px;
-  margin:auto;
-  padding:90px 20px;
-}
-
-.title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(40px,7vw,72px);
-  margin-bottom:20px;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-
-.card{
-  background:var(--bg3);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:24px;
-}
-
-.card h3{
-  font-size:24px;
-  margin-bottom:8px;
-}
-
-footer{
-  border-top:1px solid var(--border);
-  text-align:center;
-  padding:40px 20px;
-  color:var(--muted);
-}
-
-@media(max-width:768px){
-  .links{display:none;}
-  .hero h1{font-size:clamp(48px,16vw,90px);}
-  .now-playing{
-    width:calc(100% - 30px);
-    min-width:auto;
-  }
+@media (max-width:768px){
+  .cursor,.cursor-ring{display:none;}
+  nav{top:12px;width:calc(100% - 20px);padding:12px 12px;}
+  .nav-row{gap:8px;}
+  .investor-nav{overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;scrollbar-width:none;}
+  .investor-nav::-webkit-scrollbar{display:none;}
+  .investor-menu{position:fixed;left:10px;right:10px;min-width:unset;}
+  .hero{padding-top:154px;}
+  .hero-logo{width:min(660px,96vw);}
+  .hero-h1{font-size:clamp(48px,14vw,84px);}
+  .btn{width:100%;}
+  .footer-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
-
 <body>
-
 <div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="ring"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
 <nav>
-  <div class="logo">RiteHear FmXm</div>
-  <div class="links">
-    <a href="#">Radio</a>
-    <a href="#">Podcasts</a>
-    <a href="#">Music</a>
-    <a href="#">Live</a>
-    <a href="#">Creators</a>
+  <div class="nav-row">
+    <a class="nav-home" href="index.html">Home</a>
+    <div class="investor-nav">
+      <div class="investor-tab">
+        <a class="investor-tab-btn" href="pages/listen/live-radio.html">Listen</a>
+        <div class="investor-menu">
+          <a href="pages/listen/live-radio.html">Live Radio</a>
+          <a href="pages/listen/podcasts.html">Podcasts</a>
+          <a href="pages/listen/music.html">Music</a>
+          <a href="pages/listen/playlists.html">Playlists</a>
+          <a href="pages/listen/explore.html">Explore</a>
+          <a href="pages/listen/schedule.html">Schedule</a>
+        </div>
+      </div>
+      <div class="investor-tab">
+        <a class="investor-tab-btn" href="pages/create/create-account.html">Create</a>
+        <div class="investor-menu">
+          <a href="pages/create/create-account.html">Create Account</a>
+          <a href="pages/create/upload-music.html">Upload Music</a>
+          <a href="pages/create/start-podcast.html">Start Podcast</a>
+          <a href="pages/create/go-live.html">Go Live</a>
+          <a href="pages/create/dashboard.html">Dashboard</a>
+        </div>
+      </div>
+      <div class="investor-tab">
+        <a class="investor-tab-btn" href="pages/company/about.html">Company</a>
+        <div class="investor-menu">
+          <a href="pages/company/about.html">About</a>
+          <a href="pages/company/advertise.html">Advertise</a>
+          <a href="pages/company/contact.html">Contact</a>
+          <a href="pages/company/privacy.html">Privacy</a>
+        </div>
+      </div>
+    </div>
   </div>
 </nav>
 
-<section class="hero">
-<canvas id="heroCanvas"></canvas>
-<div class="overlay"></div>
-
-<div class="hero-content">
-<div class="badge">Broadcasting Live Now</div>
-
-<h1>
-Where All<br>
-Your <span class="accent">Music</span><br>
-Is Played
-</h1>
-
-<div class="sub">Live Radio • Podcasts • Music • Video • Streaming</div>
-<div class="divider"></div>
-
-<div class="cta">
-<a href="#" class="btn primary">Listen Live</a>
-<a href="#" class="btn outline">Upload Content</a>
-<a href="#" class="btn outline">Watch Live</a>
-</div>
-</div>
-
-<div class="now-playing">
-Now Playing — Late Night Frequencies • DJ Rite
-</div>
+<section class="hero" id="home">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="live-dot"></span>Broadcasting Live Now</div>
+    <div class="hero-logo-wrap reveal">
+      <img class="hero-logo" src="4020E2B9-4CDE-4648-9AA0-27DB0AA2CE6D (2).png" alt="RiteHear logo">
+    </div>
+    <h1 class="hero-h1 reveal">Where All Your <span class="highlight">Music</span> Is Played</h1>
+    <p class="hero-sub reveal">Live Radio • Podcasts • Music • Video • Streaming</p>
+    <div class="hero-divider reveal"></div>
+    <div class="hero-ctas reveal">
+      <a href="pages/listen/live-radio.html" class="btn btn-primary">Listen Live</a>
+      <a href="pages/create/upload-music.html" class="btn btn-outline">Upload Content</a>
+      <a href="pages/listen/explore.html" class="btn btn-outline">Explore</a>
+    </div>
+  </div>
 </section>
+
+<section class="section reveal">
+  <div class="section-label">Platform</div>
+  <div class="section-title">Original Energy, <span class="grad">Modern Delivery</span></div>
+  <div class="grid">
+    <article class="card">
+      <h3>Live Radio</h3>
+      <p>Daily programming, host-led sessions, and around-the-clock broadcast lanes for culture-forward content.</p>
+    </article>
+    <article class="card">
+      <h3>Podcasts</h3>
+      <p>Record, publish, and distribute with a clean creator flow while keeping your audience and analytics in one place.</p>
+    </article>
+    <article class="card">
+      <h3>Music</h3>
+      <p>Release tracks and connect listeners with editorial playlists and station placement without unnecessary complexity.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-label">Schedule</div>
+  <div class="section-title">Keep Up With <span class="grad">What Is On Air</span></div>
+  <div class="grid">
+    <article class="card">
+      <h3>Morning Culture</h3>
+      <p>News, curated rotation, and live host segments to start the day with the right tone.</p>
+    </article>
+    <article class="card">
+      <h3>Midday Heat</h3>
+      <p>Real-time requests, trending records, and spotlight drops from independent artists.</p>
+    </article>
+    <article class="card">
+      <h3>Prime Time</h3>
+      <p>Interviews, major mixes, and event-led programming built for your evening audience.</p>
+    </article>
+  </div>
+</section>
+
+<footer class="footer-rich reveal">
+  <div class="footer-grid">
+    <div>
+      <img class="footer-brand-logo" src="4020E2B9-4CDE-4648-9AA0-27DB0AA2CE6D (2).png" alt="RiteHear logo">
+      <p class="footer-brand-copy">RiteHear FmXm is the culture-first audio network for live radio, podcast distribution, music release pipelines, and creator broadcasting.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Listen</div>
+      <div class="footer-col-links">
+        <a href="pages/listen/live-radio.html">Live Radio</a>
+        <a href="pages/listen/podcasts.html">Podcasts</a>
+        <a href="pages/listen/music.html">Music</a>
+        <a href="pages/listen/schedule.html">Schedule</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Create</div>
+      <div class="footer-col-links">
+        <a href="pages/create/create-account.html">Create Account</a>
+        <a href="pages/create/upload-music.html">Upload Music</a>
+        <a href="pages/create/start-podcast.html">Start Podcast</a>
+        <a href="pages/create/go-live.html">Go Live</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-col-links">
+        <a href="pages/company/about.html">About</a>
+        <a href="pages/company/advertise.html">Advertise</a>
+        <a href="pages/company/contact.html">Contact</a>
+        <a href="pages/company/privacy.html">Privacy</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom-row">
+    <span>© 2026 RiteHear FmXm. All rights reserved.</span>
+    <span>Built for the culture.</span>
+  </div>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0;
+let my = 0;
+let rx = 0;
+let ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX;
+  my = e.clientY;
+});
+function animateCursor(){
+  if (!cursor || !ring || window.innerWidth < 769) return;
+  cursor.style.left = `${mx}px`;
+  cursor.style.top = `${my}px`;
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = `${rx}px`;
+  ring.style.top = `${ry}px`;
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const particles = Array.from({ length: 64 }, () => ({
+  x: Math.random() * window.innerWidth,
+  y: Math.random() * window.innerHeight,
+  vx: (Math.random() - 0.5) * 0.34,
+  vy: (Math.random() - 0.5) * 0.34,
+  r: Math.random() * 1.6 + 0.5
+}));
+
+function draw(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,122,24,.28)';
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+reveals.forEach(node => observer.observe(node));
+</script>
+<script src="shared-ui.js"></script>
+</body>
+</html>
