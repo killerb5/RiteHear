@@ -62,6 +62,9 @@
     const topbar = document.querySelector('.topbar');
     if (!navContainer || !topbar) return;
 
+    const legacyBrand = topbar.querySelector('.brand');
+    if (legacyBrand) legacyBrand.remove();
+
     const prefix = rootPrefixForPage();
     const items = navData(prefix);
     const currentPath = window.location.pathname;
