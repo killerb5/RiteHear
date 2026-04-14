@@ -12,6 +12,10 @@
   function navData(prefix) {
     return [
       {
+        label: 'Home',
+        links: [{ href: `${prefix}index.html`, label: 'Home' }]
+      },
+      {
         label: 'Listen',
         links: [
           { href: `${prefix}pages/listen/live-radio.html`, label: 'Live Radio' },
@@ -40,10 +44,6 @@
           { href: `${prefix}pages/company/contact.html`, label: 'Contact' },
           { href: `${prefix}pages/company/privacy.html`, label: 'Privacy' }
         ]
-      },
-      {
-        label: 'Home',
-        links: [{ href: `${prefix}index.html`, label: 'Home' }]
       }
     ];
   }
@@ -90,7 +90,7 @@
       const tabIsActive = allLinks.some(linkPath => currentPath.endsWith(linkPath));
 
       const button = document.createElement('a');
-      button.className = `investor-tab-btn${tabIsActive ? ' active' : ''}${group.links.length === 1 ? ' no-caret' : ''}`;
+      button.className = `investor-tab-btn${tabIsActive ? ' active' : ''}${group.label === 'Home' ? ' no-caret' : ''}`;
       button.href = group.links[0].href;
       button.textContent = group.label;
       tab.appendChild(button);
