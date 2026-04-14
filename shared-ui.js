@@ -76,12 +76,6 @@
     const rightCol = document.createElement('div');
     rightCol.className = 'investor-col';
 
-    const centerBrand = document.createElement('a');
-    centerBrand.className = 'company-brand';
-    centerBrand.href = `${prefix}index.html`;
-    centerBrand.setAttribute('aria-label', 'RiteHear home');
-    centerBrand.innerHTML = `<img src="${prefix}4020E2B9-4CDE-4648-9AA0-27DB0AA2CE6D (2).png" alt="RiteHear logo">`;
-
     items.forEach((group, index) => {
       const tab = document.createElement('div');
       tab.className = 'investor-tab';
@@ -116,7 +110,7 @@
       }
     });
 
-    nav.append(leftCol, centerBrand, rightCol);
+    nav.append(leftCol, rightCol);
     navContainer.replaceWith(nav);
 
     const tabs = nav.querySelectorAll('.investor-tab');
@@ -289,9 +283,15 @@
 
   const style = document.createElement('style');
   style.textContent = `
-    .session-ui{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;}
+    .session-strip{display:flex;justify-content:flex-end;align-items:center;margin:8px 0 2px;}
+    .session-ui{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;padding:6px 10px;border:1px solid rgba(255,122,24,.18);border-radius:999px;background:rgba(14,11,9,.72);backdrop-filter:blur(8px);}
     .session-pill{border:1px solid rgba(255,122,24,.25);background:rgba(255,122,24,.12);color:#fff;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;}
     .session-signout{border:1px solid rgba(255,122,24,.25);background:transparent;color:rgba(245,247,250,.75);border-radius:999px;padding:8px 11px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;}
+    .session-signout:hover{border-color:rgba(255,122,24,.42);background:rgba(255,122,24,.1);color:#fff;}
+    @media (max-width:760px){
+      .session-strip{justify-content:center;margin:6px 0 4px;}
+      .session-ui{width:100%;justify-content:center;}
+    }
   `;
   document.head.appendChild(style);
 
@@ -308,15 +308,25 @@
   mountAccountModal();
   markLimitedFeatures();
 
-  const navContainer = document.querySelector('.investor-nav') || document.querySelector('.navrow') || document.querySelector('.nav-tabs');
-  if (navContainer && hasAccount && profile && profile.name) {
+  const pageShell = document.querySelector('.page-shell');
+  const topbar = document.querySelector('.topbar');
+  if ((pageShell || topbar) && hasAccount && profile && profile.name) {
+    const strip = document.createElement('div');
+    strip.className = 'session-strip';
+
     const ui = document.createElement('div');
     ui.className = 'session-ui';
     ui.innerHTML = `
       <span class="session-pill">Signed in as ${profile.name}</span>
       <button class="session-signout" type="button">Sign Out</button>
     `;
-    navContainer.appendChild(ui);
+    strip.appendChild(ui);
+
+    if (pageShell) {
+      pageShell.prepend(strip);
+    } else if (topbar && topbar.parentElement) {
+      topbar.insertAdjacentElement('afterend', strip);
+    }
 
     const signOutBtn = ui.querySelector('.session-signout');
     signOutBtn.addEventListener('click', () => {
