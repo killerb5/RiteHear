@@ -66,8 +66,15 @@ nav{
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,122,24,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,122,24,.04) 1px,transparent 1px);background-size:58px 58px;z-index:1;}
 .hero-glow{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);width:960px;height:960px;background:radial-gradient(ellipse,rgba(255,122,24,.14) 0%,transparent 72%);z-index:1;}
 .hero-content{position:relative;z-index:2;max-width:1100px;}
+.logo-ambient{position:absolute;left:50%;top:34px;transform:translateX(-50%);width:min(900px,95vw);height:420px;pointer-events:none;z-index:1;}
+.ambient-orb{position:absolute;border-radius:50%;filter:blur(2px);}
+.ambient-orb.one{width:380px;height:380px;left:8%;top:10%;background:radial-gradient(circle,rgba(255,122,24,.26) 0%,rgba(255,122,24,.08) 42%,transparent 72%);animation:orbDriftA 9s ease-in-out infinite;}
+.ambient-orb.two{width:460px;height:460px;right:6%;top:-2%;background:radial-gradient(circle,rgba(255,179,71,.22) 0%,rgba(255,179,71,.06) 44%,transparent 72%);animation:orbDriftB 11s ease-in-out infinite;}
+.ambient-ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:260px;height:260px;border:1px solid rgba(255,179,71,.28);border-radius:50%;animation:ringPulse 4.8s ease-out infinite;}
+.ambient-ring.r2{animation-delay:1.6s;}
+.ambient-ring.r3{animation-delay:3.2s;}
 .hero-logo-wrap{display:flex;justify-content:center;margin:0 0 0;}
-.hero-logo{width:min(700px,88vw);height:auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.5));}
+.hero-logo{width:min(700px,88vw);height:auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.5));animation:logoFloat 5.6s ease-in-out infinite,logoGlow 3.6s ease-in-out infinite;transform-origin:center;}
 .hero-quote{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,3.7vw,44px);font-weight:400;letter-spacing:1px;color:var(--muted);text-transform:none;margin-top:-6px;margin-bottom:12px;line-height:1;}
 .hero-ctas{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;}
@@ -84,6 +91,11 @@ nav{
 .eq-bars{display:flex;align-items:flex-end;gap:3px;height:18px;}
 .eq-bar{width:3px;background:var(--orange);border-radius:2px;animation:eq-bounce var(--d,.7s) var(--delay,0s) infinite alternate ease-in-out;}
 @keyframes eq-bounce{from{height:4px;}to{height:var(--h,16px);}}
+@keyframes logoFloat{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-12px) scale(1.015);}}
+@keyframes logoGlow{0%,100%{filter:drop-shadow(0 24px 30px rgba(0,0,0,.46));}50%{filter:drop-shadow(0 34px 42px rgba(255,122,24,.28));}}
+@keyframes orbDriftA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(26px,-16px) scale(1.08);}}
+@keyframes orbDriftB{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-22px,18px) scale(1.06);}}
+@keyframes ringPulse{0%{transform:translate(-50%,-50%) scale(.72);opacity:.34;}80%{opacity:.06;}100%{transform:translate(-50%,-50%) scale(2.35);opacity:0;}}
 
 section{max-width:1360px;margin:0 auto;padding:68px 20px;}
 .section-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
@@ -161,6 +173,10 @@ section{max-width:1360px;margin:0 auto;padding:68px 20px;}
   .tab-btn{font-size:10px;padding:7px 8px;}
   .tab-menu{left:0;right:0;min-width:unset;}
   .hero{min-height:70vh;padding:84px 12px 30px;}
+  .logo-ambient{top:18px;height:340px;}
+  .ambient-orb.one{width:280px;height:280px;left:0;top:22%;}
+  .ambient-orb.two{width:320px;height:320px;right:-2%;top:8%;}
+  .ambient-ring{width:180px;height:180px;}
   .hero-logo{width:min(560px,95vw);}
   .hero-quote{font-size:30px;letter-spacing:.6px;margin-top:-4px;margin-bottom:10px;}
   .hero-ctas{gap:8px;}
@@ -233,6 +249,13 @@ section{max-width:1360px;margin:0 auto;padding:68px 20px;}
   <canvas id="heroCanvas"></canvas>
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
+  <div class="logo-ambient" aria-hidden="true">
+    <div class="ambient-orb one"></div>
+    <div class="ambient-orb two"></div>
+    <div class="ambient-ring"></div>
+    <div class="ambient-ring r2"></div>
+    <div class="ambient-ring r3"></div>
+  </div>
   <div class="hero-content">
     <div class="hero-logo-wrap reveal">
       <img class="hero-logo" src="4020E2B9-4CDE-4648-9AA0-27DB0AA2CE6D (2).png" alt="RiteHear logo">
