@@ -83,6 +83,7 @@
       if (group.links.length > 1) {
         const menu = document.createElement('div');
         menu.className = 'investor-menu';
+        button.dataset.dropdownTrigger = '1';
         group.links.forEach(link => {
           const a = document.createElement('a');
           a.href = link.href;
@@ -97,6 +98,33 @@
     });
 
     navContainer.replaceWith(nav);
+
+    const tabs = nav.querySelectorAll('.investor-tab');
+    tabs.forEach(tab => {
+      let closeTimer = null;
+      tab.addEventListener('mouseenter', () => {
+        if (closeTimer) window.clearTimeout(closeTimer);
+        tab.classList.add('open');
+      });
+      tab.addEventListener('mouseleave', () => {
+        closeTimer = window.setTimeout(() => tab.classList.remove('open'), 260);
+      });
+
+      const trigger = tab.querySelector('[data-dropdown-trigger="1"]');
+      if (!trigger) return;
+      trigger.addEventListener('click', event => {
+        if (window.innerWidth <= 760) {
+          event.preventDefault();
+          tab.classList.toggle('open');
+        }
+      });
+    });
+
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.investor-tab')) {
+        nav.querySelectorAll('.investor-tab.open').forEach(tab => tab.classList.remove('open'));
+      }
+    });
   }
 
   function mountRichFooter() {
