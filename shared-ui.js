@@ -59,15 +59,27 @@
   function mountInvestorNav() {
     if (isHome) return;
     const navContainer = document.querySelector('.navrow');
-    if (!navContainer) return;
+    const topbar = document.querySelector('.topbar');
+    if (!navContainer || !topbar) return;
 
     const prefix = rootPrefixForPage();
     const items = navData(prefix);
     const currentPath = window.location.pathname;
     const nav = document.createElement('div');
-    nav.className = 'investor-nav';
+    nav.className = 'investor-nav company-nav';
 
-    items.forEach(group => {
+    const leftCol = document.createElement('div');
+    leftCol.className = 'investor-col';
+    const rightCol = document.createElement('div');
+    rightCol.className = 'investor-col';
+
+    const centerBrand = document.createElement('a');
+    centerBrand.className = 'company-brand';
+    centerBrand.href = `${prefix}index.html`;
+    centerBrand.setAttribute('aria-label', 'RiteHear home');
+    centerBrand.innerHTML = `<img src="${prefix}4020E2B9-4CDE-4648-9AA0-27DB0AA2CE6D (2).png" alt="RiteHear logo">`;
+
+    items.forEach((group, index) => {
       const tab = document.createElement('div');
       tab.className = 'investor-tab';
 
@@ -94,9 +106,14 @@
         tab.appendChild(menu);
       }
 
-      nav.appendChild(tab);
+      if (index < 2) {
+        leftCol.appendChild(tab);
+      } else {
+        rightCol.appendChild(tab);
+      }
     });
 
+    nav.append(leftCol, centerBrand, rightCol);
     navContainer.replaceWith(nav);
 
     const tabs = nav.querySelectorAll('.investor-tab');
@@ -125,6 +142,54 @@
         nav.querySelectorAll('.investor-tab.open').forEach(tab => tab.classList.remove('open'));
       }
     });
+  }
+
+  function mountAccountModal() {
+    if (isHome) return;
+    const prefix = rootPrefixForPage();
+    if (document.getElementById('accountGateModal')) return;
+    const modal = document.createElement('div');
+    modal.id = 'accountGateModal';
+    modal.className = 'account-modal';
+    modal.innerHTML = `
+      <div class="account-modal-card">
+        <h3>Create Account Required</h3>
+        <p>This feature is available after you create an account. Create your account to unlock uploads, dashboard tools, and creator actions.</p>
+        <div class="account-modal-actions">
+          <a class="btn btn-primary" href="${prefix}pages/create/create-account.html">Create Account</a>
+          <button class="btn btn-secondary" type="button" data-close-gate>Not Now</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', event => {
+      if (event.target === modal || event.target.closest('[data-close-gate]')) {
+        modal.classList.remove('show');
+      }
+    });
+  }
+
+  function showAccountModal() {
+    const modal = document.getElementById('accountGateModal');
+    if (modal) modal.classList.add('show');
+  }
+
+  function isLimitedHref(href) {
+    return /\/pages\/create\/(upload-music|start-podcast|go-live|dashboard)\.html$/i.test(href)
+      || /\/pages\/listen\/explore\.html$/i.test(href);
+  }
+
+  function markLimitedFeatures() {
+    if (isHome) return;
+    document.querySelectorAll('a[href]').forEach(link => {
+      const fullPath = normalizeHref(link.getAttribute('href'));
+      if (isLimitedHref(fullPath)) {
+        link.setAttribute('data-requires-account', 'true');
+      }
+    });
+
+    const uploadForm = document.getElementById('uploadForm');
+    if (uploadForm) uploadForm.setAttribute('data-requires-account', 'true');
   }
 
   function mountRichFooter() {
@@ -237,6 +302,8 @@
 
   mountInvestorNav();
   mountRichFooter();
+  mountAccountModal();
+  markLimitedFeatures();
 
   const navContainer = document.querySelector('.investor-nav') || document.querySelector('.navrow') || document.querySelector('.nav-tabs');
   if (navContainer && hasAccount && profile && profile.name) {
@@ -261,6 +328,7 @@
   });
 
   document.addEventListener('click', event => {
+    const accountEnabled = localStorage.getItem('ritehear_has_account') === '1';
     const link = event.target.closest('a');
     if (!link) return;
     const href = link.getAttribute('href') || '';
@@ -268,10 +336,28 @@
     const isExternal = link.target === '_blank' || /^https?:/i.test(href) || href.startsWith('mailto:') || href.startsWith('tel:');
     if (isHash || isExternal || href === '') return;
 
+    const linkPath = normalizeHref(href);
+    const requires = link.matches('[data-requires-account]') || isLimitedHref(linkPath);
+    if (!accountEnabled && requires) {
+      event.preventDefault();
+      showAccountModal();
+      return;
+    }
+
     event.preventDefault();
     body.classList.add('page-leave');
     window.setTimeout(() => {
       window.location.href = href;
     }, 200);
+  });
+
+  document.addEventListener('submit', event => {
+    const accountEnabled = localStorage.getItem('ritehear_has_account') === '1';
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement)) return;
+    if (!form.matches('[data-requires-account]')) return;
+    if (accountEnabled) return;
+    event.preventDefault();
+    showAccountModal();
   });
 })();

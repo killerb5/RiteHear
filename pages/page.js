@@ -181,9 +181,24 @@ if (accountForm) {
   const output = document.getElementById('accountResult');
   accountForm.addEventListener('submit', event => {
     event.preventDefault();
+    const formData = new FormData(accountForm);
+    const first = String(formData.get('first') || '').trim();
+    const last = String(formData.get('last') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const role = String(formData.get('role') || 'Listener').trim();
+    const name = `${first} ${last}`.trim();
+
+    localStorage.setItem('ritehear_profile', JSON.stringify({
+      name: name || 'RiteHear User',
+      email,
+      role
+    }));
     localStorage.setItem('ritehear_has_account', '1');
-    output.innerHTML = '<strong>Account created.</strong><br>Your creator access is now enabled. You can upload and interact with Explore content.';
+    output.innerHTML = `<strong>Account created.</strong><br>Welcome ${name || 'to RiteHear'}. Your creator access is now enabled.`;
     output.classList.add('show');
+    window.setTimeout(() => {
+      window.location.href = '../create/dashboard.html';
+    }, 900);
   });
 }
 
