@@ -58,19 +58,29 @@ nav{
 .tab-menu a{display:block;padding:9px 10px;border-radius:8px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;}
 .tab-menu a:hover{background:rgba(255,122,24,.12);color:var(--white);}
 
-.hero{position:relative;min-height:88vh;display:flex;align-items:flex-start;justify-content:center;text-align:center;padding:112px 20px 64px;overflow:hidden;}
+.hero{position:relative;min-height:78vh;display:flex;align-items:flex-start;justify-content:center;text-align:center;padding:88px 20px 40px;overflow:hidden;}
 #heroCanvas{position:absolute;inset:0;z-index:0;}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,122,24,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,122,24,.04) 1px,transparent 1px);background-size:58px 58px;z-index:1;}
 .hero-glow{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);width:960px;height:960px;background:radial-gradient(ellipse,rgba(255,122,24,.14) 0%,transparent 72%);z-index:1;}
 .hero-content{position:relative;z-index:2;max-width:1100px;}
-.hero-logo-wrap{display:flex;justify-content:center;margin:0 0 10px;}
-.hero-logo{width:min(840px,95vw);height:auto;filter:drop-shadow(0 34px 46px rgba(0,0,0,.52));}
-.hero-quote{font-family:'Barlow Condensed',sans-serif;font-size:clamp(13px,1.3vw,16px);font-weight:600;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:20px;}
+.hero-logo-wrap{display:flex;justify-content:center;margin:0 0 6px;}
+.hero-logo{width:min(700px,88vw);height:auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.5));}
+.hero-quote{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,3.7vw,44px);font-weight:400;letter-spacing:1px;color:var(--muted);text-transform:none;margin-bottom:14px;line-height:1;}
 .hero-ctas{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;}
 .btn-primary{background:linear-gradient(135deg,var(--orange),#e85f00);}
 .btn-outline{border:1px solid var(--border);background:transparent;}
-.now-playing{margin-top:18px;display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border:1px solid var(--border);border-radius:8px;background:rgba(26,11,5,.88);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted);}
+.now-playing{margin-top:16px;display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:rgba(26,11,5,.9);width:min(560px,92vw);margin-left:auto;margin-right:auto;text-align:left;}
+.np-art{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--orange),#7a2900);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.np-info{min-width:0;flex:1;}
+.np-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--orange);margin-bottom:2px;}
+.np-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.np-artist{font-size:12px;color:var(--muted);}
+.np-controls{display:flex;align-items:center;gap:9px;}
+.np-play{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:rgba(255,122,24,.16);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;}
+.eq-bars{display:flex;align-items:flex-end;gap:3px;height:18px;}
+.eq-bar{width:3px;background:var(--orange);border-radius:2px;animation:eq-bounce var(--d,.7s) var(--delay,0s) infinite alternate ease-in-out;}
+@keyframes eq-bounce{from{height:4px;}to{height:var(--h,16px);}}
 
 section{max-width:1360px;margin:0 auto;padding:68px 20px;}
 .section-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
@@ -145,11 +155,16 @@ section{max-width:1360px;margin:0 auto;padding:68px 20px;}
   .nav-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
   .tab-btn{font-size:10px;padding:7px 8px;}
   .tab-menu{left:0;right:0;min-width:unset;}
-  .hero{min-height:72vh;padding:94px 12px 44px;}
-  .hero-logo{width:min(640px,97vw);}
-  .hero-quote{font-size:11px;letter-spacing:1.5px;margin-bottom:14px;}
+  .hero{min-height:70vh;padding:84px 12px 30px;}
+  .hero-logo{width:min(560px,95vw);}
+  .hero-quote{font-size:30px;letter-spacing:.6px;margin-bottom:10px;}
   .hero-ctas{gap:8px;}
   .btn{padding:10px 12px;font-size:11px;letter-spacing:1.4px;}
+  .now-playing{width:min(500px,95vw);padding:10px 12px;gap:10px;}
+  .np-art{width:38px;height:38px;font-size:15px;}
+  .np-title{font-size:14px;}
+  .np-artist{font-size:11px;}
+  .np-play{width:30px;height:30px;font-size:11px;}
   section{padding:52px 12px;}
   .section-title{font-size:44px;}
   .station-name{font-size:52px;}
@@ -216,7 +231,23 @@ section{max-width:1360px;margin:0 auto;padding:68px 20px;}
       <a href="pages/create/upload-music.html" class="btn btn-outline">Upload Content</a>
       <a href="pages/listen/explore.html" class="btn btn-outline">Explore</a>
     </div>
-    <div class="now-playing reveal">Now Playing: Late Night Frequencies - DJ Rite</div>
+    <div class="now-playing reveal">
+      <div class="np-art">♫</div>
+      <div class="np-info">
+        <div class="np-label">Now Playing</div>
+        <div class="np-title">Late Night Frequencies</div>
+        <div class="np-artist">DJ Rite - RiteHear FM</div>
+      </div>
+      <div class="np-controls">
+        <div class="eq-bars">
+          <div class="eq-bar" style="--d:.55s;--delay:0s;--h:16px"></div>
+          <div class="eq-bar" style="--d:.82s;--delay:.08s;--h:12px"></div>
+          <div class="eq-bar" style="--d:.62s;--delay:.15s;--h:18px"></div>
+          <div class="eq-bar" style="--d:.74s;--delay:.05s;--h:10px"></div>
+        </div>
+        <div class="np-play">▶</div>
+      </div>
+    </div>
   </div>
 </section>
 

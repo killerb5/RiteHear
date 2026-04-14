@@ -185,6 +185,20 @@ button,input,select,textarea{font:inherit;}
 }
 .page-hero:hover,.card:hover,.panel:hover,.table-shell:hover,.form-shell:hover,.video-shell:hover,.about-shell:hover,.hero-card:hover,.feature-card:hover,.list-card:hover,.video-home:hover,.creator-cta:hover,.footer-wrap:hover{border-color:var(--line-strong);background:rgba(27,20,15,.72);}
 .page-hero,.hero-card{padding:34px;position:relative;overflow:hidden;}
+.page-hero{
+  border:none;
+  background:transparent;
+  box-shadow:none;
+  padding:0;
+  overflow:visible;
+}
+.page-hero:hover{
+  border:none;
+  background:transparent;
+  box-shadow:none;
+}
+.page-hero .kicker{margin-bottom:10px;}
+.page-hero .page-title{margin-bottom:10px;}
 .kicker{
   display:inline-flex;align-items:center;gap:8px;
   padding:7px 12px;border-radius:999px;border:1px solid var(--line);
@@ -352,6 +366,7 @@ button,input,select,textarea{font:inherit;}
   .calendar-weekdays,.calendar-grid{gap:6px;}
   .calendar-day{min-height:66px;}
   .page-hero,.hero-card,.card,.panel,.table-shell,.form-shell,.video-shell,.about-shell,.feature-card,.list-card,.video-home,.creator-cta,.footer-wrap{padding:14px;}
+  .page-hero{padding:0;}
   .page-title,.hero-title{font-size:42px;}
   .page-hero p,.hero-copy,.lead{font-size:15px;}
   .btn{width:auto;}
