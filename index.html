@@ -35,7 +35,7 @@ a{text-decoration:none;color:inherit;}
 
 nav{
   position:fixed;
-  top:10px;
+  top:8px;
   left:50%;
   transform:translateX(-50%);
   width:min(1360px,calc(100% - 20px));
@@ -44,24 +44,24 @@ nav{
   border-radius:12px;
   background:linear-gradient(180deg,rgba(16,13,11,.94),rgba(16,13,11,.84));
   backdrop-filter:blur(18px);
-  box-shadow:0 12px 26px rgba(0,0,0,.3);
-  padding:8px;
+  box-shadow:0 10px 22px rgba(0,0,0,.28);
+  padding:6px 8px;
 }
-.nav-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;}
-.nav-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
-.top-center-brand{display:inline-flex;align-items:center;justify-content:center;padding:2px 8px;}
-.top-center-brand img{height:96px;width:auto;max-width:min(320px,30vw);filter:drop-shadow(0 14px 20px rgba(0,0,0,.34));}
+.investor-nav.company-nav{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;width:100%;}
+.investor-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+.company-brand{display:inline-flex;align-items:center;justify-content:center;padding:1px 6px;}
+.company-brand img{height:74px;width:auto;max-width:min(280px,26vw);filter:drop-shadow(0 10px 14px rgba(0,0,0,.3));}
 .investor-tab{position:relative;padding-bottom:8px;margin-bottom:-8px;}
-.tab-btn{display:flex;justify-content:center;align-items:center;gap:8px;width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:rgba(255,255,255,.02);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;transition:all .2s ease;}
-.tab-btn::after{content:'▾';font-size:11px;opacity:.7;}
-.tab-btn.no-caret::after{display:none;}
-.investor-tab:hover .tab-btn,.investor-tab.open .tab-btn{background:linear-gradient(135deg,rgba(255,122,24,.22),rgba(255,179,71,.14));border-color:rgba(255,122,24,.35);}
-.tab-menu{position:absolute;top:calc(100% - 1px);left:0;right:0;min-width:220px;padding:8px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(160deg,rgba(30,23,18,.98),rgba(16,13,11,.98));display:grid;gap:6px;box-shadow:0 14px 28px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translateY(8px);transition:all .2s ease;z-index:40;}
-.investor-tab:hover .tab-menu,.investor-tab.open .tab-menu{opacity:1;pointer-events:auto;transform:translateY(0);}
-.tab-menu a{display:block;padding:9px 10px;border-radius:8px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;}
-.tab-menu a:hover{background:rgba(255,122,24,.12);color:var(--white);}
+.investor-tab-btn{display:flex;justify-content:center;align-items:center;gap:8px;width:100%;padding:7px 9px;border:1px solid var(--border);border-radius:9px;background:rgba(255,255,255,.02);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;transition:all .2s ease;}
+.investor-tab-btn::after{content:'▾';font-size:11px;opacity:.7;}
+.investor-tab-btn.no-caret::after{display:none;}
+.investor-tab:hover .investor-tab-btn,.investor-tab.open .investor-tab-btn{background:linear-gradient(135deg,rgba(255,122,24,.22),rgba(255,179,71,.14));border-color:rgba(255,122,24,.35);}
+.investor-menu{position:absolute;top:calc(100% - 1px);left:0;right:0;min-width:220px;padding:8px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(160deg,rgba(30,23,18,.98),rgba(16,13,11,.98));display:grid;gap:6px;box-shadow:0 14px 28px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translateY(8px);transition:all .2s ease;z-index:40;}
+.investor-tab:hover .investor-menu,.investor-tab.open .investor-menu{opacity:1;pointer-events:auto;transform:translateY(0);}
+.investor-menu a{display:block;padding:9px 10px;border-radius:8px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;}
+.investor-menu a:hover{background:rgba(255,122,24,.12);color:var(--white);}
 
-.hero{position:relative;min-height:78vh;display:flex;align-items:flex-start;justify-content:center;text-align:center;padding:88px 20px 40px;overflow:hidden;}
+.hero{position:relative;min-height:78vh;display:flex;align-items:flex-start;justify-content:center;text-align:center;padding:116px 20px 40px;overflow:hidden;}
 #heroCanvas{position:absolute;inset:0;z-index:0;}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,122,24,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,122,24,.04) 1px,transparent 1px);background-size:58px 58px;z-index:1;}
 .hero-glow{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);width:960px;height:960px;background:radial-gradient(ellipse,rgba(255,122,24,.14) 0%,transparent 72%);z-index:1;}
@@ -75,7 +75,7 @@ nav{
 .ambient-ring.r3{animation-delay:3.2s;}
 .hero-logo-wrap{display:flex;justify-content:center;margin:0 0 0;}
 .hero-logo{width:min(700px,88vw);height:auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.5));animation:logoFloat 5.6s ease-in-out infinite,logoGlow 3.6s ease-in-out infinite;transform-origin:center;}
-.hero-quote{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,3.7vw,44px);font-weight:400;letter-spacing:1px;color:var(--muted);text-transform:none;margin-top:-6px;margin-bottom:12px;line-height:1;}
+.hero-quote{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,3.7vw,44px);font-weight:400;letter-spacing:1px;color:var(--muted);text-transform:none;margin-top:0;margin-bottom:12px;line-height:1;}
 .hero-ctas{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;}
 .btn-primary{background:linear-gradient(135deg,var(--orange),#e85f00);}
@@ -167,11 +167,11 @@ section{max-width:1360px;margin:0 auto;padding:68px 20px;}
 @media (max-width:760px){
   .cursor,.cursor-ring{display:none;}
   nav{top:8px;width:calc(100% - 14px);padding:6px;}
-  .nav-grid{grid-template-columns:1fr;gap:8px;}
-  .nav-col{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
-  .top-center-brand img{height:86px;max-width:74vw;}
-  .tab-btn{font-size:10px;padding:7px 8px;}
-  .tab-menu{left:0;right:0;min-width:unset;}
+  .investor-nav.company-nav{grid-template-columns:1fr;gap:8px;}
+  .investor-col{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
+  .company-brand img{height:78px;max-width:74vw;}
+  .investor-tab-btn{font-size:10px;padding:7px 8px;}
+  .investor-menu{left:0;right:0;min-width:unset;}
   .hero{min-height:70vh;padding:84px 12px 30px;}
   .logo-ambient{top:18px;height:340px;}
   .ambient-orb.one{width:280px;height:280px;left:0;top:22%;}
@@ -201,14 +201,14 @@ section{max-width:1360px;margin:0 auto;padding:68px 20px;}
 <div class="cursor-ring" id="cursorRing"></div>
 
 <nav>
-  <div class="nav-grid">
-    <div class="nav-col">
+  <div class="investor-nav company-nav">
+    <div class="investor-col">
       <div class="investor-tab">
-        <a class="tab-btn" href="index.html">Home</a>
+        <a class="investor-tab-btn no-caret" href="index.html">Home</a>
       </div>
       <div class="investor-tab">
-        <a class="tab-btn" href="pages/listen/live-radio.html" data-trigger="1">Listen</a>
-        <div class="tab-menu">
+        <a class="investor-tab-btn" href="pages/listen/live-radio.html" data-trigger="1">Listen</a>
+        <div class="investor-menu">
           <a href="pages/listen/live-radio.html">Live Radio</a>
           <a href="pages/listen/podcasts.html">Podcasts</a>
           <a href="pages/listen/music.html">Music</a>
@@ -218,13 +218,13 @@ section{max-width:1360px;margin:0 auto;padding:68px 20px;}
         </div>
       </div>
     </div>
-    <a class="top-center-brand" href="index.html" aria-label="RiteHear home">
+    <a class="company-brand" href="index.html" aria-label="RiteHear home">
       <img src="4020E2B9-4CDE-4648-9AA0-27DB0AA2CE6D (2).png" alt="RiteHear logo">
     </a>
-    <div class="nav-col">
+    <div class="investor-col">
       <div class="investor-tab">
-        <a class="tab-btn" href="pages/create/create-account.html" data-trigger="1">Create</a>
-        <div class="tab-menu">
+        <a class="investor-tab-btn" href="pages/create/create-account.html" data-trigger="1">Create</a>
+        <div class="investor-menu">
           <a href="pages/create/create-account.html">Create Account</a>
           <a href="pages/create/upload-music.html">Upload Music</a>
           <a href="pages/create/start-podcast.html">Start Podcast</a>
@@ -233,8 +233,8 @@ section{max-width:1360px;margin:0 auto;padding:68px 20px;}
         </div>
       </div>
       <div class="investor-tab">
-        <a class="tab-btn" href="pages/company/about.html" data-trigger="1">Company</a>
-        <div class="tab-menu">
+        <a class="investor-tab-btn" href="pages/company/about.html" data-trigger="1">Company</a>
+        <div class="investor-menu">
           <a href="pages/company/about.html">About</a>
           <a href="pages/company/advertise.html">Advertise</a>
           <a href="pages/company/contact.html">Contact</a>
